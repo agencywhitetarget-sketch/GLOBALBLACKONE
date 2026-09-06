@@ -1,1464 +1,1086 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>BLACK ONE — Global Finance</title>
-  <meta name="description" content="BLACK ONE — one platform for fiat, digital assets and global payments.">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#050505" />
+  <meta name="description" content="BLACK ONE — a new global financial platform concept for fiat, digital assets, cards and international payments." />
+  <title>BLACK ONE — One account. Every currency.</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root{
+      --bg:#050505;
+      --bg-2:#0a0a0a;
+      --bg-3:#0f0f10;
+      --panel:#101112;
+      --panel-2:#151617;
+      --line:rgba(255,255,255,.10);
+      --line-2:rgba(255,255,255,.18);
+      --text:#f4f4f0;
+      --muted:#9c9d9f;
+      --muted-2:#6d6f72;
+      --silver:#d9d9d4;
+      --good:#b9f4c5;
+      --warn:#f2e7b7;
+      --max:1440px;
+      --radius:28px;
+      --radius-sm:18px;
+      --shadow:0 40px 120px rgba(0,0,0,.42);
     }
 
-    :root {
-      --black: #050505;
-      --black-2: #0b0b0c;
-      --black-3: #111113;
-      --card: #151517;
-      --line: rgba(255,255,255,.10);
-      --white: #f7f7f5;
-      --grey: #99999f;
-      --grey2: #68686e;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(255,255,255,.055), transparent 28%),
+        var(--bg);
+      color:var(--text);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
     }
-
-    html {
-      scroll-behavior: smooth;
+    a{color:inherit;text-decoration:none}
+    button,input{font:inherit}
+    img,svg{display:block;max-width:100%}
+    .container{width:min(calc(100% - 48px),var(--max));margin:0 auto}
+    .eyebrow{
+      font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+      display:flex;align-items:center;gap:10px
     }
-
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-      Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+    .eyebrow::before{content:"";width:24px;height:1px;background:var(--line-2)}
+    .display{
+      font-size:clamp(62px,10vw,158px);
+      line-height:.88;
+      letter-spacing:-.072em;
+      font-weight:650;
+      margin:0;
     }
-
-    a {
-      color: inherit;
-      text-decoration: none;
+    .section-title{
+      font-size:clamp(42px,6vw,94px);
+      line-height:.95;
+      letter-spacing:-.058em;
+      margin:0;
+      max-width:1000px;
+      font-weight:620;
     }
-
-    button {
-      font: inherit;
+    .lead{
+      font-size:clamp(19px,2vw,28px);
+      line-height:1.42;
+      color:#c7c8ca;
+      max-width:760px;
     }
-
-    .container {
-      width: min(1380px, calc(100% - 80px));
-      margin: 0 auto;
+    .muted{color:var(--muted)}
+    .rule{height:1px;background:var(--line)}
+    .pill{
+      display:inline-flex;align-items:center;gap:9px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.025);
+      border-radius:999px;padding:9px 13px;
+      font-size:12px;color:#d6d6d3;
+      backdrop-filter:blur(12px);
     }
+    .dot{width:7px;height:7px;border-radius:50%;background:#d8d8d2;box-shadow:0 0 18px rgba(255,255,255,.35)}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      border-radius:999px;padding:14px 20px;border:1px solid var(--line-2);
+      transition:.25s ease;cursor:pointer
+    }
+    .btn.primary{background:#f4f4ef;color:#050505;border-color:#f4f4ef;font-weight:600}
+    .btn.ghost{background:rgba(255,255,255,.02)}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary:hover{background:white}
+    .btn .arrow{font-size:18px;line-height:1}
 
     /* NAV */
-
-    nav {
-      height: 88px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 100;
-      background: rgba(5,5,5,.78);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,.07);
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:40;
+      height:78px;display:flex;align-items:center;
+      background:linear-gradient(to bottom,rgba(5,5,5,.88),rgba(5,5,5,.52),transparent);
+      backdrop-filter:blur(16px);
     }
-
-    .nav-inner {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .nav-inner{display:flex;align-items:center;justify-content:space-between}
+    .wordmark{
+      font-size:19px;font-weight:700;letter-spacing:.16em;white-space:nowrap
     }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: .08em;
-    }
-
-    .brand-mark {
-      width: 37px;
-      height: 37px;
-      border: 1px solid rgba(255,255,255,.55);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: -.03em;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 38px;
-      color: #aaa;
-      font-size: 14px;
-    }
-
-    .nav-links a {
-      transition: .25s;
-    }
-
-    .nav-links a:hover {
-      color: white;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .login {
-      padding: 12px 17px;
-      font-size: 14px;
-      color: #bbb;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 22px;
-      border-radius: 100px;
-      border: 1px solid rgba(255,255,255,.16);
-      font-size: 14px;
-      font-weight: 600;
-      transition: .25s;
-    }
-
-    .button-white {
-      background: white;
-      color: black;
-      border-color: white;
-    }
-
-    .button-white:hover {
-      background: #ddd;
-      transform: translateY(-1px);
-    }
-
-    .button-dark:hover {
-      border-color: rgba(255,255,255,.4);
-      background: rgba(255,255,255,.05);
+    .nav-links{display:flex;align-items:center;gap:28px;font-size:14px;color:#c5c5c2}
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .nav-actions .btn{padding:10px 15px;font-size:13px}
+    .mobile-toggle{
+      display:none;width:42px;height:42px;border-radius:50%;
+      background:transparent;border:1px solid var(--line);color:white
     }
 
     /* HERO */
-
-    .hero {
-      min-height: 100vh;
-      padding-top: 88px;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid var(--line);
+    .hero{
+      min-height:100svh;
+      display:flex;align-items:flex-end;
+      padding:150px 0 56px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;inset:auto -12% -42% 38%;
+      height:76%;
+      background:radial-gradient(ellipse at center,rgba(255,255,255,.07),transparent 64%);
+      filter:blur(10px);pointer-events:none
+    }
+    .hero-grid{
+      display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);
+      align-items:end;gap:70px;width:100%
+    }
+    .hero-copy{position:relative;z-index:2}
+    .hero h1 span{display:block}
+    .hero .sub{
+      margin-top:34px;max-width:640px;color:#b0b2b3;
+      font-size:19px;line-height:1.5
+    }
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .hero-note{margin-top:28px;color:var(--muted-2);font-size:12px;line-height:1.5;max-width:600px}
+    .hero-object{position:relative;height:660px;z-index:1}
+    .hero-card-wrap{
+      position:absolute;right:0;bottom:12px;width:min(100%,560px);
+      perspective:1600px;
+    }
+    .hero-card-glow{
+      position:absolute;inset:20% 10% -10% 10%;
+      background:radial-gradient(circle,rgba(255,255,255,.10),transparent 62%);
+      filter:blur(30px)
     }
 
-    .hero-glow {
-      position: absolute;
-      width: 900px;
-      height: 900px;
-      right: -280px;
-      top: -240px;
+    /* BLACK ONE CARD */
+    .metal-card{
+      position:relative;aspect-ratio:1.586/1;
+      border-radius:24px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.20);
       background:
-        radial-gradient(
-          circle,
-          rgba(255,255,255,.11) 0%,
-          rgba(255,255,255,.035) 32%,
-          transparent 68%
-        );
-      pointer-events: none;
-    }
-
-    .hero-inner {
-      min-height: calc(100vh - 88px);
-      display: grid;
-      grid-template-columns: 1.02fr .98fr;
-      align-items: center;
-      gap: 60px;
-      padding-top: 55px;
-      padding-bottom: 55px;
-    }
-
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #8f8f94;
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      font-size: 11px;
-      font-weight: 600;
-      margin-bottom: 28px;
-    }
-
-    .eyebrow-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: white;
-    }
-
-    h1 {
-      font-size: clamp(66px, 7.7vw, 126px);
-      line-height: .88;
-      letter-spacing: -.075em;
-      font-weight: 650;
-      max-width: 850px;
-    }
-
-    .hero-copy {
-      margin-top: 36px;
-      max-width: 610px;
-      color: #9c9ca1;
-      font-size: 19px;
-      line-height: 1.6;
-      letter-spacing: -.015em;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 12px;
-      margin-top: 38px;
-    }
-
-    .micro {
-      color: #5f5f64;
-      font-size: 11px;
-      margin-top: 20px;
-    }
-
-    /* APP MOCKUP */
-
-    .product-window {
-      width: 100%;
-      max-width: 590px;
-      margin-left: auto;
-      background: #0c0c0e;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 28px;
-      padding: 13px;
+        linear-gradient(115deg,rgba(255,255,255,.09),transparent 16%,transparent 54%,rgba(255,255,255,.04) 70%,transparent),
+        linear-gradient(165deg,#18191a 0%,#080808 46%,#151515 100%);
       box-shadow:
-        0 60px 150px rgba(0,0,0,.65),
-        inset 0 1px 0 rgba(255,255,255,.05);
-      transform: perspective(1300px) rotateY(-5deg) rotateX(2deg);
+        0 50px 120px rgba(0,0,0,.68),
+        inset 0 1px 0 rgba(255,255,255,.18),
+        inset 0 -1px 0 rgba(255,255,255,.04);
+      transform:rotateX(8deg) rotateY(-12deg) rotateZ(-3deg);
+      transform-style:preserve-3d;
+      transition:transform .25s ease;
     }
-
-    .app {
-      min-height: 640px;
-      border-radius: 19px;
+    .metal-card::before{
+      content:"";position:absolute;inset:0;
       background:
-        linear-gradient(180deg, #131316 0%, #09090a 100%);
-      border: 1px solid rgba(255,255,255,.06);
-      padding: 29px;
+        repeating-linear-gradient(100deg,rgba(255,255,255,.015) 0 1px,transparent 1px 5px);
+      mix-blend-mode:screen;opacity:.7
     }
-
-    .app-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: #737379;
-      font-size: 11px;
-      letter-spacing: .08em;
+    .metal-card::after{
+      content:"";position:absolute;width:80%;height:180%;top:-70%;left:-75%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.13),transparent);
+      transform:rotate(20deg);transition:left .8s ease
     }
-
-    .app-logo {
-      color: white;
-      font-weight: 700;
-      letter-spacing: .08em;
-    }
-
-    .profile {
-      width: 31px;
-      height: 31px;
-      border: 1px solid #36363a;
-      border-radius: 50%;
-    }
-
-    .balance-label {
-      margin-top: 66px;
-      color: #77777d;
-      font-size: 13px;
-    }
-
-    .balance {
-      font-size: clamp(42px, 4vw, 61px);
-      letter-spacing: -.055em;
-      margin-top: 8px;
-      font-weight: 450;
-    }
-
-    .balance-change {
-      color: #aaa;
-      font-size: 12px;
-      margin-top: 8px;
-    }
-
-    .quick-actions {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 8px;
-      margin-top: 38px;
-    }
-
-    .quick {
-      background: #18181b;
-      border: 1px solid rgba(255,255,255,.07);
-      border-radius: 12px;
-      padding: 14px;
-      color: #aaa;
-      font-size: 12px;
-      text-align: center;
-    }
-
-    .assets {
-      margin-top: 36px;
-    }
-
-    .assets-title {
-      color: #77777c;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      margin-bottom: 12px;
-    }
-
-    .asset {
-      display: grid;
-      grid-template-columns: 42px 1fr auto;
-      align-items: center;
-      padding: 16px 0;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-
-    .asset-icon {
-      width: 32px;
-      height: 32px;
-      background: #1b1b1e;
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-size: 11px;
-    }
-
-    .asset-name {
-      font-size: 14px;
-    }
-
-    .asset-sub {
-      color: #65656a;
-      font-size: 11px;
-      margin-top: 3px;
-    }
-
-    .asset-value {
-      text-align: right;
-      font-size: 14px;
-    }
-
-    /* INTRO */
-
-    .intro {
-      padding: 150px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .intro-grid {
-      display: grid;
-      grid-template-columns: .6fr 1.4fr;
-      gap: 100px;
-    }
-
-    .section-number {
-      color: #646469;
-      font-size: 12px;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-    }
-
-    .intro h2 {
-      font-size: clamp(48px, 6vw, 92px);
-      line-height: .98;
-      letter-spacing: -.06em;
-      font-weight: 500;
-      max-width: 900px;
-    }
-
-    .intro-text {
-      margin-top: 46px;
-      max-width: 650px;
-      font-size: 18px;
-      line-height: 1.7;
-      color: #8f8f94;
-    }
-
-    /* PRODUCTS */
-
-    .products {
-      border-bottom: 1px solid var(--line);
-    }
-
-    .product-row {
-      min-height: 310px;
-      display: grid;
-      grid-template-columns: 90px 1fr 1fr 50px;
-      align-items: center;
-      gap: 50px;
-      border-bottom: 1px solid var(--line);
-      transition: background .25s;
-    }
-
-    .product-row:last-child {
-      border-bottom: none;
-    }
-
-    .product-row:hover {
-      background: rgba(255,255,255,.025);
-    }
-
-    .product-index {
-      color: #5e5e63;
-      font-size: 12px;
-    }
-
-    .product-title {
-      font-size: clamp(38px,4vw,62px);
-      letter-spacing: -.05em;
-      font-weight: 500;
-    }
-
-    .product-description {
-      color: #85858b;
-      max-width: 470px;
-      line-height: 1.65;
-      font-size: 15px;
-    }
-
-    .product-arrow {
-      font-size: 24px;
-      color: #777;
-    }
-
-    /* CARD SECTION */
-
-    .card-section {
-      min-height: 850px;
-      background: #f0efeb;
-      color: #080808;
-      overflow: hidden;
-    }
-
-    .card-grid {
-      min-height: 850px;
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      align-items: center;
-      gap: 80px;
-    }
-
-    .dark-label {
-      color: #696966;
-    }
-
-    .card-copy h2 {
-      font-size: clamp(55px,6vw,92px);
-      line-height: .94;
-      letter-spacing: -.065em;
-      font-weight: 550;
-      margin-top: 25px;
-    }
-
-    .card-copy p {
-      max-width: 520px;
-      margin-top: 30px;
-      color: #5d5d59;
-      line-height: 1.65;
-      font-size: 17px;
-    }
-
-    .physical-card-wrap {
-      position: relative;
-      height: 520px;
-      display: grid;
-      place-items: center;
-    }
-
-    .physical-card {
-      width: min(570px, 90%);
-      aspect-ratio: 1.586;
-      border-radius: 23px;
+    .metal-card:hover::after{left:120%}
+    .card-inner{position:absolute;inset:0;padding:34px;display:flex;flex-direction:column;justify-content:space-between}
+    .card-top{display:flex;align-items:flex-start;justify-content:space-between}
+    .card-brand{font-size:16px;font-weight:700;letter-spacing:.18em}
+    .card-chip{
+      width:46px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,.22);
       background:
-        radial-gradient(circle at 80% 0%, #39393b, transparent 36%),
-        linear-gradient(145deg,#171719,#050505);
-      color: white;
-      position: relative;
-      padding: 31px;
-      transform: rotate(-7deg);
-      box-shadow:
-        0 60px 80px rgba(0,0,0,.25),
-        inset 0 1px 1px rgba(255,255,255,.15);
+        linear-gradient(90deg,transparent 47%,rgba(255,255,255,.14) 48% 52%,transparent 53%),
+        linear-gradient(transparent 47%,rgba(255,255,255,.14) 48% 52%,transparent 53%),
+        linear-gradient(145deg,#505254,#171819);
+    }
+    .contactless{font-size:28px;transform:rotate(90deg);opacity:.76}
+    .card-mid{
+      position:absolute;left:34px;right:34px;top:48%;
+      height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent)
+    }
+    .card-bottom{display:flex;align-items:flex-end;justify-content:space-between}
+    .card-meta{font-size:11px;letter-spacing:.13em;color:#a5a7a9;text-transform:uppercase}
+    .card-holder{margin-top:7px;font-size:13px;letter-spacing:.12em}
+    .card-one{
+      width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.20);
+      display:grid;place-items:center;font-size:11px;font-weight:700;letter-spacing:.05em;
+      background:rgba(255,255,255,.03)
+    }
+    .hero-orbit{
+      position:absolute;right:-85px;bottom:100px;width:500px;height:500px;border-radius:50%;
+      border:1px solid rgba(255,255,255,.05);
+      transform:rotateX(72deg)
+    }
+    .hero-orbit::before,.hero-orbit::after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.04)}
+    .hero-orbit::before{inset:70px}.hero-orbit::after{inset:140px}
+    .hero-caption{
+      position:absolute;right:0;top:80px;width:250px;
+      color:#888b8e;font-size:12px;line-height:1.55;
     }
 
-    .card-brand {
-      font-size: 17px;
-      font-weight: 700;
-      letter-spacing: .1em;
-    }
+    /* MANIFESTO */
+    .manifesto{padding:180px 0}
+    .manifesto-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:110px}
+    .manifesto-copy{font-size:clamp(30px,4vw,60px);line-height:1.08;letter-spacing:-.04em}
+    .manifesto-copy span{color:#6e7073}
+    .manifesto-side{padding-top:10px}
+    .manifesto-side p{font-size:18px;line-height:1.65;color:#a6a8aa;max-width:520px}
+    .system-lines{margin-top:54px;border-top:1px solid var(--line)}
+    .system-row{display:grid;grid-template-columns:1fr auto;gap:20px;padding:18px 0;border-bottom:1px solid var(--line);font-size:14px}
+    .system-row span:last-child{color:var(--muted)}
 
-    .card-b1 {
-      position: absolute;
-      right: 30px;
-      top: 28px;
-      border: 1px solid rgba(255,255,255,.4);
-      border-radius: 50%;
-      width: 38px;
-      height: 38px;
-      display: grid;
-      place-items: center;
-      font-size: 11px;
+    /* PRODUCT */
+    .product-section{padding:150px 0 200px}
+    .section-head{display:flex;justify-content:space-between;gap:50px;align-items:flex-end;margin-bottom:56px}
+    .section-head .lead{max-width:500px;font-size:17px;margin:0}
+    .dashboard{
+      border:1px solid var(--line);
+      border-radius:34px;overflow:hidden;background:#0b0c0d;
+      box-shadow:var(--shadow)
     }
+    .dash-top{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:18px 22px;border-bottom:1px solid var(--line);
+      background:#0d0e0f
+    }
+    .window-dots{display:flex;gap:6px}.window-dots i{width:7px;height:7px;border-radius:50%;background:#454749}
+    .dash-title{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8d9093}
+    .dash-body{display:grid;grid-template-columns:240px 1fr}
+    .dash-side{border-right:1px solid var(--line);padding:24px 16px}
+    .dash-logo{padding:0 10px 22px;font-weight:700;letter-spacing:.16em;font-size:13px}
+    .side-link{
+      padding:11px 12px;border-radius:11px;color:#85888b;font-size:13px;
+      display:flex;align-items:center;gap:10px
+    }
+    .side-link.active{background:#151617;color:white}
+    .side-bottom{margin-top:160px;border-top:1px solid var(--line);padding-top:16px}
+    .dash-main{padding:38px}
+    .dash-main-top{display:flex;justify-content:space-between;gap:30px;align-items:start}
+    .balance-label{font-size:12px;color:#818487;text-transform:uppercase;letter-spacing:.12em}
+    .balance{font-size:clamp(42px,5vw,78px);letter-spacing:-.055em;margin-top:10px}
+    .balance-sub{margin-top:8px;font-size:13px;color:#85888a}
+    .dash-actions{display:flex;gap:8px;flex-wrap:wrap}
+    .dash-action{padding:10px 12px;border-radius:10px;border:1px solid var(--line);font-size:12px;background:#121314}
+    .account-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:38px}
+    .account{
+      min-height:145px;border:1px solid var(--line);border-radius:18px;padding:18px;
+      background:linear-gradient(180deg,#121314,#0c0d0e)
+    }
+    .account-top{display:flex;justify-content:space-between;font-size:12px;color:#9b9da0}
+    .flag{font-size:16px}
+    .account-value{margin-top:28px;font-size:25px;letter-spacing:-.03em}
+    .account-small{margin-top:6px;font-size:11px;color:#6f7275}
+    .table{margin-top:28px;border-top:1px solid var(--line)}
+    .tr{display:grid;grid-template-columns:1.5fr .9fr .7fr .7fr;gap:20px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);font-size:12px}
+    .tr.head{color:#676a6d;text-transform:uppercase;letter-spacing:.08em;font-size:10px}
+    .tx-name{font-size:13px;color:#d9d9d6}
+    .status{display:inline-flex;align-items:center;gap:7px;color:#a7c9ae}
+    .status::before{content:"";width:6px;height:6px;border-radius:50%;background:#8cc79a}
+    .amount{text-align:right;font-variant-numeric:tabular-nums}
+    .amount.pos{color:#c9decf}
 
-    .chip {
-      position: absolute;
-      left: 31px;
-      top: 120px;
-      width: 48px;
-      height: 37px;
-      border: 1px solid #666;
-      border-radius: 7px;
+    /* ACCOUNT */
+    .account-section{padding:160px 0}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+    .copy-block p{max-width:560px;color:#9ea1a3;font-size:18px;line-height:1.65}
+    .feature-lines{margin-top:38px}
+    .feature-line{padding:17px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font-size:14px}
+    .feature-line span:last-child{color:#777a7d}
+    .ledger{
+      border:1px solid var(--line);border-radius:28px;background:#0b0c0d;padding:22px;
+      min-height:540px;position:relative;overflow:hidden
+    }
+    .ledger::after{
+      content:"";position:absolute;inset:-20% 20% auto -20%;height:55%;
+      background:radial-gradient(circle,rgba(255,255,255,.055),transparent 65%)
+    }
+    .ledger-head{display:flex;justify-content:space-between;font-size:11px;color:#75787b;text-transform:uppercase;letter-spacing:.1em}
+    .ledger-total{margin-top:26px;font-size:48px;letter-spacing:-.05em}
+    .ledger-list{margin-top:34px}
+    .currency-row{display:grid;grid-template-columns:50px 1fr auto;gap:16px;align-items:center;padding:18px 0;border-top:1px solid var(--line)}
+    .currency-badge{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:12px}
+    .currency-name{font-size:13px}.currency-code{font-size:11px;color:#74777a;margin-top:4px}
+    .currency-amount{text-align:right;font-variant-numeric:tabular-nums}.currency-fiat{font-size:11px;color:#6f7275;margin-top:4px}
+
+    /* CARD STAGE */
+    .card-stage{min-height:110vh;padding:140px 0;position:relative;overflow:hidden;background:#030303}
+    .card-stage .section-title{max-width:760px}
+    .card-stage-copy{position:relative;z-index:2}
+    .card-stage-object{margin:110px auto 0;width:min(900px,88vw);perspective:1800px}
+    .card-stage-object .metal-card{border-radius:32px}
+    .card-stage-object .card-inner{padding:44px}
+    .card-stage-object .card-brand{font-size:22px}
+    .card-stage-shadow{width:80%;height:70px;margin:-20px auto 0;background:radial-gradient(ellipse,rgba(255,255,255,.09),transparent 65%);filter:blur(22px)}
+    .card-specs{margin-top:54px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .card-spec{padding:22px;border-right:1px solid var(--line)}
+    .card-spec:last-child{border-right:0}
+    .card-spec small{display:block;color:#707275;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+    .card-spec strong{font-weight:500;font-size:14px}
+
+    /* MOVEMENT */
+    .move{padding:170px 0}
+    .transfer{
+      margin-top:70px;display:grid;grid-template-columns:.9fr 1.1fr;gap:16px
+    }
+    .transfer-panel,.flow-panel{border:1px solid var(--line);border-radius:26px;background:#0b0c0d}
+    .transfer-panel{padding:28px}
+    .label{font-size:10px;text-transform:uppercase;letter-spacing:.11em;color:#73767a}
+    .send-box{margin-top:14px;border:1px solid var(--line);border-radius:16px;padding:18px;background:#101112}
+    .send-row{display:flex;justify-content:space-between;align-items:center}
+    .send-amount{font-size:38px;letter-spacing:-.04em}
+    .currency-select{padding:9px 12px;border:1px solid var(--line);border-radius:999px;font-size:12px}
+    .send-meta{margin-top:10px;color:#6f7275;font-size:11px}
+    .recipient{margin-top:16px;border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between}
+    .recipient strong{font-size:13px}.recipient span{font-size:11px;color:#73767a}
+    .quote{margin-top:22px}
+    .quote-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:12px}
+    .quote-row span:last-child{color:#c7c8c5}
+    .flow-panel{padding:26px;position:relative;overflow:hidden;min-height:480px}
+    .flow-title{font-size:12px;color:#85888b}
+    .map{
+      position:absolute;inset:60px 20px 20px;
       background:
-        linear-gradient(90deg, transparent 48%, #555 49%, #555 51%, transparent 52%),
-        linear-gradient(#353537,#1c1c1e);
+        radial-gradient(circle at 20% 35%,rgba(255,255,255,.05),transparent 16%),
+        radial-gradient(circle at 68% 28%,rgba(255,255,255,.05),transparent 14%),
+        radial-gradient(circle at 72% 72%,rgba(255,255,255,.04),transparent 18%);
     }
+    .map svg{width:100%;height:100%}
+    .map path{stroke:rgba(255,255,255,.14);stroke-width:1;fill:none}
+    .map .route{stroke:rgba(255,255,255,.58);stroke-dasharray:4 7;animation:dash 6s linear infinite}
+    @keyframes dash{to{stroke-dashoffset:-100}}
+    .node{fill:#d9d9d4}.node-muted{fill:#6e7073}
 
-    .card-number {
-      position: absolute;
-      left: 31px;
-      bottom: 33px;
-      letter-spacing: .22em;
-      font-size: 15px;
-      color: #c8c8ca;
-    }
-
-    .card-world {
-      position: absolute;
-      right: 31px;
-      bottom: 31px;
-      font-size: 12px;
-      letter-spacing: .15em;
-      color: #aaa;
-    }
+    /* ASSETS */
+    .assets{padding:170px 0;background:#070707}
+    .asset-grid{margin-top:70px;display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+    .portfolio,.exchange{border:1px solid var(--line);border-radius:26px;background:#0c0d0e;padding:28px}
+    .portfolio-total{font-size:52px;letter-spacing:-.05em;margin-top:14px}
+    .asset-list{margin-top:30px}
+    .asset-row{display:grid;grid-template-columns:44px 1fr 1fr auto;gap:16px;align-items:center;padding:18px 0;border-top:1px solid var(--line)}
+    .coin{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:11px;font-weight:600}
+    .asset-name{font-size:13px}.asset-sub{font-size:11px;color:#707376;margin-top:4px}
+    .spark{height:26px}
+    .spark svg{width:100%;height:100%}.spark path{stroke:#9fa2a4;stroke-width:1.2;fill:none}
+    .asset-val{text-align:right;font-size:13px}.asset-val small{display:block;color:#707376;margin-top:4px}
+    .exchange-box{margin-top:24px;border:1px solid var(--line);border-radius:18px;padding:20px;background:#101112}
+    .exchange-row{display:flex;justify-content:space-between;align-items:center;padding:15px 0}
+    .exchange-row + .exchange-row{border-top:1px solid var(--line)}
+    .exchange-row strong{font-size:26px;font-weight:500;letter-spacing:-.03em}
+    .exchange-rate{padding:14px 0;font-size:11px;color:#777a7d;border-top:1px solid var(--line)}
+    .exchange-cta{margin-top:18px;width:100%;border:0;border-radius:12px;padding:13px;background:#efefeb;color:#060606;font-weight:600}
 
     /* BUSINESS */
-
-    .business {
-      padding: 150px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .business-top {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 90px;
-      margin-bottom: 100px;
-    }
-
-    .business h2 {
-      font-size: clamp(54px,6vw,90px);
-      line-height: .96;
-      letter-spacing: -.06em;
-      font-weight: 500;
-    }
-
-    .business-copy {
-      color: #8d8d92;
-      line-height: 1.7;
-      font-size: 17px;
-      max-width: 550px;
-      padding-top: 15px;
-    }
-
-    .business-table {
-      border-top: 1px solid var(--line);
-    }
-
-    .business-item {
-      display: grid;
-      grid-template-columns: 90px 1fr auto;
-      padding: 27px 0;
-      border-bottom: 1px solid var(--line);
-      align-items: center;
-    }
-
-    .business-item span:first-child {
-      color: #5e5e63;
-      font-size: 12px;
-    }
-
-    .business-item strong {
-      font-size: 21px;
-      font-weight: 450;
-      letter-spacing: -.02em;
-    }
-
-    .business-item span:last-child {
-      color: #69696e;
-      font-size: 12px;
-    }
+    .business{padding:180px 0}
+    .business-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+    .business-ui{border:1px solid var(--line);border-radius:28px;background:#0b0c0d;overflow:hidden}
+    .business-ui-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font-size:11px;color:#7b7e81}
+    .business-ui-body{padding:20px}
+    .member{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+    .avatar{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:11px}
+    .member strong{font-size:12px}.member span{display:block;margin-top:4px;color:#6f7275;font-size:10px}
+    .role{font-size:10px;padding:7px 9px;border:1px solid var(--line);border-radius:999px;color:#a7aaad}
+    .limit-card{margin-top:18px;border:1px solid var(--line);border-radius:16px;padding:16px}
+    .limit-head{display:flex;justify-content:space-between;font-size:11px}.bar{height:5px;background:#1e2022;border-radius:99px;margin-top:14px;overflow:hidden}.bar i{display:block;width:64%;height:100%;background:#a8aaac}
 
     /* SECURITY */
-
-    .security {
-      padding: 150px 0;
-      background: #0a0a0b;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .security-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 100px;
-    }
-
-    .security h2 {
-      font-size: clamp(55px,6vw,90px);
-      line-height: .95;
-      letter-spacing: -.06em;
-      font-weight: 500;
-    }
-
-    .security-items {
-      border-top: 1px solid var(--line);
-    }
-
-    .security-item {
-      padding: 26px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .security-item h3 {
-      font-size: 18px;
-      font-weight: 500;
-      margin-bottom: 9px;
-    }
-
-    .security-item p {
-      color: #77777c;
-      line-height: 1.55;
-      font-size: 14px;
-    }
-
-    /* FINAL */
-
-    .final {
-      min-height: 700px;
-      display: flex;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .final:before {
-      content: "";
-      position: absolute;
-      width: 900px;
-      height: 500px;
-      left: 50%;
-      bottom: -400px;
-      transform: translateX(-50%);
-      border-radius: 50%;
-      box-shadow: 0 0 200px rgba(255,255,255,.11);
-    }
-
-    .final-inner {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-    }
-
-    .final h2 {
-      font-size: clamp(62px,9vw,135px);
-      letter-spacing: -.075em;
-      line-height: .88;
-      font-weight: 550;
-    }
-
-    .final p {
-      color: #88888d;
-      font-size: 17px;
-      margin: 32px auto;
-      max-width: 550px;
-      line-height: 1.6;
-    }
-
-    /* FOOTER */
-
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 50px 0;
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 50px;
-      margin-bottom: 60px;
-    }
-
-    .footer-brand {
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: .08em;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 45px;
-      color: #77777c;
-      font-size: 13px;
-    }
-
-    .legal {
-      padding-top: 25px;
-      border-top: 1px solid var(--line);
-      color: #505055;
-      font-size: 11px;
-      line-height: 1.7;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 50px;
-    }
+    .security{padding:180px 0;background:#070707}
+    .security-grid{margin-top:70px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .security-card{min-height:300px;border:1px solid var(--line);border-radius:24px;padding:26px;background:#0b0c0d;display:flex;flex-direction:column;justify-content:space-between}
+    .security-icon{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center}
+    .security-card h3{font-size:20px;margin:0 0 10px;letter-spacing:-.02em}.security-card p{font-size:13px;line-height:1.6;color:#7f8285;margin:0}
+    .device-panel{margin-top:18px;border-top:1px solid var(--line)}
+    .device{padding:12px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font-size:11px}
 
     /* MOBILE */
+    .mobile-preview{padding:180px 0}
+    .phones{margin-top:80px;display:flex;justify-content:center;gap:28px;align-items:flex-end;perspective:1600px}
+    .phone{
+      width:270px;aspect-ratio:9/19.5;border-radius:44px;padding:10px;background:#111214;border:1px solid rgba(255,255,255,.16);box-shadow:0 50px 100px rgba(0,0,0,.55)
+    }
+    .phone:nth-child(1){transform:translateY(38px) rotateY(7deg)}
+    .phone:nth-child(3){transform:translateY(38px) rotateY(-7deg)}
+    .screen{height:100%;border-radius:35px;background:#070808;overflow:hidden;padding:18px;position:relative}
+    .island{width:84px;height:20px;border-radius:99px;background:#000;margin:0 auto 22px}
+    .screen small{color:#717477;font-size:9px}.screen h4{font-size:14px;margin:4px 0 16px}.mobile-bal{font-size:28px;letter-spacing:-.04em}.mobile-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:18px}.mob-action{height:40px;border:1px solid var(--line);border-radius:11px;display:grid;place-items:center;font-size:10px}
+    .mobile-card{margin-top:18px;aspect-ratio:1.586/1;border-radius:14px;background:linear-gradient(145deg,#1b1c1d,#080808);border:1px solid var(--line);padding:14px;display:flex;flex-direction:column;justify-content:space-between}
+    .mobile-row{padding:11px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font-size:10px}
+    .chart{height:180px;margin-top:20px}.chart svg{width:100%;height:100%}.chart path{stroke:#b5b8ba;stroke-width:1.5;fill:none}.chart line{stroke:rgba(255,255,255,.05)}
+    .security-switch{margin-top:18px}.switch-row{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);font-size:10px}.toggle{width:34px;height:20px;border-radius:99px;background:#d7d7d1;padding:3px}.toggle i{display:block;width:14px;height:14px;background:#080808;border-radius:50%;margin-left:auto}
 
-    @media(max-width: 950px) {
+    /* ECOSYSTEM */
+    .ecosystem{padding:180px 0;background:#030303}
+    .eco-grid{margin-top:80px;display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+    .eco-card{border:1px solid var(--line);border-radius:24px;background:#0a0b0c;padding:26px;min-height:210px;position:relative;overflow:hidden}
+    .eco-card h3{margin:0;font-size:18px}.eco-card p{color:#797c7f;font-size:12px;line-height:1.6;max-width:320px}
+    .eco-card.big{grid-column:span 7;min-height:360px}.eco-card.small{grid-column:span 5}
+    .eco-card.third{grid-column:span 4}
+    .eco-number{position:absolute;right:20px;bottom:10px;font-size:88px;color:rgba(255,255,255,.035);font-weight:700;letter-spacing:-.08em}
+    .eco-ring{position:absolute;width:220px;height:220px;border:1px solid rgba(255,255,255,.07);border-radius:50%;right:-40px;bottom:-70px}.eco-ring::before,.eco-ring::after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.05)}.eco-ring::before{inset:35px}.eco-ring::after{inset:75px}
 
-      .container {
-        width: min(100% - 38px, 1380px);
-      }
+    /* COMPANY */
+    .company{padding:180px 0}
+    .company-copy{font-size:clamp(36px,5vw,74px);line-height:1.08;letter-spacing:-.05em;max-width:1100px}
+    .company-copy span{color:#686b6d}
+    .company-bottom{margin-top:70px;display:grid;grid-template-columns:1fr 1fr;gap:80px}
+    .company-bottom p{font-size:16px;line-height:1.7;color:#85888b;max-width:560px}
 
-      nav {
-        height: 72px;
-      }
+    /* CTA */
+    .final{padding:180px 0 90px}
+    .final-box{
+      min-height:560px;border:1px solid var(--line);border-radius:36px;padding:52px;
+      background:
+        radial-gradient(circle at 80% 20%,rgba(255,255,255,.08),transparent 24%),
+        linear-gradient(145deg,#101112,#060606 65%);
+      display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative
+    }
+    .final-box::after{content:"BLACK ONE";position:absolute;right:-10px;bottom:-25px;font-size:clamp(90px,16vw,240px);letter-spacing:-.08em;color:rgba(255,255,255,.025);font-weight:700;white-space:nowrap}
+    .final-top{display:flex;justify-content:space-between;gap:30px;position:relative;z-index:2}
+    .final-box h2{font-size:clamp(52px,8vw,120px);line-height:.92;letter-spacing:-.065em;margin:0;max-width:900px}
+    .final-actions{display:flex;gap:12px;align-items:flex-end;position:relative;z-index:2}
 
-      .nav-links,
-      .login {
-        display: none;
-      }
+    /* FOOTER */
+    footer{padding:70px 0 36px}
+    .footer-top{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:50px}
+    .footer-brand .wordmark{font-size:17px}.footer-brand p{max-width:360px;color:#74777a;font-size:12px;line-height:1.65;margin-top:20px}
+    .footer-col h4{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#65686b;margin:0 0 18px}
+    .footer-col a{display:block;font-size:12px;color:#a7a9ab;margin:10px 0}
+    .footer-bottom{margin-top:55px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:30px;color:#626568;font-size:10px;line-height:1.6}
+    .footer-bottom p{max-width:860px;margin:0}
 
-      .hero {
-        padding-top: 72px;
-      }
+    /* REVEALS */
+    .reveal{opacity:0;transform:translateY(26px);transition:opacity .85s ease,transform .85s cubic-bezier(.2,.7,.2,1)}
+    .reveal.in{opacity:1;transform:none}
 
-      .hero-inner {
-        grid-template-columns: 1fr;
-        padding-top: 90px;
-        gap: 80px;
-      }
+    /* MOBILE MENU */
+    .mobile-menu{
+      position:fixed;inset:0;z-index:35;background:rgba(5,5,5,.98);
+      padding:100px 24px 30px;display:none;flex-direction:column
+    }
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{font-size:34px;letter-spacing:-.03em;padding:10px 0;border-bottom:1px solid var(--line)}
+    .mobile-menu .btn{margin-top:26px}
 
-      h1 {
-        font-size: clamp(66px, 17vw, 105px);
-      }
-
-      .product-window {
-        margin: 0 auto;
-        transform: none;
-      }
-
-      .intro-grid,
-      .card-grid,
-      .business-top,
-      .security-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .intro-grid {
-        gap: 45px;
-      }
-
-      .product-row {
-        grid-template-columns: 50px 1fr 30px;
-        gap: 20px;
-        padding: 55px 0;
-      }
-
-      .product-description {
-        grid-column: 2/3;
-        margin-top: -25px;
-      }
-
-      .product-arrow {
-        grid-column: 3;
-        grid-row: 1;
-      }
-
-      .card-grid {
-        padding: 100px 0;
-      }
-
-      .card-section,
-      .card-grid {
-        min-height: auto;
-      }
-
-      .physical-card-wrap {
-        height: 430px;
-      }
-
-      .business-top {
-        gap: 40px;
-        margin-bottom: 70px;
-      }
-
-      .security-grid {
-        gap: 70px;
-      }
+    @media (max-width:1050px){
+      .nav-links{display:none}.mobile-toggle{display:block}.nav-actions .ghost{display:none}
+      .hero-grid{grid-template-columns:1fr;gap:50px}.hero-object{height:500px}.hero-card-wrap{left:6%;right:auto;width:88%}.hero-caption{display:none}
+      .manifesto-grid,.split,.business-grid{grid-template-columns:1fr;gap:55px}
+      .dash-body{grid-template-columns:1fr}.dash-side{display:none}
+      .account-grid{grid-template-columns:repeat(2,1fr)}
+      .transfer,.asset-grid{grid-template-columns:1fr}
+      .security-grid{grid-template-columns:1fr 1fr}
+      .eco-card.big,.eco-card.small,.eco-card.third{grid-column:span 6}
+      .footer-top{grid-template-columns:1.5fr repeat(2,1fr)}
     }
 
-    @media(max-width: 600px) {
-
-      .brand {
-        font-size: 16px;
-      }
-
-      .brand-mark {
-        width: 31px;
-        height: 31px;
-        font-size: 10px;
-      }
-
-      .nav-actions .button {
-        padding: 11px 15px;
-        font-size: 12px;
-      }
-
-      .hero-copy {
-        font-size: 17px;
-      }
-
-      .hero-buttons {
-        flex-direction: column;
-      }
-
-      .hero-buttons .button {
-        width: 100%;
-      }
-
-      .app {
-        min-height: 580px;
-        padding: 21px;
-      }
-
-      .quick-actions {
-        grid-template-columns: repeat(3,1fr);
-      }
-
-      .intro,
-      .business,
-      .security {
-        padding: 100px 0;
-      }
-
-      .product-row {
-        min-height: 250px;
-      }
-
-      .product-title {
-        font-size: 39px;
-      }
-
-      .physical-card {
-        width: 96%;
-        padding: 22px;
-      }
-
-      .chip {
-        left: 22px;
-        top: 90px;
-      }
-
-      .card-number {
-        left: 22px;
-        bottom: 25px;
-        font-size: 12px;
-      }
-
-      .card-world {
-        right: 22px;
-        bottom: 24px;
-      }
-
-      .business-item {
-        grid-template-columns: 55px 1fr;
-      }
-
-      .business-item span:last-child {
-        display: none;
-      }
-
-      .final {
-        min-height: 600px;
-      }
-
-      .footer-top {
-        flex-direction: column;
-      }
-
-      .footer-links {
-        flex-wrap: wrap;
-        gap: 20px 30px;
-      }
-
-      .legal {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
+    @media (max-width:720px){
+      .container{width:min(calc(100% - 28px),var(--max))}
+      .nav{height:68px}.nav-actions .primary{display:none}
+      .display{font-size:clamp(58px,18vw,88px);letter-spacing:-.07em}
+      .hero{padding-top:125px;min-height:auto}.hero-object{height:390px}.hero-card-wrap{left:0;width:100%}.metal-card{transform:rotateX(5deg) rotateY(-7deg) rotateZ(-2deg);border-radius:18px}.card-inner{padding:22px}.card-stage-object .card-inner{padding:24px}.hero-orbit{display:none}
+      .manifesto,.product-section,.account-section,.move,.assets,.business,.security,.mobile-preview,.ecosystem,.company,.final{padding:110px 0}
+      .manifesto-copy{font-size:38px}
+      .section-head{display:block}.section-head .lead{margin-top:24px}
+      .dash-main{padding:22px}.dash-main-top{display:block}.dash-actions{margin-top:20px}.account-grid{grid-template-columns:1fr 1fr}.account{min-height:125px}.tr{grid-template-columns:1.4fr .8fr .8fr}.tr > :nth-child(3){display:none}
+      .card-stage{min-height:auto}.card-stage-object{margin-top:70px;width:100%}.card-specs{grid-template-columns:1fr 1fr}.card-spec:nth-child(2){border-right:0}.card-spec:nth-child(-n+2){border-bottom:1px solid var(--line)}
+      .security-grid{grid-template-columns:1fr}
+      .phones{gap:10px;overflow:hidden;justify-content:flex-start;padding-left:10px}.phone{min-width:240px}.phone:nth-child(1),.phone:nth-child(3){transform:none}
+      .eco-grid{grid-template-columns:1fr}.eco-card.big,.eco-card.small,.eco-card.third{grid-column:auto}
+      .company-bottom{grid-template-columns:1fr;gap:20px}
+      .final-box{min-height:480px;padding:28px;border-radius:26px}.final-top{display:block}.final-actions{flex-direction:column;align-items:stretch}
+      .footer-top{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}.footer-bottom{display:block}
     }
   </style>
 </head>
-
 <body>
-
-<nav>
-  <div class="container nav-inner">
-
-    <a href="#" class="brand">
-      <span class="brand-mark">B1</span>
-      <span>BLACK ONE</span>
-    </a>
-
-    <div class="nav-links">
-      <a href="#personal">Personal</a>
-      <a href="#card">Card</a>
-      <a href="#business">Business</a>
-      <a href="#security">Security</a>
-    </div>
-
-    <div class="nav-actions">
-      <a class="login" href="#">Sign in</a>
-      <a class="button button-white" href="#access">
-        Get early access
-      </a>
-    </div>
-
-  </div>
-</nav>
-
-
-<section class="hero">
-
-  <div class="hero-glow"></div>
-
-  <div class="container hero-inner">
-
-    <div>
-
-      <div class="eyebrow">
-        <span class="eyebrow-dot"></span>
-        Global financial platform
-      </div>
-
-      <h1>
-        One account.<br>
-        Every currency.
-      </h1>
-
-      <p class="hero-copy">
-        Fiat, digital assets and global payments brought together
-        in one financial experience. Built for a world where money
-        never stops moving.
-      </p>
-
-      <div class="hero-buttons">
-
-        <a href="#access" class="button button-white">
-          Request early access
-        </a>
-
-        <a href="#personal" class="button button-dark">
-          Discover Black One →
-        </a>
-
-      </div>
-
-      <div class="micro">
-        BLACK ONE is currently in development.
-      </div>
-
-    </div>
-
-
-    <div class="product-window">
-
-      <div class="app">
-
-        <div class="app-header">
-          <span class="app-logo">BLACK ONE</span>
-          <div class="profile"></div>
-        </div>
-
-        <div class="balance-label">
-          Total balance
-        </div>
-
-        <div class="balance">
-          $84,620.14
-        </div>
-
-        <div class="balance-change">
-          + $2,184.32 this month
-        </div>
-
-        <div class="quick-actions">
-          <div class="quick">Send</div>
-          <div class="quick">Receive</div>
-          <div class="quick">Exchange</div>
-        </div>
-
-        <div class="assets">
-
-          <div class="assets-title">
-            Your assets
-          </div>
-
-          <div class="asset">
-
-            <div class="asset-icon">$</div>
-
-            <div>
-              <div class="asset-name">US Dollar</div>
-              <div class="asset-sub">USD</div>
-            </div>
-
-            <div class="asset-value">
-              $31,480.00
-            </div>
-
-          </div>
-
-
-          <div class="asset">
-
-            <div class="asset-icon">€</div>
-
-            <div>
-              <div class="asset-name">Euro</div>
-              <div class="asset-sub">EUR</div>
-            </div>
-
-            <div class="asset-value">
-              €18,940.00
-            </div>
-
-          </div>
-
-
-          <div class="asset">
-
-            <div class="asset-icon">₿</div>
-
-            <div>
-              <div class="asset-name">Bitcoin</div>
-              <div class="asset-sub">BTC</div>
-            </div>
-
-            <div class="asset-value">
-              0.284 BTC
-            </div>
-
-          </div>
-
-
-          <div class="asset">
-
-            <div class="asset-icon">U</div>
-
-            <div>
-              <div class="asset-name">USD Coin</div>
-              <div class="asset-sub">USDC</div>
-            </div>
-
-            <div class="asset-value">
-              12,240 USDC
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section class="intro" id="personal">
-
-  <div class="container intro-grid">
-
-    <div class="section-number">
-      01 / Black One
-    </div>
-
-    <div>
-
-      <h2>
-        Your money should work as one.
-      </h2>
-
-      <p class="intro-text">
-        Black One is designed to bring traditional money and digital
-        assets into a single account. Hold currencies, receive funds,
-        exchange assets and move money internationally without jumping
-        between separate financial products.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section class="products">
-
-  <div class="container">
-
-    <div class="product-row">
-
-      <div class="product-index">01</div>
-
-      <div class="product-title">
-        Global Accounts
-      </div>
-
-      <div class="product-description">
-        Manage supported currencies from one account and move money
-        across borders through available payment infrastructure.
-      </div>
-
-      <div class="product-arrow">↗</div>
-
-    </div>
-
-
-    <div class="product-row">
-
-      <div class="product-index">02</div>
-
-      <div class="product-title">
-        Digital Assets
-      </div>
-
-      <div class="product-description">
-        Buy, hold, exchange, send and receive supported digital assets
-        alongside your traditional currency balances.
-      </div>
-
-      <div class="product-arrow">↗</div>
-
-    </div>
-
-
-    <div class="product-row">
-
-      <div class="product-index">03</div>
-
-      <div class="product-title">
-        Global Payments
-      </div>
-
-      <div class="product-description">
-        A payment experience designed to connect your available balances
-        with everyday spending around the world.
-      </div>
-
-      <div class="product-arrow">↗</div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section class="card-section" id="card">
-
-  <div class="container card-grid">
-
-    <div class="card-copy">
-
-      <div class="section-number dark-label">
-        02 / Black One Card
-      </div>
-
-      <h2>
-        One card.<br>
-        Multiple balances.
-      </h2>
-
-      <p>
-        The Black One Card is designed to let you choose how you spend.
-        Pay from supported fiat balances or use eligible digital assets
-        through conversion infrastructure where available.
-      </p>
-
-    </div>
-
-
-    <div class="physical-card-wrap">
-
-      <div class="physical-card">
-
-        <div class="card-brand">
-          BLACK ONE
-        </div>
-
-        <div class="card-b1">
-          B1
-        </div>
-
-        <div class="chip"></div>
-
-        <div class="card-number">
-          •••• &nbsp; •••• &nbsp; •••• &nbsp; 4821
-        </div>
-
-        <div class="card-world">
-          WORLD
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section class="business" id="business">
-
-  <div class="container">
-
-    <div class="business-top">
-
-      <div>
-
-        <div class="section-number">
-          03 / Business
-        </div>
-
-        <h2 style="margin-top:25px">
-          Built for global business.
-        </h2>
-
-      </div>
-
-      <p class="business-copy">
-        One financial operating layer for companies working across
-        currencies, countries and digital assets. Designed for founders,
-        finance teams and globally distributed businesses.
-      </p>
-
-    </div>
-
-
-    <div class="business-table">
-
-      <div class="business-item">
-        <span>01</span>
-        <strong>Multi-currency treasury</strong>
-        <span>Unified balances</span>
-      </div>
-
-      <div class="business-item">
-        <span>02</span>
-        <strong>International payouts</strong>
-        <span>Global infrastructure</span>
-      </div>
-
-      <div class="business-item">
-        <span>03</span>
-        <strong>Team cards</strong>
-        <span>Spend controls</span>
-      </div>
-
-      <div class="business-item">
-        <span>04</span>
-        <strong>Digital asset settlement</strong>
-        <span>Supported assets</span>
-      </div>
-
-      <div class="business-item">
-        <span>05</span>
-        <strong>Financial APIs</strong>
-        <span>Built to integrate</span>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section class="security" id="security">
-
-  <div class="container security-grid">
-
-    <div>
-
-      <div class="section-number">
-        04 / Security
-      </div>
-
-      <h2 style="margin-top:25px">
-        Trust is infrastructure.
-      </h2>
-
-    </div>
-
-
-    <div class="security-items">
-
-      <div class="security-item">
-
-        <h3>Identity & access</h3>
-
-        <p>
-          Product architecture designed around strong identity
-          verification, authentication and account controls.
-        </p>
-
-      </div>
-
-
-      <div class="security-item">
-
-        <h3>Transaction monitoring</h3>
-
-        <p>
-          Risk and compliance controls designed to monitor transactions
-          and unusual account activity.
-        </p>
-
-      </div>
-
-
-      <div class="security-item">
-
-        <h3>Asset protection</h3>
-
-        <p>
-          Future digital-asset services are intended to use appropriate
-          custody infrastructure and regulated providers where required.
-        </p>
-
-      </div>
-
-
-      <div class="security-item">
-
-        <h3>Privacy</h3>
-
-        <p>
-          Security and privacy are intended to be fundamental components
-          of Black One's product architecture.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section class="final" id="access">
-
-  <div class="container final-inner">
-
-    <div class="eyebrow" style="justify-content:center">
-      <span class="eyebrow-dot"></span>
-      Black One
-    </div>
-
-    <h2>
-      Money without<br>
-      boundaries.
-    </h2>
-
-    <p>
-      Black One is being built as a new global financial experience
-      for fiat, digital assets and international payments.
-    </p>
-
-    <a href="mailto:hello@globalblackone.com"
-       class="button button-white">
-      Request early access
-    </a>
-
-  </div>
-
-</section>
-
-
-<footer>
-
-  <div class="container">
-
-    <div class="footer-top">
-
-      <div class="footer-brand">
-        BLACK ONE
-      </div>
-
-      <div class="footer-links">
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="wordmark" href="#top">BLACK ONE</a>
+      <div class="nav-links">
         <a href="#personal">Personal</a>
         <a href="#card">Card</a>
+        <a href="#crypto">Digital assets</a>
         <a href="#business">Business</a>
         <a href="#security">Security</a>
-        <a href="#">Legal</a>
+        <a href="#company">Company</a>
       </div>
-
+      <div class="nav-actions">
+        <a class="btn ghost" href="#footer">Sign in</a>
+        <a class="btn primary" href="#open">Open account <span class="arrow">↗</span></a>
+        <button class="mobile-toggle" aria-label="Open menu">☰</button>
+      </div>
     </div>
+  </nav>
 
-
-    <div class="legal">
-
-      <div>
-        © 2026 Black One<br>
-        globalblackone.com
-      </div>
-
-      <div>
-        Black One is currently presented as a product concept and is not
-        represented as a licensed bank, deposit-taking institution,
-        card issuer or crypto-asset service provider. Any future
-        regulated financial services will depend on applicable
-        authorisations, registrations and licensed partners in the
-        jurisdictions where those services are offered.
-      </div>
-
-    </div>
-
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#personal">Personal</a>
+    <a href="#card">Card</a>
+    <a href="#crypto">Digital assets</a>
+    <a href="#business">Business</a>
+    <a href="#security">Security</a>
+    <a href="#company">Company</a>
+    <a class="btn primary" href="#open">Open account</a>
   </div>
 
-</footer>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="pill"><span class="dot"></span> BLACK ONE / Global financial platform</div>
+          <h1 class="display" style="margin-top:24px">
+            <span>One account.</span>
+            <span>Every currency.</span>
+          </h1>
+          <p class="sub">
+            A new financial environment designed to bring fiat, digital assets, payments and card access into one precise global experience.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#personal">Explore BLACK ONE <span class="arrow">↘</span></a>
+            <a class="btn ghost" href="#company">The company</a>
+          </div>
+          <p class="hero-note">
+            BLACK ONE is currently an early-stage product concept. Availability of accounts, cards and regulated financial services will depend on future licensed infrastructure and partners.
+          </p>
+        </div>
 
+        <div class="hero-object reveal">
+          <div class="hero-caption">
+            A physical expression of the BLACK ONE system — restrained, architectural and designed around a single global account.
+          </div>
+          <div class="hero-orbit"></div>
+          <div class="hero-card-wrap">
+            <div class="hero-card-glow"></div>
+            <div class="metal-card interactive-card">
+              <div class="card-inner">
+                <div class="card-top">
+                  <div>
+                    <div class="card-brand">BLACK ONE</div>
+                    <div style="display:flex;gap:14px;align-items:center;margin-top:22px">
+                      <div class="card-chip"></div>
+                      <div class="contactless">)))</div>
+                    </div>
+                  </div>
+                  <div class="card-one">ONE</div>
+                </div>
+                <div class="card-mid"></div>
+                <div class="card-bottom">
+                  <div>
+                    <div class="card-meta">Member</div>
+                    <div class="card-holder">D. LYASHOK</div>
+                  </div>
+                  <div>
+                    <div class="card-meta">Global</div>
+                    <div class="card-holder">•• 1024</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container"><div class="rule"></div></div>
+
+    <section class="manifesto">
+      <div class="container manifesto-grid">
+        <div class="eyebrow reveal">The thesis</div>
+        <div>
+          <div class="manifesto-copy reveal">
+            Money should not feel fragmented. <span>Different currencies, assets, countries and payment rails should behave like one coherent system.</span>
+          </div>
+          <div class="manifesto-side reveal">
+            <p>
+              BLACK ONE is being designed as a single environment for personal and business finance — where traditional money and digital assets can live under one visual language, one control layer and one account experience.
+            </p>
+            <div class="system-lines">
+              <div class="system-row"><span>Fiat balances</span><span>EUR · USD · GBP</span></div>
+              <div class="system-row"><span>Digital assets</span><span>BTC · ETH · USDC</span></div>
+              <div class="system-row"><span>Movement</span><span>Send · Receive · Exchange</span></div>
+              <div class="system-row"><span>Access</span><span>Web · Mobile · Card</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section" id="personal">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow reveal">Personal / Account</div>
+            <h2 class="section-title reveal" style="margin-top:20px">One balance sheet for the way money actually moves.</h2>
+          </div>
+          <p class="lead reveal">
+            A production-minded interface for balances, transfers, exchange and card controls — built to feel calm even when the financial picture is complex.
+          </p>
+        </div>
+
+        <div class="dashboard reveal">
+          <div class="dash-top">
+            <div class="window-dots"><i></i><i></i><i></i></div>
+            <div class="dash-title">BLACK ONE / Personal</div>
+            <div class="pill">Secure session</div>
+          </div>
+          <div class="dash-body">
+            <aside class="dash-side">
+              <div class="dash-logo">BLACK ONE</div>
+              <div class="side-link active">Overview</div>
+              <div class="side-link">Accounts</div>
+              <div class="side-link">Payments</div>
+              <div class="side-link">Exchange</div>
+              <div class="side-link">Cards</div>
+              <div class="side-link">Digital assets</div>
+              <div class="side-bottom">
+                <div class="side-link">Security</div>
+                <div class="side-link">Settings</div>
+              </div>
+            </aside>
+            <div class="dash-main">
+              <div class="dash-main-top">
+                <div>
+                  <div class="balance-label">Total balance</div>
+                  <div class="balance">$84,620.48</div>
+                  <div class="balance-sub">Across fiat and digital assets · sample interface data</div>
+                </div>
+                <div class="dash-actions">
+                  <div class="dash-action">Send</div>
+                  <div class="dash-action">Receive</div>
+                  <div class="dash-action">Exchange</div>
+                  <div class="dash-action">Card</div>
+                </div>
+              </div>
+
+              <div class="account-grid">
+                <div class="account">
+                  <div class="account-top"><span>EUR</span><span class="flag">€</span></div>
+                  <div class="account-value">€24,180.20</div>
+                  <div class="account-small">Euro account</div>
+                </div>
+                <div class="account">
+                  <div class="account-top"><span>USD</span><span class="flag">$</span></div>
+                  <div class="account-value">$31,428.10</div>
+                  <div class="account-small">US dollar account</div>
+                </div>
+                <div class="account">
+                  <div class="account-top"><span>BTC</span><span class="flag">₿</span></div>
+                  <div class="account-value">0.1842 BTC</div>
+                  <div class="account-small">Digital asset balance</div>
+                </div>
+                <div class="account">
+                  <div class="account-top"><span>USDC</span><span class="flag">◎</span></div>
+                  <div class="account-value">12,800.00</div>
+                  <div class="account-small">Stablecoin balance</div>
+                </div>
+              </div>
+
+              <div class="table">
+                <div class="tr head"><div>Activity</div><div>Account</div><div>Status</div><div class="amount">Amount</div></div>
+                <div class="tr"><div><div class="tx-name">International transfer</div><div class="account-small">Today · 14:28</div></div><div>EUR</div><div><span class="status">Completed</span></div><div class="amount">− €2,450.00</div></div>
+                <div class="tr"><div><div class="tx-name">Card settlement</div><div class="account-small">Today · 11:42</div></div><div>USD</div><div><span class="status">Completed</span></div><div class="amount">− $380.50</div></div>
+                <div class="tr"><div><div class="tx-name">Asset conversion</div><div class="account-small">Yesterday · 20:16</div></div><div>BTC → USD</div><div><span class="status">Completed</span></div><div class="amount pos">+ $4,280.00</div></div>
+                <div class="tr"><div><div class="tx-name">Incoming payment</div><div class="account-small">Yesterday · 16:03</div></div><div>USD</div><div><span class="status">Completed</span></div><div class="amount pos">+ $8,200.00</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="account-section">
+      <div class="container split">
+        <div class="copy-block reveal">
+          <div class="eyebrow">Global accounts</div>
+          <h2 class="section-title" style="margin-top:20px">Local clarity. Global reach.</h2>
+          <p>
+            The account system is designed around holding and moving multiple currencies without forcing the user into separate financial worlds.
+          </p>
+          <div class="feature-lines">
+            <div class="feature-line"><span>Primary fiat balances</span><span>EUR · USD · GBP</span></div>
+            <div class="feature-line"><span>Account details</span><span>Designed for local rails</span></div>
+            <div class="feature-line"><span>FX layer</span><span>Clear quote before exchange</span></div>
+            <div class="feature-line"><span>Financial history</span><span>Unified ledger</span></div>
+          </div>
+        </div>
+
+        <div class="ledger reveal">
+          <div class="ledger-head"><span>Account architecture</span><span>Unified view</span></div>
+          <div class="ledger-total">€76,421.08</div>
+          <div class="account-small">Illustrative equivalent value</div>
+          <div class="ledger-list">
+            <div class="currency-row"><div class="currency-badge">€</div><div><div class="currency-name">Euro</div><div class="currency-code">EUR · Main account</div></div><div class="currency-amount">24,180.20<div class="currency-fiat">31.64%</div></div></div>
+            <div class="currency-row"><div class="currency-badge">$</div><div><div class="currency-name">US Dollar</div><div class="currency-code">USD · Global account</div></div><div class="currency-amount">31,428.10<div class="currency-fiat">41.12%</div></div></div>
+            <div class="currency-row"><div class="currency-badge">£</div><div><div class="currency-name">British Pound</div><div class="currency-code">GBP · Secondary account</div></div><div class="currency-amount">8,420.00<div class="currency-fiat">11.02%</div></div></div>
+            <div class="currency-row"><div class="currency-badge">₿</div><div><div class="currency-name">Bitcoin</div><div class="currency-code">BTC · Digital asset</div></div><div class="currency-amount">0.1842<div class="currency-fiat">10.84%</div></div></div>
+            <div class="currency-row"><div class="currency-badge">◎</div><div><div class="currency-name">USD Coin</div><div class="currency-code">USDC · Stablecoin</div></div><div class="currency-amount">4,128.00<div class="currency-fiat">5.38%</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card-stage" id="card">
+      <div class="container">
+        <div class="card-stage-copy">
+          <div class="eyebrow reveal">BLACK ONE Card</div>
+          <h2 class="section-title reveal" style="margin-top:20px">The financial system, made physical.</h2>
+          <p class="lead reveal" style="margin-top:24px">
+            A card concept built around black metal, restrained engraving and a design language that does not need decoration to feel premium.
+          </p>
+        </div>
+
+        <div class="card-stage-object reveal">
+          <div class="metal-card interactive-card">
+            <div class="card-inner">
+              <div class="card-top">
+                <div>
+                  <div class="card-brand">BLACK ONE</div>
+                  <div style="display:flex;gap:18px;align-items:center;margin-top:28px">
+                    <div class="card-chip"></div>
+                    <div class="contactless">)))</div>
+                  </div>
+                </div>
+                <div class="card-one">ONE</div>
+              </div>
+              <div class="card-mid"></div>
+              <div class="card-bottom">
+                <div>
+                  <div class="card-meta">Member</div>
+                  <div class="card-holder">D. LYASHOK</div>
+                </div>
+                <div>
+                  <div class="card-meta">Valid thru</div>
+                  <div class="card-holder">10 / 31</div>
+                </div>
+                <div>
+                  <div class="card-meta">Card</div>
+                  <div class="card-holder">•••• 1024</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-stage-shadow"></div>
+        </div>
+
+        <div class="card-specs reveal">
+          <div class="card-spec"><small>Material</small><strong>Black metal concept</strong></div>
+          <div class="card-spec"><small>Access</small><strong>Physical + virtual</strong></div>
+          <div class="card-spec"><small>Control</small><strong>Freeze · limits · devices</strong></div>
+          <div class="card-spec"><small>Funding</small><strong>Account balance selection</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="move">
+      <div class="container">
+        <div class="eyebrow reveal">Movement of value</div>
+        <h2 class="section-title reveal" style="margin-top:20px">Send money without losing sight of the details.</h2>
+        <p class="lead reveal" style="margin-top:24px">
+          Exchange rate, fee, destination amount and estimated arrival should be visible before the transfer is confirmed.
+        </p>
+
+        <div class="transfer">
+          <div class="transfer-panel reveal">
+            <div class="label">New transfer</div>
+            <div class="send-box">
+              <div class="send-row"><div><div class="label">You send</div><div class="send-amount">10,000</div></div><div class="currency-select">USD ▾</div></div>
+              <div class="send-meta">Available balance · $31,428.10</div>
+            </div>
+            <div class="send-box">
+              <div class="send-row"><div><div class="label">Recipient receives</div><div class="send-amount">8,602.40</div></div><div class="currency-select">EUR ▾</div></div>
+              <div class="recipient"><div><strong>Northstar GmbH</strong><span>Business beneficiary</span></div><span>DE •••• 6081</span></div>
+            </div>
+            <div class="quote">
+              <div class="quote-row"><span>Indicative rate</span><span>1 USD = 0.861 EUR</span></div>
+              <div class="quote-row"><span>Transfer fee</span><span>$18.00</span></div>
+              <div class="quote-row"><span>Estimated arrival</span><span>Same business day</span></div>
+            </div>
+            <button class="exchange-cta">Review transfer</button>
+          </div>
+
+          <div class="flow-panel reveal">
+            <div class="flow-title">Global movement / system view</div>
+            <div class="map">
+              <svg viewBox="0 0 800 420" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M70 110 C180 30 300 50 355 110 S520 170 730 90"/>
+                <path d="M90 310 C250 220 330 270 440 210 S620 130 720 280"/>
+                <path d="M120 160 C250 180 330 105 460 150 S620 260 700 230"/>
+                <path class="route" d="M110 265 C250 120 430 115 675 180"/>
+                <circle class="node" cx="110" cy="265" r="5"/><circle class="node" cx="675" cy="180" r="5"/>
+                <circle class="node-muted" cx="355" cy="110" r="3"/><circle class="node-muted" cx="440" cy="210" r="3"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="assets" id="crypto">
+      <div class="container">
+        <div class="eyebrow reveal">Digital assets</div>
+        <h2 class="section-title reveal" style="margin-top:20px">Assets, not a separate universe.</h2>
+        <p class="lead reveal" style="margin-top:24px">
+          The product direction places digital assets beside fiat balances inside the same account environment, with a single exchange experience.
+        </p>
+
+        <div class="asset-grid">
+          <div class="portfolio reveal">
+            <div class="label">Portfolio value</div>
+            <div class="portfolio-total">$24,812.30</div>
+            <div class="asset-list">
+              <div class="asset-row">
+                <div class="coin">BTC</div><div><div class="asset-name">Bitcoin</div><div class="asset-sub">0.1842 BTC</div></div>
+                <div class="spark"><svg viewBox="0 0 180 30" preserveAspectRatio="none"><path d="M0 22 C20 18 28 26 45 16 S72 10 86 17 S120 6 140 12 S160 7 180 4"/></svg></div>
+                <div class="asset-val">$15,840.20<small>63.84%</small></div>
+              </div>
+              <div class="asset-row">
+                <div class="coin">ETH</div><div><div class="asset-name">Ethereum</div><div class="asset-sub">2.840 ETH</div></div>
+                <div class="spark"><svg viewBox="0 0 180 30" preserveAspectRatio="none"><path d="M0 18 C15 25 30 12 48 15 S72 25 90 14 S125 17 145 8 S170 10 180 5"/></svg></div>
+                <div class="asset-val">$4,844.10<small>19.52%</small></div>
+              </div>
+              <div class="asset-row">
+                <div class="coin">USDC</div><div><div class="asset-name">USD Coin</div><div class="asset-sub">4,128.00 USDC</div></div>
+                <div class="spark"><svg viewBox="0 0 180 30" preserveAspectRatio="none"><path d="M0 15 L180 15"/></svg></div>
+                <div class="asset-val">$4,128.00<small>16.64%</small></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="exchange reveal">
+            <div class="label">Exchange</div>
+            <div class="exchange-box">
+              <div class="exchange-row"><div><div class="label">From</div><strong>5,000</strong></div><div class="currency-select">EUR ▾</div></div>
+              <div class="exchange-row"><div><div class="label">To</div><strong>5,810.20</strong></div><div class="currency-select">USD ▾</div></div>
+              <div class="exchange-rate">Illustrative quote · rate and fees shown before confirmation</div>
+            </div>
+            <button class="exchange-cta">Review exchange</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="business" id="business">
+      <div class="container business-grid">
+        <div class="copy-block reveal">
+          <div class="eyebrow">Business</div>
+          <h2 class="section-title" style="margin-top:20px">Financial control for teams, not just individuals.</h2>
+          <p>
+            The business layer is designed around permissions, spend controls, account visibility and future integrations rather than a separate visual product.
+          </p>
+          <div class="feature-lines">
+            <div class="feature-line"><span>Team access</span><span>Role based</span></div>
+            <div class="feature-line"><span>Card controls</span><span>Per user / per card</span></div>
+            <div class="feature-line"><span>Approvals</span><span>Designed for workflows</span></div>
+            <div class="feature-line"><span>Integration layer</span><span>Future API direction</span></div>
+          </div>
+        </div>
+
+        <div class="business-ui reveal">
+          <div class="business-ui-head"><span>BLACK ONE / Business controls</span><span>4 members</span></div>
+          <div class="business-ui-body">
+            <div class="member"><div class="avatar">DL</div><div><strong>Dmytro Lyashok</strong><span>Owner · Full access</span></div><div class="role">Owner</div></div>
+            <div class="member"><div class="avatar">AK</div><div><strong>Anna K.</strong><span>Finance · Payments</span></div><div class="role">Finance</div></div>
+            <div class="member"><div class="avatar">MS</div><div><strong>Mark S.</strong><span>Operations · Cards</span></div><div class="role">Member</div></div>
+            <div class="member"><div class="avatar">JP</div><div><strong>Julia P.</strong><span>Accounting · Read only</span></div><div class="role">Viewer</div></div>
+            <div class="limit-card">
+              <div class="limit-head"><span>Monthly team spend</span><span>$64,200 / $100,000</span></div>
+              <div class="bar"><i></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="security" id="security">
+      <div class="container">
+        <div class="eyebrow reveal">Security & control</div>
+        <h2 class="section-title reveal" style="margin-top:20px">Security should be visible where decisions happen.</h2>
+        <p class="lead reveal" style="margin-top:24px">
+          The interface is designed around device visibility, authentication, permissions and transaction control. Specific regulated safeguards will depend on the infrastructure used at launch.
+        </p>
+
+        <div class="security-grid">
+          <div class="security-card reveal">
+            <div class="security-icon">01</div>
+            <div>
+              <h3>Device control</h3>
+              <p>See active sessions and revoke access without hunting through settings.</p>
+              <div class="device-panel">
+                <div class="device"><span>MacBook Pro · Kraków</span><span>Current</span></div>
+                <div class="device"><span>iPhone · Kraków</span><span>18 min</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="security-card reveal">
+            <div class="security-icon">02</div>
+            <div>
+              <h3>Authentication</h3>
+              <p>Designed for passkeys, multi-factor authentication and sensitive-action confirmation.</p>
+              <div class="device-panel">
+                <div class="device"><span>Passkey</span><span>Enabled</span></div>
+                <div class="device"><span>Recovery methods</span><span>2 active</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="security-card reveal">
+            <div class="security-icon">03</div>
+            <div>
+              <h3>Transaction controls</h3>
+              <p>Clear limits, card freezes, beneficiary review and approval states at the point of action.</p>
+              <div class="device-panel">
+                <div class="device"><span>Card spending</span><span>Controlled</span></div>
+                <div class="device"><span>New beneficiaries</span><span>Review</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mobile-preview">
+      <div class="container">
+        <div class="eyebrow reveal">Mobile</div>
+        <h2 class="section-title reveal" style="margin-top:20px">The same system, designed for the hand.</h2>
+        <p class="lead reveal" style="margin-top:24px">Mobile is composed around immediate balances, movement and control — not a desktop interface squeezed into a phone.</p>
+
+        <div class="phones reveal">
+          <div class="phone">
+            <div class="screen">
+              <div class="island"></div>
+              <small>Good evening</small><h4>Overview</h4>
+              <div class="mobile-bal">$84,620.48</div><small>Total balance</small>
+              <div class="mobile-actions"><div class="mob-action">Send</div><div class="mob-action">Get</div><div class="mob-action">FX</div><div class="mob-action">Card</div></div>
+              <div class="mobile-card"><div style="font-size:10px;letter-spacing:.14em">BLACK ONE</div><div><small>Card balance</small><div style="font-size:19px;margin-top:4px">$12,420.20</div></div><small>•••• 1024</small></div>
+              <div class="mobile-row"><span>Transfer</span><span>− €2,450.00</span></div>
+              <div class="mobile-row"><span>Card settlement</span><span>− $380.50</span></div>
+            </div>
+          </div>
+          <div class="phone">
+            <div class="screen">
+              <div class="island"></div>
+              <small>Portfolio</small><h4>Digital assets</h4>
+              <div class="mobile-bal">$24,812.30</div><small>Total digital asset value</small>
+              <div class="chart"><svg viewBox="0 0 240 160" preserveAspectRatio="none"><line x1="0" y1="40" x2="240" y2="40"/><line x1="0" y1="80" x2="240" y2="80"/><line x1="0" y1="120" x2="240" y2="120"/><path d="M0 130 C25 110 35 135 58 103 S95 74 120 92 S155 55 183 62 S210 36 240 45"/></svg></div>
+              <div class="mobile-row"><span>BTC</span><span>$15,840.20</span></div>
+              <div class="mobile-row"><span>ETH</span><span>$4,844.10</span></div>
+              <div class="mobile-row"><span>USDC</span><span>$4,128.00</span></div>
+            </div>
+          </div>
+          <div class="phone">
+            <div class="screen">
+              <div class="island"></div>
+              <small>Security</small><h4>Control center</h4>
+              <div style="font-size:12px;color:#8a8d90;line-height:1.6">Your devices, card states and authentication in one place.</div>
+              <div class="security-switch">
+                <div class="switch-row"><span>Passkey</span><div class="toggle"><i></i></div></div>
+                <div class="switch-row"><span>Card online payments</span><div class="toggle"><i></i></div></div>
+                <div class="switch-row"><span>ATM withdrawals</span><div class="toggle"><i></i></div></div>
+                <div class="switch-row"><span>Crypto withdrawals</span><div class="toggle"><i></i></div></div>
+              </div>
+              <div style="margin-top:24px;border:1px solid var(--line);border-radius:16px;padding:14px">
+                <small>Current device</small>
+                <div style="font-size:12px;margin-top:6px">iPhone · Kraków</div>
+                <div style="font-size:10px;color:#6f7275;margin-top:4px">Face ID · Passkey verified</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ecosystem">
+      <div class="container">
+        <div class="eyebrow reveal">The ecosystem</div>
+        <h2 class="section-title reveal" style="margin-top:20px">Not a collection of products. One financial environment.</h2>
+
+        <div class="eco-grid">
+          <div class="eco-card big reveal"><h3>Account</h3><p>Fiat balances, digital assets, transfers and history designed around one ledger view.</p><div class="eco-number">01</div><div class="eco-ring"></div></div>
+          <div class="eco-card small reveal"><h3>Card</h3><p>A physical and digital access layer controlled from the same account.</p><div class="eco-number">02</div></div>
+          <div class="eco-card third reveal"><h3>Exchange</h3><p>Currency and asset conversion with the quote visible before execution.</p><div class="eco-number">03</div></div>
+          <div class="eco-card third reveal"><h3>Business</h3><p>Permissions, team access and future integration paths.</p><div class="eco-number">04</div></div>
+          <div class="eco-card third reveal"><h3>Security</h3><p>Authentication, devices, approvals and transaction control embedded into the system.</p><div class="eco-number">05</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="company" id="company">
+      <div class="container">
+        <div class="eyebrow reveal">Company</div>
+        <div class="company-copy reveal" style="margin-top:24px">
+          BLACK ONE is being built around a simple idea: <span>global finance should feel coherent, controlled and designed as one system.</span>
+        </div>
+        <div class="company-bottom">
+          <p class="reveal">
+            The brand is intentionally restrained. No fake customer counts, no invented market share and no claims of licenses or protections that are not yet in place.
+          </p>
+          <p class="reveal">
+            Product availability, card issuance, account functionality, digital asset services and regulated financial activity will depend on jurisdiction, licensing structure and future infrastructure partners.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="final" id="open">
+      <div class="container">
+        <div class="final-box reveal">
+          <div class="final-top">
+            <div>
+              <div class="eyebrow">BLACK ONE</div>
+              <h2 style="margin-top:22px">A new global financial environment.</h2>
+            </div>
+            <div class="pill">Private preview</div>
+          </div>
+          <div class="final-actions">
+            <a class="btn primary" href="mailto:hello@globalblackone.com">Contact BLACK ONE <span class="arrow">↗</span></a>
+            <a class="btn ghost" href="#top">Back to top</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="wordmark">BLACK ONE</div>
+          <p>
+            A new global financial platform concept for fiat, digital assets, payments, cards and business finance.
+          </p>
+        </div>
+        <div class="footer-col"><h4>Personal</h4><a href="#personal">Account</a><a href="#card">Card</a><a href="#crypto">Digital assets</a><a href="#personal">Payments</a></div>
+        <div class="footer-col"><h4>Business</h4><a href="#business">Business account</a><a href="#business">Team access</a><a href="#business">Controls</a><a href="#business">API direction</a></div>
+        <div class="footer-col"><h4>Company</h4><a href="#company">About</a><a href="#security">Security</a><a href="mailto:hello@globalblackone.com">Contact</a><a href="#open">Private preview</a></div>
+        <div class="footer-col"><h4>Legal</h4><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Risk disclosure</a><a href="#">Cookies</a></div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2026 BLACK ONE. BLACK ONE is currently an early-stage product concept. This website does not represent BLACK ONE as a licensed bank, deposit-taking institution, card issuer, payment institution or crypto-asset service provider. Services shown are product direction and interface concepts and may require licensed third-party infrastructure and regulatory approvals before launch.
+        </p>
+        <span>globalblackone.com</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    document.querySelectorAll('.interactive-card').forEach(card=>{
+      card.addEventListener('mousemove', e=>{
+        const r=card.getBoundingClientRect();
+        const x=(e.clientX-r.left)/r.width-.5;
+        const y=(e.clientY-r.top)/r.height-.5;
+        card.style.transform=`rotateX(${7-y*10}deg) rotateY(${-10+x*14}deg) rotateZ(${-2+x*1.5}deg)`;
+      });
+      card.addEventListener('mouseleave', ()=>{
+        card.style.transform='rotateX(8deg) rotateY(-12deg) rotateZ(-3deg)';
+      });
+    });
+
+    const mobileToggle=document.querySelector('.mobile-toggle');
+    const mobileMenu=document.getElementById('mobileMenu');
+    mobileToggle.addEventListener('click',()=>mobileMenu.classList.toggle('open'));
+    mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));
+  </script>
 </body>
 </html>
