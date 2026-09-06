@@ -1541,5 +1541,28 @@ body[data-ui-lang="zh"] .v2-title{letter-spacing:-.035em;word-break:keep-all;ove
 })();
 </script>
 
+
+<script id="brand-localization-final">
+(function(){
+ const names={en:"BLACK ONE",uk:"БЛЕК ВАН",es:"NEGRO UNO",zh:"黑一"};
+ const sel=document.getElementById("langSelect");
+ function localizeBrand(lang){
+   const brand=names[lang]||names.en;
+   document.querySelectorAll("body *").forEach(el=>{
+     if(el.children.length===0 && el.textContent){
+       if(lang==="uk") el.textContent=el.textContent.replaceAll("BLACK ONE","БЛЕК ВАН");
+       if(lang==="es") el.textContent=el.textContent.replaceAll("BLACK ONE","NEGRO UNO");
+       if(lang==="zh") el.textContent=el.textContent.replaceAll("BLACK ONE","黑一");
+     }
+   });
+   document.title=document.title.replace("BLACK ONE",brand);
+ }
+ if(sel){
+   sel.addEventListener("change",e=>setTimeout(()=>localizeBrand(e.target.value),5));
+   setTimeout(()=>localizeBrand(sel.value),10);
+ }
+})();
+</script>
+
 </body>
 </html>
