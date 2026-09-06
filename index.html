@@ -1,1105 +1,655 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#050505" />
-  <meta name="description" content="BLACK ONE — a new global financial platform concept for fiat, digital assets, cards and international payments." />
-  <title>BLACK ONE — One account. Every currency.</title>
-  <style>
-    :root{
-      --bg:#050505;
-      --bg-2:#0a0a0a;
-      --bg-3:#0f0f10;
-      --panel:#101112;
-      --panel-2:#151617;
-      --line:rgba(255,255,255,.10);
-      --line-2:rgba(255,255,255,.18);
-      --text:#f4f4f0;
-      --muted:#9c9d9f;
-      --muted-2:#6d6f72;
-      --silver:#d9d9d4;
-      --good:#b9f4c5;
-      --warn:#f2e7b7;
-      --max:1440px;
-      --radius:28px;
-      --radius-sm:18px;
-      --shadow:0 40px 120px rgba(0,0,0,.42);
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070708">
+<title>BLACK ONE — Global Financial Environment</title>
+<meta name="description" content="BLACK ONE — global financial environment for accounts, cards, transfers, business finance and digital assets.">
+<style>
+:root{
+  --bg:#070708;
+  --bg2:#0b0b0d;
+  --panel:#101014;
+  --panel2:#151519;
+  --text:#f5f5f3;
+  --muted:#96969e;
+  --line:rgba(255,255,255,.09);
+  --line2:rgba(255,255,255,.16);
+  --green:#82d8ad;
+  --max:1420px;
+  --r:28px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 80% 0%,rgba(255,255,255,.06),transparent 32%),
+    linear-gradient(180deg,#070708 0%,#09090b 38%,#060607 100%);
+  color:var(--text);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button,select,input{font:inherit}
+.container{width:min(var(--max),calc(100% - 48px));margin:auto}
+.section{padding:118px 0;border-top:1px solid rgba(255,255,255,.045)}
+.eyebrow{font-size:12px;letter-spacing:.19em;text-transform:uppercase;color:#aaaab2}
+.muted{color:var(--muted)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:46px;padding:0 18px;border-radius:999px;
+  border:1px solid var(--line);background:transparent;color:white;cursor:pointer;
+}
+.btn.primary{background:#f3f3f0;color:#080808;border-color:#f3f3f0;font-weight:750}
+.tag{display:inline-flex;gap:9px;align-items:center;border:1px solid var(--line);padding:9px 12px;border-radius:999px;background:rgba(255,255,255,.03);font-size:12px;color:#d0d0d5}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.section-head{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:end;margin-bottom:54px}
+.section h2{font-size:clamp(48px,6vw,96px);line-height:.95;letter-spacing:-.055em;margin:12px 0 0}
+.section-copy{color:#aaaab2;font-size:18px;line-height:1.65;max-width:560px}
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      background:
-        radial-gradient(circle at 50% -10%, rgba(255,255,255,.055), transparent 28%),
-        var(--bg);
-      color:var(--text);
-      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      -webkit-font-smoothing:antialiased;
-      overflow-x:hidden;
-    }
-    a{color:inherit;text-decoration:none}
-    button,input{font:inherit}
-    img,svg{display:block;max-width:100%}
-    .container{width:min(calc(100% - 48px),var(--max));margin:0 auto}
-    .eyebrow{
-      font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
-      display:flex;align-items:center;gap:10px
-    }
-    .eyebrow::before{content:"";width:24px;height:1px;background:var(--line-2)}
-    .display{
-      font-size:clamp(62px,10vw,158px);
-      line-height:.88;
-      letter-spacing:-.072em;
-      font-weight:650;
-      margin:0;
-    }
-    .section-title{
-      font-size:clamp(42px,6vw,94px);
-      line-height:.95;
-      letter-spacing:-.058em;
-      margin:0;
-      max-width:1000px;
-      font-weight:620;
-    }
-    .lead{
-      font-size:clamp(19px,2vw,28px);
-      line-height:1.42;
-      color:#c7c8ca;
-      max-width:760px;
-    }
-    .muted{color:var(--muted)}
-    .rule{height:1px;background:var(--line)}
-    .pill{
-      display:inline-flex;align-items:center;gap:9px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.025);
-      border-radius:999px;padding:9px 13px;
-      font-size:12px;color:#d6d6d3;
-      backdrop-filter:blur(12px);
-    }
-    .dot{width:7px;height:7px;border-radius:50%;background:#d8d8d2;box-shadow:0 0 18px rgba(255,255,255,.35)}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:9px;
-      border-radius:999px;padding:14px 20px;border:1px solid var(--line-2);
-      transition:.25s ease;cursor:pointer
-    }
-    .btn.primary{background:#f4f4ef;color:#050505;border-color:#f4f4ef;font-weight:600}
-    .btn.ghost{background:rgba(255,255,255,.02)}
-    .btn:hover{transform:translateY(-1px)}
-    .btn.primary:hover{background:white}
-    .btn .arrow{font-size:18px;line-height:1}
+/* NAV */
+.nav{position:fixed;inset:0 0 auto 0;z-index:999;background:linear-gradient(180deg,rgba(7,7,8,.94),rgba(7,7,8,.74),transparent);backdrop-filter:blur(15px)}
+.nav-in{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.05)}
+.brand{font-size:18px;font-weight:850;letter-spacing:.18em;white-space:nowrap}
+.nav-links{display:flex;gap:24px;margin-left:30px}
+.nav-links a{font-size:13px;color:#b0b0b7}
+.actions{display:flex;gap:10px;align-items:center}
+.lang{
+  appearance:none;border:1px solid var(--line);background:#0d0d10;color:white;border-radius:999px;
+  padding:10px 34px 10px 14px;font-size:12px;
+}
+.menu{display:none}
 
-    /* NAV */
-    .nav{
-      position:fixed;top:0;left:0;right:0;z-index:40;
-      height:78px;display:flex;align-items:center;
-      background:linear-gradient(to bottom,rgba(5,5,5,.88),rgba(5,5,5,.52),transparent);
-      backdrop-filter:blur(16px);
-    }
-    .nav-inner{display:flex;align-items:center;justify-content:space-between}
-    .wordmark{
-      font-size:19px;font-weight:700;letter-spacing:.16em;white-space:nowrap
-    }
-    .nav-links{display:flex;align-items:center;gap:28px;font-size:14px;color:#c5c5c2}
-    .nav-actions{display:flex;align-items:center;gap:10px}
-    .nav-actions .btn{padding:10px 15px;font-size:13px}
-    .mobile-toggle{
-      display:none;width:42px;height:42px;border-radius:50%;
-      background:transparent;border:1px solid var(--line);color:white
-    }
+/* HERO */
+.hero{min-height:100vh;padding:132px 0 72px;display:flex;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:44px;align-items:center}
+.hero h1{font-size:clamp(68px,8.8vw,148px);line-height:.84;letter-spacing:-.07em;margin:20px 0 28px;font-weight:650}
+.hero p{font-size:20px;line-height:1.65;color:#aaaab2;max-width:700px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.disclaimer{font-size:12px!important;color:#72727a!important;line-height:1.6!important;margin-top:28px!important}
+.hero-visual{min-height:630px;position:relative;display:flex;align-items:center;justify-content:center}
+.orbit{position:absolute;width:520px;height:520px;border-radius:50%;border:1px solid rgba(255,255,255,.07)}
+.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.05);border-radius:50%;inset:13%}
+.orbit:after{inset:29%}
+.card{
+  width:min(530px,82vw);aspect-ratio:1.586/1;border-radius:28px;position:relative;overflow:hidden;
+  background:
+    linear-gradient(130deg,rgba(255,255,255,.17),transparent 17%),
+    radial-gradient(circle at 72% 18%,rgba(255,255,255,.11),transparent 28%),
+    linear-gradient(145deg,#19191d,#08090a 42%,#151519 75%,#09090a);
+  border:1px solid rgba(255,255,255,.17);box-shadow:0 50px 110px rgba(0,0,0,.55);
+  transform:rotate(-7deg);
+}
+.card-top{position:absolute;top:28px;left:30px;right:30px;display:flex;justify-content:space-between}
+.card-brand{font-weight:850;letter-spacing:.17em}
+.card-sub{font-size:10px;color:#9999a0;letter-spacing:.16em;margin-top:4px}
+.chip{position:absolute;left:31px;top:104px;width:58px;height:43px;border-radius:9px;background:linear-gradient(145deg,#cbc9bf,#86867f);border:1px solid rgba(255,255,255,.25)}
+.card-num{position:absolute;left:31px;bottom:67px;letter-spacing:.18em;color:#dedee1}
+.card-bottom{position:absolute;left:31px;right:31px;bottom:25px;display:flex;justify-content:space-between;align-items:end;font-size:10px;color:#8e8e96;text-transform:uppercase;letter-spacing:.1em}
+.card-bottom strong{display:block;color:#f2f2ef;font-size:11px;margin-top:4px}
+.float{position:absolute;border:1px solid var(--line);background:rgba(14,14,17,.88);backdrop-filter:blur(16px);border-radius:18px;padding:14px 16px}
+.float .k{font-size:11px;color:#7f7f87}.float .v{font-weight:750;margin-top:4px}
+.fa{left:0;bottom:100px}.fb{right:0;top:100px}
 
-    /* HERO */
-    .hero{
-      min-height:100svh;
-      display:flex;align-items:flex-end;
-      padding:150px 0 56px;
-      position:relative;
-      overflow:hidden;
-    }
-    .hero::after{
-      content:"";
-      position:absolute;inset:auto -12% -42% 38%;
-      height:76%;
-      background:radial-gradient(ellipse at center,rgba(255,255,255,.07),transparent 64%);
-      filter:blur(10px);pointer-events:none
-    }
-    .hero-grid{
-      display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);
-      align-items:end;gap:70px;width:100%
-    }
-    .hero-copy{position:relative;z-index:2}
-    .hero h1 span{display:block}
-    .hero .sub{
-      margin-top:34px;max-width:640px;color:#b0b2b3;
-      font-size:19px;line-height:1.5
-    }
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-    .hero-note{margin-top:28px;color:var(--muted-2);font-size:12px;line-height:1.5;max-width:600px}
-    .hero-object{position:relative;height:660px;z-index:1}
-    .hero-card-wrap{
-      position:absolute;right:0;bottom:12px;width:min(100%,560px);
-      perspective:1600px;
-    }
-    .hero-card-glow{
-      position:absolute;inset:20% 10% -10% 10%;
-      background:radial-gradient(circle,rgba(255,255,255,.10),transparent 62%);
-      filter:blur(30px)
-    }
+/* STRIP */
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#09090a}
+.strip-in{display:grid;grid-template-columns:repeat(5,1fr)}
+.strip-item{padding:24px;border-right:1px solid var(--line)}
+.strip-item:last-child{border-right:0}
+.strip-item b{display:block;margin-bottom:7px}.strip-item span{font-size:12px;color:#818189;line-height:1.5}
 
-    /* BLACK ONE CARD */
-    .metal-card{
-      position:relative;aspect-ratio:1.586/1;
-      border-radius:24px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.20);
-      background:
-        linear-gradient(115deg,rgba(255,255,255,.09),transparent 16%,transparent 54%,rgba(255,255,255,.04) 70%,transparent),
-        linear-gradient(165deg,#18191a 0%,#080808 46%,#151515 100%);
-      box-shadow:
-        0 50px 120px rgba(0,0,0,.68),
-        inset 0 1px 0 rgba(255,255,255,.18),
-        inset 0 -1px 0 rgba(255,255,255,.04);
-      transform:rotateX(8deg) rotateY(-12deg) rotateZ(-3deg);
-      transform-style:preserve-3d;
-      transition:transform .25s ease;
-    }
-    .metal-card::before{
-      content:"";position:absolute;inset:0;
-      background:
-        repeating-linear-gradient(100deg,rgba(255,255,255,.015) 0 1px,transparent 1px 5px);
-      mix-blend-mode:screen;opacity:.7
-    }
-    .metal-card::after{
-      content:"";position:absolute;width:80%;height:180%;top:-70%;left:-75%;
-      background:linear-gradient(90deg,transparent,rgba(255,255,255,.13),transparent);
-      transform:rotate(20deg);transition:left .8s ease
-    }
-    .metal-card:hover::after{left:120%}
-    .card-inner{position:absolute;inset:0;padding:34px;display:flex;flex-direction:column;justify-content:space-between}
-    .card-top{display:flex;align-items:flex-start;justify-content:space-between}
-    .card-brand{font-size:16px;font-weight:700;letter-spacing:.18em}
-    .card-chip{
-      width:46px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,.22);
-      background:
-        linear-gradient(90deg,transparent 47%,rgba(255,255,255,.14) 48% 52%,transparent 53%),
-        linear-gradient(transparent 47%,rgba(255,255,255,.14) 48% 52%,transparent 53%),
-        linear-gradient(145deg,#505254,#171819);
-    }
-    .contactless{font-size:28px;transform:rotate(90deg);opacity:.76}
-    .card-mid{
-      position:absolute;left:34px;right:34px;top:48%;
-      height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent)
-    }
-    .card-bottom{display:flex;align-items:flex-end;justify-content:space-between}
-    .card-meta{font-size:11px;letter-spacing:.13em;color:#a5a7a9;text-transform:uppercase}
-    .card-holder{margin-top:7px;font-size:13px;letter-spacing:.12em}
-    .card-one{
-      width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.20);
-      display:grid;place-items:center;font-size:11px;font-weight:700;letter-spacing:.05em;
-      background:rgba(255,255,255,.03)
-    }
-    .hero-orbit{
-      position:absolute;right:-85px;bottom:100px;width:500px;height:500px;border-radius:50%;
-      border:1px solid rgba(255,255,255,.05);
-      transform:rotateX(72deg)
-    }
-    .hero-orbit::before,.hero-orbit::after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.04)}
-    .hero-orbit::before{inset:70px}.hero-orbit::after{inset:140px}
-    .hero-caption{
-      position:absolute;right:0;top:80px;width:250px;
-      color:#888b8e;font-size:12px;line-height:1.55;
-    }
+/* MANIFESTO */
+.manifesto{min-height:68vh;display:flex;align-items:center}
+.manifesto p{font-size:clamp(48px,6.7vw,104px);line-height:.98;letter-spacing:-.055em;margin:0;max-width:1280px}
+.manifesto span{color:#67676e}
 
-    /* MANIFESTO */
-    .manifesto{padding:180px 0}
-    .manifesto-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:110px}
-    .manifesto-copy{font-size:clamp(30px,4vw,60px);line-height:1.08;letter-spacing:-.04em}
-    .manifesto-copy span{color:#6e7073}
-    .manifesto-side{padding-top:10px}
-    .manifesto-side p{font-size:18px;line-height:1.65;color:#a6a8aa;max-width:520px}
-    .system-lines{margin-top:54px;border-top:1px solid var(--line)}
-    .system-row{display:grid;grid-template-columns:1fr auto;gap:20px;padding:18px 0;border-bottom:1px solid var(--line);font-size:14px}
-    .system-row span:last-child{color:var(--muted)}
+/* PANELS */
+.panel{border:1px solid var(--line);background:#0d0d10;border-radius:var(--r);padding:30px;min-height:340px}
+.panel h3{font-size:34px;letter-spacing:-.04em;margin:16px 0 12px}
+.panel p{color:#95959d;line-height:1.65}
 
-    /* PRODUCT */
-    .product-section{padding:150px 0 200px}
-    .section-head{display:flex;justify-content:space-between;gap:50px;align-items:flex-end;margin-bottom:56px}
-    .section-head .lead{max-width:500px;font-size:17px;margin:0}
-    .dashboard{
-      border:1px solid var(--line);
-      border-radius:34px;overflow:hidden;background:#0b0c0d;
-      box-shadow:var(--shadow)
-    }
-    .dash-top{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:18px 22px;border-bottom:1px solid var(--line);
-      background:#0d0e0f
-    }
-    .window-dots{display:flex;gap:6px}.window-dots i{width:7px;height:7px;border-radius:50%;background:#454749}
-    .dash-title{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8d9093}
-    .dash-body{display:grid;grid-template-columns:240px 1fr}
-    .dash-side{border-right:1px solid var(--line);padding:24px 16px}
-    .dash-logo{padding:0 10px 22px;font-weight:700;letter-spacing:.16em;font-size:13px}
-    .side-link{
-      padding:11px 12px;border-radius:11px;color:#85888b;font-size:13px;
-      display:flex;align-items:center;gap:10px
-    }
-    .side-link.active{background:#151617;color:white}
-    .side-bottom{margin-top:160px;border-top:1px solid var(--line);padding-top:16px}
-    .dash-main{padding:38px}
-    .dash-main-top{display:flex;justify-content:space-between;gap:30px;align-items:start}
-    .balance-label{font-size:12px;color:#818487;text-transform:uppercase;letter-spacing:.12em}
-    .balance{font-size:clamp(42px,5vw,78px);letter-spacing:-.055em;margin-top:10px}
-    .balance-sub{margin-top:8px;font-size:13px;color:#85888a}
-    .dash-actions{display:flex;gap:8px;flex-wrap:wrap}
-    .dash-action{padding:10px 12px;border-radius:10px;border:1px solid var(--line);font-size:12px;background:#121314}
-    .account-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:38px}
-    .account{
-      min-height:145px;border:1px solid var(--line);border-radius:18px;padding:18px;
-      background:linear-gradient(180deg,#121314,#0c0d0e)
-    }
-    .account-top{display:flex;justify-content:space-between;font-size:12px;color:#9b9da0}
-    .flag{font-size:16px}
-    .account-value{margin-top:28px;font-size:25px;letter-spacing:-.03em}
-    .account-small{margin-top:6px;font-size:11px;color:#6f7275}
-    .table{margin-top:28px;border-top:1px solid var(--line)}
-    .tr{display:grid;grid-template-columns:1.5fr .9fr .7fr .7fr;gap:20px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);font-size:12px}
-    .tr.head{color:#676a6d;text-transform:uppercase;letter-spacing:.08em;font-size:10px}
-    .tx-name{font-size:13px;color:#d9d9d6}
-    .status{display:inline-flex;align-items:center;gap:7px;color:#a7c9ae}
-    .status::before{content:"";width:6px;height:6px;border-radius:50%;background:#8cc79a}
-    .amount{text-align:right;font-variant-numeric:tabular-nums}
-    .amount.pos{color:#c9decf}
+/* DASHBOARD */
+.dash{border:1px solid var(--line);border-radius:32px;overflow:hidden;background:#09090b;display:grid;grid-template-columns:220px 1fr;min-height:720px}
+.side{border-right:1px solid var(--line);padding:22px 16px;display:flex;flex-direction:column}
+.side-logo{padding:8px 10px 24px;font-size:13px;font-weight:850;letter-spacing:.16em}
+.side button{border:0;background:transparent;color:#85858d;text-align:left;padding:12px;border-radius:12px}
+.side button.active{background:#151519;color:#fff}
+.profile{margin-top:auto;border-top:1px solid var(--line);padding:16px 8px 0;display:flex;gap:10px;align-items:center}
+.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#eee,#7b7b7e);display:grid;place-items:center;color:#111;font-weight:900;font-size:12px}
+.dash-main{padding:28px}
+.balance-label{font-size:12px;color:#82828a}
+.balance{font-size:clamp(48px,5vw,76px);letter-spacing:-.055em;margin:8px 0 25px}
+.quick{display:flex;gap:10px;flex-wrap:wrap}
+.quick button{border:1px solid var(--line);background:#121216;color:white;padding:12px 15px;border-radius:13px}
+.accounts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0}
+.acc{border:1px solid var(--line);border-radius:18px;padding:18px;background:#0f0f12}
+.acc small{color:#82828a}.acc b{display:block;font-size:21px;margin:12px 0 5px}
+.table{border:1px solid var(--line);border-radius:20px;overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:700px}
+th,td{padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px;text-align:left}
+th{font-size:11px;color:#73737b;font-weight:500}.ok{color:var(--green)}td:last-child,th:last-child{text-align:right}
 
-    /* ACCOUNT */
-    .account-section{padding:160px 0}
-    .split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-    .copy-block p{max-width:560px;color:#9ea1a3;font-size:18px;line-height:1.65}
-    .feature-lines{margin-top:38px}
-    .feature-line{padding:17px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font-size:14px}
-    .feature-line span:last-child{color:#777a7d}
-    .ledger{
-      border:1px solid var(--line);border-radius:28px;background:#0b0c0d;padding:22px;
-      min-height:540px;position:relative;overflow:hidden
-    }
-    .ledger::after{
-      content:"";position:absolute;inset:-20% 20% auto -20%;height:55%;
-      background:radial-gradient(circle,rgba(255,255,255,.055),transparent 65%)
-    }
-    .ledger-head{display:flex;justify-content:space-between;font-size:11px;color:#75787b;text-transform:uppercase;letter-spacing:.1em}
-    .ledger-total{margin-top:26px;font-size:48px;letter-spacing:-.05em}
-    .ledger-list{margin-top:34px}
-    .currency-row{display:grid;grid-template-columns:50px 1fr auto;gap:16px;align-items:center;padding:18px 0;border-top:1px solid var(--line)}
-    .currency-badge{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:12px}
-    .currency-name{font-size:13px}.currency-code{font-size:11px;color:#74777a;margin-top:4px}
-    .currency-amount{text-align:right;font-variant-numeric:tabular-nums}.currency-fiat{font-size:11px;color:#6f7275;margin-top:4px}
+/* FLOW */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}
+.step{border:1px solid var(--line);border-radius:20px;padding:20px;background:#0f0f12;position:relative}
+.step:not(:last-child):after{content:"→";position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:#707078;z-index:2}
+.step small{color:#7c7c84}.step b{display:block;margin-top:10px;font-size:20px}
 
-    /* CARD STAGE */
-    .card-stage{min-height:110vh;padding:140px 0;position:relative;overflow:hidden;background:#030303}
-    .card-stage .section-title{max-width:760px}
-    .card-stage-copy{position:relative;z-index:2}
-    .card-stage-object{margin:110px auto 0;width:min(900px,88vw);perspective:1800px}
-    .card-stage-object .metal-card{border-radius:32px}
-    .card-stage-object .card-inner{padding:44px}
-    .card-stage-object .card-brand{font-size:22px}
-    .card-stage-shadow{width:80%;height:70px;margin:-20px auto 0;background:radial-gradient(ellipse,rgba(255,255,255,.09),transparent 65%);filter:blur(22px)}
-    .card-specs{margin-top:54px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-    .card-spec{padding:22px;border-right:1px solid var(--line)}
-    .card-spec:last-child{border-right:0}
-    .card-spec small{display:block;color:#707275;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
-    .card-spec strong{font-weight:500;font-size:14px}
+/* CARD CONTROL */
+.control-card{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
+.settings{display:grid;gap:12px;margin-top:20px}
+.setting{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding:16px 0}
+.toggle{width:44px;height:24px;border-radius:999px;background:#2b2b30;padding:3px}
+.toggle i{display:block;width:18px;height:18px;border-radius:50%;background:#eee;margin-left:20px}
 
-    /* MOVEMENT */
-    .move{padding:170px 0}
-    .transfer{
-      margin-top:70px;display:grid;grid-template-columns:.9fr 1.1fr;gap:16px
-    }
-    .transfer-panel,.flow-panel{border:1px solid var(--line);border-radius:26px;background:#0b0c0d}
-    .transfer-panel{padding:28px}
-    .label{font-size:10px;text-transform:uppercase;letter-spacing:.11em;color:#73767a}
-    .send-box{margin-top:14px;border:1px solid var(--line);border-radius:16px;padding:18px;background:#101112}
-    .send-row{display:flex;justify-content:space-between;align-items:center}
-    .send-amount{font-size:38px;letter-spacing:-.04em}
-    .currency-select{padding:9px 12px;border:1px solid var(--line);border-radius:999px;font-size:12px}
-    .send-meta{margin-top:10px;color:#6f7275;font-size:11px}
-    .recipient{margin-top:16px;border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between}
-    .recipient strong{font-size:13px}.recipient span{font-size:11px;color:#73767a}
-    .quote{margin-top:22px}
-    .quote-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:12px}
-    .quote-row span:last-child{color:#c7c8c5}
-    .flow-panel{padding:26px;position:relative;overflow:hidden;min-height:480px}
-    .flow-title{font-size:12px;color:#85888b}
-    .map{
-      position:absolute;inset:60px 20px 20px;
-      background:
-        radial-gradient(circle at 20% 35%,rgba(255,255,255,.05),transparent 16%),
-        radial-gradient(circle at 68% 28%,rgba(255,255,255,.05),transparent 14%),
-        radial-gradient(circle at 72% 72%,rgba(255,255,255,.04),transparent 18%);
-    }
-    .map svg{width:100%;height:100%}
-    .map path{stroke:rgba(255,255,255,.14);stroke-width:1;fill:none}
-    .map .route{stroke:rgba(255,255,255,.58);stroke-dasharray:4 7;animation:dash 6s linear infinite}
-    @keyframes dash{to{stroke-dashoffset:-100}}
-    .node{fill:#d9d9d4}.node-muted{fill:#6e7073}
+/* PRIVATE */
+.private-box{min-height:560px;border:1px solid var(--line);border-radius:32px;padding:42px;background:
+radial-gradient(circle at 78% 22%,rgba(255,255,255,.08),transparent 27%),
+linear-gradient(135deg,#111114,#080809);display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.private-box h3{font-size:clamp(44px,5vw,78px);line-height:.95;letter-spacing:-.05em;margin:14px 0 18px}
+.private-list{display:grid;gap:12px;margin-top:25px}
+.private-list div{border-top:1px solid var(--line);padding-top:14px;color:#b2b2b9}
+.private-visual{display:flex;justify-content:center}
 
-    /* ASSETS */
-    .assets{padding:170px 0;background:#070707}
-    .asset-grid{margin-top:70px;display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
-    .portfolio,.exchange{border:1px solid var(--line);border-radius:26px;background:#0c0d0e;padding:28px}
-    .portfolio-total{font-size:52px;letter-spacing:-.05em;margin-top:14px}
-    .asset-list{margin-top:30px}
-    .asset-row{display:grid;grid-template-columns:44px 1fr 1fr auto;gap:16px;align-items:center;padding:18px 0;border-top:1px solid var(--line)}
-    .coin{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:11px;font-weight:600}
-    .asset-name{font-size:13px}.asset-sub{font-size:11px;color:#707376;margin-top:4px}
-    .spark{height:26px}
-    .spark svg{width:100%;height:100%}.spark path{stroke:#9fa2a4;stroke-width:1.2;fill:none}
-    .asset-val{text-align:right;font-size:13px}.asset-val small{display:block;color:#707376;margin-top:4px}
-    .exchange-box{margin-top:24px;border:1px solid var(--line);border-radius:18px;padding:20px;background:#101112}
-    .exchange-row{display:flex;justify-content:space-between;align-items:center;padding:15px 0}
-    .exchange-row + .exchange-row{border-top:1px solid var(--line)}
-    .exchange-row strong{font-size:26px;font-weight:500;letter-spacing:-.03em}
-    .exchange-rate{padding:14px 0;font-size:11px;color:#777a7d;border-top:1px solid var(--line)}
-    .exchange-cta{margin-top:18px;width:100%;border:0;border-radius:12px;padding:13px;background:#efefeb;color:#060606;font-weight:600}
+/* PHONE */
+.phones{display:flex;justify-content:center;gap:26px;flex-wrap:wrap}
+.phone{width:280px;height:580px;border:1px solid var(--line2);border-radius:42px;padding:12px;background:#070708}
+.screen{height:100%;border-radius:33px;background:linear-gradient(180deg,#111115,#09090b);padding:20px;overflow:hidden}
+.notch{width:82px;height:22px;border-radius:999px;background:#000;margin:0 auto 18px}
+.pbal{font-size:34px;letter-spacing:-.04em;margin:8px 0 18px}
+.pbox{border:1px solid var(--line);padding:13px;border-radius:14px;margin-top:10px;font-size:12px;color:#aaaab2}
 
-    /* BUSINESS */
-    .business{padding:180px 0}
-    .business-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-    .business-ui{border:1px solid var(--line);border-radius:28px;background:#0b0c0d;overflow:hidden}
-    .business-ui-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font-size:11px;color:#7b7e81}
-    .business-ui-body{padding:20px}
-    .member{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
-    .avatar{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:11px}
-    .member strong{font-size:12px}.member span{display:block;margin-top:4px;color:#6f7275;font-size:10px}
-    .role{font-size:10px;padding:7px 9px;border:1px solid var(--line);border-radius:999px;color:#a7aaad}
-    .limit-card{margin-top:18px;border:1px solid var(--line);border-radius:16px;padding:16px}
-    .limit-head{display:flex;justify-content:space-between;font-size:11px}.bar{height:5px;background:#1e2022;border-radius:99px;margin-top:14px;overflow:hidden}.bar i{display:block;width:64%;height:100%;background:#a8aaac}
+/* CTA */
+.cta{text-align:center;min-height:70vh;display:flex;align-items:center}
+.cta h2{font-size:clamp(62px,9vw,138px);line-height:.88;letter-spacing:-.065em;margin:18px 0 28px}
+.cta p{max-width:700px;margin:0 auto;color:#95959d;font-size:18px;line-height:1.65}
+.cta .hero-actions{justify-content:center}
 
-    /* SECURITY */
-    .security{padding:180px 0;background:#070707}
-    .security-grid{margin-top:70px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .security-card{min-height:300px;border:1px solid var(--line);border-radius:24px;padding:26px;background:#0b0c0d;display:flex;flex-direction:column;justify-content:space-between}
-    .security-icon{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center}
-    .security-card h3{font-size:20px;margin:0 0 10px;letter-spacing:-.02em}.security-card p{font-size:13px;line-height:1.6;color:#7f8285;margin:0}
-    .device-panel{margin-top:18px;border-top:1px solid var(--line)}
-    .device{padding:12px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font-size:11px}
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:20px;z-index:2000}
+.modal.open{display:flex}
+.modal-card{width:min(620px,100%);border:1px solid var(--line2);background:#0d0d10;border-radius:28px;padding:28px}
+.modal-card h3{font-size:36px;letter-spacing:-.04em;margin:8px 0 14px}
+.field{border:1px solid var(--line);background:#111114;border-radius:16px;padding:14px 16px;margin-top:12px}
+.field label{display:block;font-size:11px;color:#777780;margin-bottom:7px}
+.field input,.field select{width:100%;border:0;outline:0;background:transparent;color:white}
+.modal-actions{display:flex;gap:10px;margin-top:18px}
 
-    /* MOBILE */
-    .mobile-preview{padding:180px 0}
-    .phones{margin-top:80px;display:flex;justify-content:center;gap:28px;align-items:flex-end;perspective:1600px}
-    .phone{
-      width:270px;aspect-ratio:9/19.5;border-radius:44px;padding:10px;background:#111214;border:1px solid rgba(255,255,255,.16);box-shadow:0 50px 100px rgba(0,0,0,.55)
-    }
-    .phone:nth-child(1){transform:translateY(38px) rotateY(7deg)}
-    .phone:nth-child(3){transform:translateY(38px) rotateY(-7deg)}
-    .screen{height:100%;border-radius:35px;background:#070808;overflow:hidden;padding:18px;position:relative}
-    .island{width:84px;height:20px;border-radius:99px;background:#000;margin:0 auto 22px}
-    .screen small{color:#717477;font-size:9px}.screen h4{font-size:14px;margin:4px 0 16px}.mobile-bal{font-size:28px;letter-spacing:-.04em}.mobile-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:18px}.mob-action{height:40px;border:1px solid var(--line);border-radius:11px;display:grid;place-items:center;font-size:10px}
-    .mobile-card{margin-top:18px;aspect-ratio:1.586/1;border-radius:14px;background:linear-gradient(145deg,#1b1c1d,#080808);border:1px solid var(--line);padding:14px;display:flex;flex-direction:column;justify-content:space-between}
-    .mobile-row{padding:11px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font-size:10px}
-    .chart{height:180px;margin-top:20px}.chart svg{width:100%;height:100%}.chart path{stroke:#b5b8ba;stroke-width:1.5;fill:none}.chart line{stroke:rgba(255,255,255,.05)}
-    .security-switch{margin-top:18px}.switch-row{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);font-size:10px}.toggle{width:34px;height:20px;border-radius:99px;background:#d7d7d1;padding:3px}.toggle i{display:block;width:14px;height:14px;background:#080808;border-radius:50%;margin-left:auto}
+/* FOOTER */
+footer{padding:54px 0 32px;border-top:1px solid var(--line)}
+.foot{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:32px}
+.foot h4{font-size:12px;margin:0 0 14px}.foot a{display:block;font-size:12px;color:#777780;margin:9px 0}
+.legal{margin-top:38px;border-top:1px solid var(--line);padding-top:22px;font-size:11px;color:#66666e;line-height:1.7}
 
-    /* ECOSYSTEM */
-    .ecosystem{padding:180px 0;background:#030303}
-    .eco-grid{margin-top:80px;display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
-    .eco-card{border:1px solid var(--line);border-radius:24px;background:#0a0b0c;padding:26px;min-height:210px;position:relative;overflow:hidden}
-    .eco-card h3{margin:0;font-size:18px}.eco-card p{color:#797c7f;font-size:12px;line-height:1.6;max-width:320px}
-    .eco-card.big{grid-column:span 7;min-height:360px}.eco-card.small{grid-column:span 5}
-    .eco-card.third{grid-column:span 4}
-    .eco-number{position:absolute;right:20px;bottom:10px;font-size:88px;color:rgba(255,255,255,.035);font-weight:700;letter-spacing:-.08em}
-    .eco-ring{position:absolute;width:220px;height:220px;border:1px solid rgba(255,255,255,.07);border-radius:50%;right:-40px;bottom:-70px}.eco-ring::before,.eco-ring::after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.05)}.eco-ring::before{inset:35px}.eco-ring::after{inset:75px}
+/* IMPORTANT: content is visible by default */
+.reveal{opacity:1!important;transform:none!important}
 
-    /* COMPANY */
-    .company{padding:180px 0}
-    .company-copy{font-size:clamp(36px,5vw,74px);line-height:1.08;letter-spacing:-.05em;max-width:1100px}
-    .company-copy span{color:#686b6d}
-    .company-bottom{margin-top:70px;display:grid;grid-template-columns:1fr 1fr;gap:80px}
-    .company-bottom p{font-size:16px;line-height:1.7;color:#85888b;max-width:560px}
-
-    /* CTA */
-    .final{padding:180px 0 90px}
-    .final-box{
-      min-height:560px;border:1px solid var(--line);border-radius:36px;padding:52px;
-      background:
-        radial-gradient(circle at 80% 20%,rgba(255,255,255,.08),transparent 24%),
-        linear-gradient(145deg,#101112,#060606 65%);
-      display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative
-    }
-    .final-box::after{content:"BLACK ONE";position:absolute;right:-10px;bottom:-25px;font-size:clamp(90px,16vw,240px);letter-spacing:-.08em;color:rgba(255,255,255,.025);font-weight:700;white-space:nowrap}
-    .final-top{display:flex;justify-content:space-between;gap:30px;position:relative;z-index:2}
-    .final-box h2{font-size:clamp(52px,8vw,120px);line-height:.92;letter-spacing:-.065em;margin:0;max-width:900px}
-    .final-actions{display:flex;gap:12px;align-items:flex-end;position:relative;z-index:2}
-
-    /* FOOTER */
-    footer{padding:70px 0 36px}
-    .footer-top{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:50px}
-    .footer-brand .wordmark{font-size:17px}.footer-brand p{max-width:360px;color:#74777a;font-size:12px;line-height:1.65;margin-top:20px}
-    .footer-col h4{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#65686b;margin:0 0 18px}
-    .footer-col a{display:block;font-size:12px;color:#a7a9ab;margin:10px 0}
-    .footer-bottom{margin-top:55px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:30px;color:#626568;font-size:10px;line-height:1.6}
-    .footer-bottom p{max-width:860px;margin:0}
-
-    /* REVEALS */
-    .reveal{opacity:0;transform:translateY(26px);transition:opacity .85s ease,transform .85s cubic-bezier(.2,.7,.2,1)}
-    .reveal.in{opacity:1;transform:none}
-
-
-    .lang-select{appearance:none;background:#0b0c0d;color:#f3f3ef;border:1px solid var(--line);border-radius:999px;padding:10px 32px 10px 13px;font:inherit;font-size:11px;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,#8b8e90 50%),linear-gradient(135deg,#8b8e90 50%,transparent 50%);background-position:calc(100% - 15px) 50%,calc(100% - 10px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat}.lang-select:focus{outline:none;border-color:rgba(255,255,255,.28)}
-
-    /* MOBILE MENU */
-    .mobile-menu{
-      position:fixed;inset:0;z-index:35;background:rgba(5,5,5,.98);
-      padding:100px 24px 30px;display:none;flex-direction:column
-    }
-    .mobile-menu.open{display:flex}
-    .mobile-menu a{font-size:34px;letter-spacing:-.03em;padding:10px 0;border-bottom:1px solid var(--line)}
-    .mobile-menu .btn{margin-top:26px}
-
-    @media (max-width:1050px){
-      .nav-links{display:none}.mobile-toggle{display:block}.nav-actions .ghost{display:none}
-      .hero-grid{grid-template-columns:1fr;gap:50px}.hero-object{height:500px}.hero-card-wrap{left:6%;right:auto;width:88%}.hero-caption{display:none}
-      .manifesto-grid,.split,.business-grid{grid-template-columns:1fr;gap:55px}
-      .dash-body{grid-template-columns:1fr}.dash-side{display:none}
-      .account-grid{grid-template-columns:repeat(2,1fr)}
-      .transfer,.asset-grid{grid-template-columns:1fr}
-      .security-grid{grid-template-columns:1fr 1fr}
-      .eco-card.big,.eco-card.small,.eco-card.third{grid-column:span 6}
-      .footer-top{grid-template-columns:1.5fr repeat(2,1fr)}
-    }
-
-    @media (max-width:720px){
-      .container{width:min(calc(100% - 28px),var(--max))}
-      .nav{height:68px}.nav-actions .primary{display:none}
-      .display{font-size:clamp(58px,18vw,88px);letter-spacing:-.07em}
-      .hero{padding-top:125px;min-height:auto}.hero-object{height:390px}.hero-card-wrap{left:0;width:100%}.metal-card{transform:rotateX(5deg) rotateY(-7deg) rotateZ(-2deg);border-radius:18px}.card-inner{padding:22px}.card-stage-object .card-inner{padding:24px}.hero-orbit{display:none}
-      .manifesto,.product-section,.account-section,.move,.assets,.business,.security,.mobile-preview,.ecosystem,.company,.final{padding:110px 0}
-      .manifesto-copy{font-size:38px}
-      .section-head{display:block}.section-head .lead{margin-top:24px}
-      .dash-main{padding:22px}.dash-main-top{display:block}.dash-actions{margin-top:20px}.account-grid{grid-template-columns:1fr 1fr}.account{min-height:125px}.tr{grid-template-columns:1.4fr .8fr .8fr}.tr > :nth-child(3){display:none}
-      .card-stage{min-height:auto}.card-stage-object{margin-top:70px;width:100%}.card-specs{grid-template-columns:1fr 1fr}.card-spec:nth-child(2){border-right:0}.card-spec:nth-child(-n+2){border-bottom:1px solid var(--line)}
-      .security-grid{grid-template-columns:1fr}
-      .phones{gap:10px;overflow:hidden;justify-content:flex-start;padding-left:10px}.phone{min-width:240px}.phone:nth-child(1),.phone:nth-child(3){transform:none}
-      .eco-grid{grid-template-columns:1fr}.eco-card.big,.eco-card.small,.eco-card.third{grid-column:auto}
-      .company-bottom{grid-template-columns:1fr;gap:20px}
-      .final-box{min-height:480px;padding:28px;border-radius:26px}.final-top{display:block}.final-actions{flex-direction:column;align-items:stretch}
-      .footer-top{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}.footer-bottom{display:block}
-    }
-  </style>
+@media(max-width:1100px){
+ .nav-links{display:none}.menu{display:inline-flex}
+ .hero-grid,.section-head,.control-card,.private-box,.grid2{grid-template-columns:1fr}
+ .grid3{grid-template-columns:1fr}
+ .hero-visual{min-height:540px}
+ .strip-in{grid-template-columns:repeat(2,1fr)}
+ .strip-item:nth-child(2n){border-right:0}
+ .dash{grid-template-columns:1fr}.side{display:none}
+ .accounts{grid-template-columns:repeat(2,1fr)}
+ .flow{grid-template-columns:1fr 1fr}
+ .foot{grid-template-columns:1.4fr 1fr 1fr}
+}
+@media(max-width:720px){
+ .container{width:calc(100% - 28px)}
+ .nav-in{height:68px}
+ .actions .btn:not(.menu){display:none}
+ .brand{font-size:16px;letter-spacing:.16em}
+ .hero{min-height:auto;padding:104px 0 48px}
+ .hero-grid{gap:24px}
+ .hero h1{font-size:clamp(58px,17vw,92px)}
+ .hero p{font-size:16px}
+ .hero-visual{min-height:380px}
+ .orbit{width:350px;height:350px}
+ .card{width:92%;border-radius:22px}
+ .float{display:none}
+ .section{padding:82px 0}
+ .section h2{font-size:clamp(48px,15vw,76px)}
+ .section-head{gap:24px;margin-bottom:34px}
+ .section-copy{font-size:16px}
+ .strip-in{grid-template-columns:1fr}
+ .strip-item{border-right:0;border-bottom:1px solid var(--line)}
+ .accounts{grid-template-columns:1fr}
+ .dash-main{padding:18px}
+ .flow{grid-template-columns:1fr}
+ .step:not(:last-child):after{content:"↓";right:18px;top:auto;bottom:-18px}
+ .private-box{padding:24px}
+ .phone{width:250px;height:520px}
+ .foot{grid-template-columns:1fr 1fr}.foot>div:first-child{grid-column:1/-1}
+}
+</style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="container nav-inner">
-      <a class="wordmark" href="#top">BLACK ONE</a>
-      <div class="nav-links">
-        <a href="#personal">Personal</a>
-        <a href="#card">Card</a>
-        <a href="#crypto">Digital assets</a>
-        <a href="#business">Business</a>
-        <a href="#security">Security</a>
-        <a href="#company">Company</a>
-      </div>
-      <div class="nav-actions">
-        <select class="lang-select" id="langSelect" aria-label="Language"><option value="en">EN</option><option value="es">ES</option><option value="uk">UA</option><option value="zh">中文</option></select>
-        <a class="btn ghost" href="#footer">Sign in</a>
-        <a class="btn primary" href="#open">Open account <span class="arrow">↗</span></a>
-        <button class="mobile-toggle" aria-label="Open menu">☰</button>
-      </div>
-    </div>
-  </nav>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#personal">Personal</a>
-    <a href="#card">Card</a>
-    <a href="#crypto">Digital assets</a>
-    <a href="#business">Business</a>
-    <a href="#security">Security</a>
-    <a href="#company">Company</a>
-    <a class="btn primary" href="#open">Open account</a>
+<header class="nav">
+  <div class="container nav-in">
+    <a class="brand" href="#top">BLACK ONE</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#personal" data-t="nav.personal">Personal</a>
+      <a href="#card" data-t="nav.card">Card</a>
+      <a href="#assets" data-t="nav.assets">Digital assets</a>
+      <a href="#business" data-t="nav.business">Business</a>
+      <a href="#security" data-t="nav.security">Security</a>
+      <a href="#company" data-t="nav.company">Company</a>
+    </nav>
+    <div class="actions">
+      <select id="lang" class="lang">
+        <option value="en">EN</option>
+        <option value="uk">UA</option>
+        <option value="es">ES</option>
+        <option value="zh">中文</option>
+      </select>
+      <button class="btn" data-open data-t="nav.signin">Sign in</button>
+      <button class="btn primary" data-open data-t="nav.open">Open account</button>
+      <button class="btn menu" id="menuBtn">☰</button>
+    </div>
   </div>
+</header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <div class="pill"><span class="dot"></span> BLACK ONE / Global financial platform</div>
-          <h1 class="display" style="margin-top:24px">
-            <span>One account.</span>
-            <span>Every currency.</span>
-          </h1>
-          <p class="sub">
-            A new financial environment designed to bring fiat, digital assets, payments and card access into one precise global experience.
-          </p>
-          <div class="hero-actions">
-            <a class="btn primary" href="#personal">Explore BLACK ONE <span class="arrow">↘</span></a>
-            <a class="btn ghost" href="#company">The company</a>
-          </div>
-          <p class="hero-note">
-            BLACK ONE is currently an early-stage product concept. Availability of accounts, cards and regulated financial services will depend on future licensed infrastructure and partners.
-          </p>
-        </div>
-
-        <div class="hero-object reveal">
-          <div class="hero-caption">
-            A physical expression of the BLACK ONE system — restrained, architectural and designed around a single global account.
-          </div>
-          <div class="hero-orbit"></div>
-          <div class="hero-card-wrap">
-            <div class="hero-card-glow"></div>
-            <div class="metal-card interactive-card">
-              <div class="card-inner">
-                <div class="card-top">
-                  <div>
-                    <div class="card-brand">BLACK ONE</div>
-                    <div style="display:flex;gap:14px;align-items:center;margin-top:22px">
-                      <div class="card-chip"></div>
-                      <div class="contactless">)))</div>
-                    </div>
-                  </div>
-                  <div class="card-one">ONE</div>
-                </div>
-                <div class="card-mid"></div>
-                <div class="card-bottom">
-                  <div>
-                    <div class="card-meta">Member</div>
-                    <div class="card-holder">A. MORGAN</div>
-                  </div>
-                  <div>
-                    <div class="card-meta">Global</div>
-                    <div class="card-holder">•• 1024</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+<main id="top">
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="tag"><span class="dot"></span><span data-t="hero.tag">BLACK ONE / Global financial environment</span></div>
+      <h1 data-t="hero.title">One account. Every currency.</h1>
+      <p data-t="hero.copy">Accounts, cards, transfers, business finance and digital assets — designed as one global financial environment.</p>
+      <div class="hero-actions">
+        <button class="btn primary" data-open data-t="hero.join">Request private access</button>
+        <a class="btn" href="#personal" data-t="hero.explore">Explore platform</a>
       </div>
-    </section>
-
-    <div class="container"><div class="rule"></div></div>
-
-    <section class="manifesto">
-      <div class="container manifesto-grid">
-        <div class="eyebrow reveal">The thesis</div>
-        <div>
-          <div class="manifesto-copy reveal">
-            Money should not feel fragmented. <span>Different currencies, assets, countries and payment rails should behave like one coherent system.</span>
-          </div>
-          <div class="manifesto-side reveal">
-            <p>
-              BLACK ONE is being designed as a single environment for personal and business finance — where traditional money and digital assets can live under one visual language, one control layer and one account experience.
-            </p>
-            <div class="system-lines">
-              <div class="system-row"><span>Fiat balances</span><span>EUR · USD · GBP</span></div>
-              <div class="system-row"><span>Digital assets</span><span>BTC · ETH · USDC</span></div>
-              <div class="system-row"><span>Movement</span><span>Send · Receive · Exchange</span></div>
-              <div class="system-row"><span>Access</span><span>Web · Mobile · Card</span></div>
-            </div>
-          </div>
+      <p class="disclaimer" data-t="hero.note">BLACK ONE is currently an early-stage financial product concept. Regulated services, card issuance and asset services depend on jurisdiction, approvals and licensed partners.</p>
+    </div>
+    <div class="hero-visual">
+      <div class="orbit"></div>
+      <div class="float fa"><div class="k" data-t="hero.balance">Available balance</div><div class="v">$84,620.48</div></div>
+      <div class="float fb"><div class="k" data-t="hero.route">Settlement layer</div><div class="v">EUR · USD · USDC</div></div>
+      <div class="card">
+        <div class="card-top"><div><div class="card-brand">BLACK ONE</div><div class="card-sub">PRIVATE METAL</div></div></div>
+        <div class="chip"></div>
+        <div class="card-num">•••• &nbsp;•••• &nbsp;•••• &nbsp;4821</div>
+        <div class="card-bottom">
+          <div><span data-t="card.member">Member</span><strong>ALEX MORGAN</strong></div>
+          <div><span data-t="card.valid">Valid thru</span><strong>09/30</strong></div>
+          <div><strong>ONE</strong></div>
         </div>
-      </div>
-    </section>
-
-    <section class="product-section" id="personal">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow reveal">Personal / Account</div>
-            <h2 class="section-title reveal" style="margin-top:20px">One balance sheet for the way money actually moves.</h2>
-          </div>
-          <p class="lead reveal">
-            A production-minded interface for balances, transfers, exchange and card controls — built to feel calm even when the financial picture is complex.
-          </p>
-        </div>
-
-        <div class="dashboard reveal">
-          <div class="dash-top">
-            <div class="window-dots"><i></i><i></i><i></i></div>
-            <div class="dash-title">BLACK ONE / Personal</div>
-            <div class="pill">Secure session</div>
-          </div>
-          <div class="dash-body">
-            <aside class="dash-side">
-              <div class="dash-logo">BLACK ONE</div>
-              <div class="side-link active">Overview</div>
-              <div class="side-link">Accounts</div>
-              <div class="side-link">Payments</div>
-              <div class="side-link">Exchange</div>
-              <div class="side-link">Cards</div>
-              <div class="side-link">Digital assets</div>
-              <div class="side-bottom">
-                <div class="side-link">Security</div>
-                <div class="side-link">Settings</div>
-              </div>
-            </aside>
-            <div class="dash-main">
-              <div class="dash-main-top">
-                <div>
-                  <div class="balance-label">Total balance</div>
-                  <div class="balance">$84,620.48</div>
-                  <div class="balance-sub">Across fiat and digital assets · sample interface data</div>
-                </div>
-                <div class="dash-actions">
-                  <div class="dash-action">Send</div>
-                  <div class="dash-action">Receive</div>
-                  <div class="dash-action">Exchange</div>
-                  <div class="dash-action">Card</div>
-                </div>
-              </div>
-
-              <div class="account-grid">
-                <div class="account">
-                  <div class="account-top"><span>EUR</span><span class="flag">€</span></div>
-                  <div class="account-value">€24,180.20</div>
-                  <div class="account-small">Euro account</div>
-                </div>
-                <div class="account">
-                  <div class="account-top"><span>USD</span><span class="flag">$</span></div>
-                  <div class="account-value">$31,428.10</div>
-                  <div class="account-small">US dollar account</div>
-                </div>
-                <div class="account">
-                  <div class="account-top"><span>BTC</span><span class="flag">₿</span></div>
-                  <div class="account-value">0.1842 BTC</div>
-                  <div class="account-small">Digital asset balance</div>
-                </div>
-                <div class="account">
-                  <div class="account-top"><span>USDC</span><span class="flag">◎</span></div>
-                  <div class="account-value">12,800.00</div>
-                  <div class="account-small">Stablecoin balance</div>
-                </div>
-              </div>
-
-              <div class="table">
-                <div class="tr head"><div>Activity</div><div>Account</div><div>Status</div><div class="amount">Amount</div></div>
-                <div class="tr"><div><div class="tx-name">International transfer</div><div class="account-small">Today · 14:28</div></div><div>EUR</div><div><span class="status">Completed</span></div><div class="amount">− €2,450.00</div></div>
-                <div class="tr"><div><div class="tx-name">Card settlement</div><div class="account-small">Today · 11:42</div></div><div>USD</div><div><span class="status">Completed</span></div><div class="amount">− $380.50</div></div>
-                <div class="tr"><div><div class="tx-name">Asset conversion</div><div class="account-small">Yesterday · 20:16</div></div><div>BTC → USD</div><div><span class="status">Completed</span></div><div class="amount pos">+ $4,280.00</div></div>
-                <div class="tr"><div><div class="tx-name">Incoming payment</div><div class="account-small">Yesterday · 16:03</div></div><div>USD</div><div><span class="status">Completed</span></div><div class="amount pos">+ $8,200.00</div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="account-section">
-      <div class="container split">
-        <div class="copy-block reveal">
-          <div class="eyebrow">Global accounts</div>
-          <h2 class="section-title" style="margin-top:20px">Local clarity. Global reach.</h2>
-          <p>
-            The account system is designed around holding and moving multiple currencies without forcing the user into separate financial worlds.
-          </p>
-          <div class="feature-lines">
-            <div class="feature-line"><span>Primary fiat balances</span><span>EUR · USD · GBP</span></div>
-            <div class="feature-line"><span>Account details</span><span>Designed for local rails</span></div>
-            <div class="feature-line"><span>FX layer</span><span>Clear quote before exchange</span></div>
-            <div class="feature-line"><span>Financial history</span><span>Unified ledger</span></div>
-          </div>
-        </div>
-
-        <div class="ledger reveal">
-          <div class="ledger-head"><span>Account architecture</span><span>Unified view</span></div>
-          <div class="ledger-total">€76,421.08</div>
-          <div class="account-small">Illustrative equivalent value</div>
-          <div class="ledger-list">
-            <div class="currency-row"><div class="currency-badge">€</div><div><div class="currency-name">Euro</div><div class="currency-code">EUR · Main account</div></div><div class="currency-amount">24,180.20<div class="currency-fiat">31.64%</div></div></div>
-            <div class="currency-row"><div class="currency-badge">$</div><div><div class="currency-name">US Dollar</div><div class="currency-code">USD · Global account</div></div><div class="currency-amount">31,428.10<div class="currency-fiat">41.12%</div></div></div>
-            <div class="currency-row"><div class="currency-badge">£</div><div><div class="currency-name">British Pound</div><div class="currency-code">GBP · Secondary account</div></div><div class="currency-amount">8,420.00<div class="currency-fiat">11.02%</div></div></div>
-            <div class="currency-row"><div class="currency-badge">₿</div><div><div class="currency-name">Bitcoin</div><div class="currency-code">BTC · Digital asset</div></div><div class="currency-amount">0.1842<div class="currency-fiat">10.84%</div></div></div>
-            <div class="currency-row"><div class="currency-badge">◎</div><div><div class="currency-name">USD Coin</div><div class="currency-code">USDC · Stablecoin</div></div><div class="currency-amount">4,128.00<div class="currency-fiat">5.38%</div></div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="card-stage" id="card">
-      <div class="container">
-        <div class="card-stage-copy">
-          <div class="eyebrow reveal">BLACK ONE Card</div>
-          <h2 class="section-title reveal" style="margin-top:20px">The financial system, made physical.</h2>
-          <p class="lead reveal" style="margin-top:24px">
-            A card concept built around black metal, restrained engraving and a design language that does not need decoration to feel premium.
-          </p>
-        </div>
-
-        <div class="card-stage-object reveal">
-          <div class="metal-card interactive-card">
-            <div class="card-inner">
-              <div class="card-top">
-                <div>
-                  <div class="card-brand">BLACK ONE</div>
-                  <div style="display:flex;gap:18px;align-items:center;margin-top:28px">
-                    <div class="card-chip"></div>
-                    <div class="contactless">)))</div>
-                  </div>
-                </div>
-                <div class="card-one">ONE</div>
-              </div>
-              <div class="card-mid"></div>
-              <div class="card-bottom">
-                <div>
-                  <div class="card-meta">Member</div>
-                  <div class="card-holder">A. MORGAN</div>
-                </div>
-                <div>
-                  <div class="card-meta">Valid thru</div>
-                  <div class="card-holder">10 / 31</div>
-                </div>
-                <div>
-                  <div class="card-meta">Card</div>
-                  <div class="card-holder">•••• 1024</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-stage-shadow"></div>
-        </div>
-
-        <div class="card-specs reveal">
-          <div class="card-spec"><small>Material</small><strong>Black metal concept</strong></div>
-          <div class="card-spec"><small>Access</small><strong>Physical + virtual</strong></div>
-          <div class="card-spec"><small>Control</small><strong>Freeze · limits · devices</strong></div>
-          <div class="card-spec"><small>Funding</small><strong>Account balance selection</strong></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="move">
-      <div class="container">
-        <div class="eyebrow reveal">Movement of value</div>
-        <h2 class="section-title reveal" style="margin-top:20px">Send money without losing sight of the details.</h2>
-        <p class="lead reveal" style="margin-top:24px">
-          Exchange rate, fee, destination amount and estimated arrival should be visible before the transfer is confirmed.
-        </p>
-
-        <div class="transfer">
-          <div class="transfer-panel reveal">
-            <div class="label">New transfer</div>
-            <div class="send-box">
-              <div class="send-row"><div><div class="label">You send</div><div class="send-amount">10,000</div></div><div class="currency-select">USD ▾</div></div>
-              <div class="send-meta">Available balance · $31,428.10</div>
-            </div>
-            <div class="send-box">
-              <div class="send-row"><div><div class="label">Recipient receives</div><div class="send-amount">8,602.40</div></div><div class="currency-select">EUR ▾</div></div>
-              <div class="recipient"><div><strong>Northstar GmbH</strong><span>Business beneficiary</span></div><span>DE •••• 6081</span></div>
-            </div>
-            <div class="quote">
-              <div class="quote-row"><span>Indicative rate</span><span>1 USD = 0.861 EUR</span></div>
-              <div class="quote-row"><span>Transfer fee</span><span>$18.00</span></div>
-              <div class="quote-row"><span>Estimated arrival</span><span>Same business day</span></div>
-            </div>
-            <button class="exchange-cta">Review transfer</button>
-          </div>
-
-          <div class="flow-panel reveal">
-            <div class="flow-title">Global movement / system view</div>
-            <div class="map">
-              <svg viewBox="0 0 800 420" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M70 110 C180 30 300 50 355 110 S520 170 730 90"/>
-                <path d="M90 310 C250 220 330 270 440 210 S620 130 720 280"/>
-                <path d="M120 160 C250 180 330 105 460 150 S620 260 700 230"/>
-                <path class="route" d="M110 265 C250 120 430 115 675 180"/>
-                <circle class="node" cx="110" cy="265" r="5"/><circle class="node" cx="675" cy="180" r="5"/>
-                <circle class="node-muted" cx="355" cy="110" r="3"/><circle class="node-muted" cx="440" cy="210" r="3"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="assets" id="crypto">
-      <div class="container">
-        <div class="eyebrow reveal">Digital assets</div>
-        <h2 class="section-title reveal" style="margin-top:20px">Assets, not a separate universe.</h2>
-        <p class="lead reveal" style="margin-top:24px">
-          The product direction places digital assets beside fiat balances inside the same account environment, with a single exchange experience.
-        </p>
-
-        <div class="asset-grid">
-          <div class="portfolio reveal">
-            <div class="label">Portfolio value</div>
-            <div class="portfolio-total">$24,812.30</div>
-            <div class="asset-list">
-              <div class="asset-row">
-                <div class="coin">BTC</div><div><div class="asset-name">Bitcoin</div><div class="asset-sub">0.1842 BTC</div></div>
-                <div class="spark"><svg viewBox="0 0 180 30" preserveAspectRatio="none"><path d="M0 22 C20 18 28 26 45 16 S72 10 86 17 S120 6 140 12 S160 7 180 4"/></svg></div>
-                <div class="asset-val">$15,840.20<small>63.84%</small></div>
-              </div>
-              <div class="asset-row">
-                <div class="coin">ETH</div><div><div class="asset-name">Ethereum</div><div class="asset-sub">2.840 ETH</div></div>
-                <div class="spark"><svg viewBox="0 0 180 30" preserveAspectRatio="none"><path d="M0 18 C15 25 30 12 48 15 S72 25 90 14 S125 17 145 8 S170 10 180 5"/></svg></div>
-                <div class="asset-val">$4,844.10<small>19.52%</small></div>
-              </div>
-              <div class="asset-row">
-                <div class="coin">USDC</div><div><div class="asset-name">USD Coin</div><div class="asset-sub">4,128.00 USDC</div></div>
-                <div class="spark"><svg viewBox="0 0 180 30" preserveAspectRatio="none"><path d="M0 15 L180 15"/></svg></div>
-                <div class="asset-val">$4,128.00<small>16.64%</small></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="exchange reveal">
-            <div class="label">Exchange</div>
-            <div class="exchange-box">
-              <div class="exchange-row"><div><div class="label">From</div><strong>5,000</strong></div><div class="currency-select">EUR ▾</div></div>
-              <div class="exchange-row"><div><div class="label">To</div><strong>5,810.20</strong></div><div class="currency-select">USD ▾</div></div>
-              <div class="exchange-rate">Illustrative quote · rate and fees shown before confirmation</div>
-            </div>
-            <button class="exchange-cta">Review exchange</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="business" id="business">
-      <div class="container business-grid">
-        <div class="copy-block reveal">
-          <div class="eyebrow">Business</div>
-          <h2 class="section-title" style="margin-top:20px">Financial control for teams, not just individuals.</h2>
-          <p>
-            The business layer is designed around permissions, spend controls, account visibility and future integrations rather than a separate visual product.
-          </p>
-          <div class="feature-lines">
-            <div class="feature-line"><span>Team access</span><span>Role based</span></div>
-            <div class="feature-line"><span>Card controls</span><span>Per user / per card</span></div>
-            <div class="feature-line"><span>Approvals</span><span>Designed for workflows</span></div>
-            <div class="feature-line"><span>Integration layer</span><span>Future API direction</span></div>
-          </div>
-        </div>
-
-        <div class="business-ui reveal">
-          <div class="business-ui-head"><span>BLACK ONE / Business controls</span><span>4 members</span></div>
-          <div class="business-ui-body">
-            <div class="member"><div class="avatar">AM</div><div><strong>Alex Morgan</strong><span>Owner · Full access</span></div><div class="role">Owner</div></div>
-            <div class="member"><div class="avatar">AK</div><div><strong>Anna K.</strong><span>Finance · Payments</span></div><div class="role">Finance</div></div>
-            <div class="member"><div class="avatar">MS</div><div><strong>Mark S.</strong><span>Operations · Cards</span></div><div class="role">Member</div></div>
-            <div class="member"><div class="avatar">JP</div><div><strong>Julia P.</strong><span>Accounting · Read only</span></div><div class="role">Viewer</div></div>
-            <div class="limit-card">
-              <div class="limit-head"><span>Monthly team spend</span><span>$64,200 / $100,000</span></div>
-              <div class="bar"><i></i></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="security" id="security">
-      <div class="container">
-        <div class="eyebrow reveal">Security & control</div>
-        <h2 class="section-title reveal" style="margin-top:20px">Security should be visible where decisions happen.</h2>
-        <p class="lead reveal" style="margin-top:24px">
-          The interface is designed around device visibility, authentication, permissions and transaction control. Specific regulated safeguards will depend on the infrastructure used at launch.
-        </p>
-
-        <div class="security-grid">
-          <div class="security-card reveal">
-            <div class="security-icon">01</div>
-            <div>
-              <h3>Device control</h3>
-              <p>See active sessions and revoke access without hunting through settings.</p>
-              <div class="device-panel">
-                <div class="device"><span>MacBook Pro</span><span>Current</span></div>
-                <div class="device"><span>Mobile device</span><span>18 min</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="security-card reveal">
-            <div class="security-icon">02</div>
-            <div>
-              <h3>Authentication</h3>
-              <p>Designed for passkeys, multi-factor authentication and sensitive-action confirmation.</p>
-              <div class="device-panel">
-                <div class="device"><span>Passkey</span><span>Enabled</span></div>
-                <div class="device"><span>Recovery methods</span><span>2 active</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="security-card reveal">
-            <div class="security-icon">03</div>
-            <div>
-              <h3>Transaction controls</h3>
-              <p>Clear limits, card freezes, beneficiary review and approval states at the point of action.</p>
-              <div class="device-panel">
-                <div class="device"><span>Card spending</span><span>Controlled</span></div>
-                <div class="device"><span>New beneficiaries</span><span>Review</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="mobile-preview">
-      <div class="container">
-        <div class="eyebrow reveal">Mobile</div>
-        <h2 class="section-title reveal" style="margin-top:20px">The same system, designed for the hand.</h2>
-        <p class="lead reveal" style="margin-top:24px">Mobile is composed around immediate balances, movement and control — not a desktop interface squeezed into a phone.</p>
-
-        <div class="phones reveal">
-          <div class="phone">
-            <div class="screen">
-              <div class="island"></div>
-              <small>Good evening</small><h4>Overview</h4>
-              <div class="mobile-bal">$84,620.48</div><small>Total balance</small>
-              <div class="mobile-actions"><div class="mob-action">Send</div><div class="mob-action">Get</div><div class="mob-action">FX</div><div class="mob-action">Card</div></div>
-              <div class="mobile-card"><div style="font-size:10px;letter-spacing:.14em">BLACK ONE</div><div><small>Card balance</small><div style="font-size:19px;margin-top:4px">$12,420.20</div></div><small>•••• 1024</small></div>
-              <div class="mobile-row"><span>Transfer</span><span>− €2,450.00</span></div>
-              <div class="mobile-row"><span>Card settlement</span><span>− $380.50</span></div>
-            </div>
-          </div>
-          <div class="phone">
-            <div class="screen">
-              <div class="island"></div>
-              <small>Portfolio</small><h4>Digital assets</h4>
-              <div class="mobile-bal">$24,812.30</div><small>Total digital asset value</small>
-              <div class="chart"><svg viewBox="0 0 240 160" preserveAspectRatio="none"><line x1="0" y1="40" x2="240" y2="40"/><line x1="0" y1="80" x2="240" y2="80"/><line x1="0" y1="120" x2="240" y2="120"/><path d="M0 130 C25 110 35 135 58 103 S95 74 120 92 S155 55 183 62 S210 36 240 45"/></svg></div>
-              <div class="mobile-row"><span>BTC</span><span>$15,840.20</span></div>
-              <div class="mobile-row"><span>ETH</span><span>$4,844.10</span></div>
-              <div class="mobile-row"><span>USDC</span><span>$4,128.00</span></div>
-            </div>
-          </div>
-          <div class="phone">
-            <div class="screen">
-              <div class="island"></div>
-              <small>Security</small><h4>Control center</h4>
-              <div style="font-size:12px;color:#8a8d90;line-height:1.6">Your devices, card states and authentication in one place.</div>
-              <div class="security-switch">
-                <div class="switch-row"><span>Passkey</span><div class="toggle"><i></i></div></div>
-                <div class="switch-row"><span>Card online payments</span><div class="toggle"><i></i></div></div>
-                <div class="switch-row"><span>ATM withdrawals</span><div class="toggle"><i></i></div></div>
-                <div class="switch-row"><span>Crypto withdrawals</span><div class="toggle"><i></i></div></div>
-              </div>
-              <div style="margin-top:24px;border:1px solid var(--line);border-radius:16px;padding:14px">
-                <small>Current device</small>
-                <div style="font-size:12px;margin-top:6px">Mobile device</div>
-                <div style="font-size:10px;color:#6f7275;margin-top:4px">Face ID · Passkey verified</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ecosystem">
-      <div class="container">
-        <div class="eyebrow reveal">The ecosystem</div>
-        <h2 class="section-title reveal" style="margin-top:20px">Not a collection of products. One financial environment.</h2>
-
-        <div class="eco-grid">
-          <div class="eco-card big reveal"><h3>Account</h3><p>Fiat balances, digital assets, transfers and history designed around one ledger view.</p><div class="eco-number">01</div><div class="eco-ring"></div></div>
-          <div class="eco-card small reveal"><h3>Card</h3><p>A physical and digital access layer controlled from the same account.</p><div class="eco-number">02</div></div>
-          <div class="eco-card third reveal"><h3>Exchange</h3><p>Currency and asset conversion with the quote visible before execution.</p><div class="eco-number">03</div></div>
-          <div class="eco-card third reveal"><h3>Business</h3><p>Permissions, team access and future integration paths.</p><div class="eco-number">04</div></div>
-          <div class="eco-card third reveal"><h3>Security</h3><p>Authentication, devices, approvals and transaction control embedded into the system.</p><div class="eco-number">05</div></div>
-        </div>
-      </div>
-    </section>
-
-
-    <section class="business" id="private">
-      <div class="container">
-        <div class="section-head">
-          <div><div class="eyebrow reveal">BLACK ONE Private</div><h2 class="section-title reveal" style="margin-top:20px">Higher access. Fewer limits. More control.</h2></div>
-          <p class="lead reveal">A future service tier for fully verified clients who need larger card spending, priority support and tailored financial infrastructure. Final limits and availability depend on issuer, compliance and program partners.</p>
-        </div>
-        <div class="business-grid">
-          <div class="business-main reveal"><div class="eyebrow">Card access</div><h3>Designed for higher spending profiles.</h3><p>Program-level limits can be structured above standard retail tiers where the issuer and risk framework support them.</p></div>
-          <div class="business-main reveal"><div class="eyebrow">Priority</div><h3>Private support layer.</h3><p>Dedicated escalation, higher-touch verification and faster handling of complex account needs.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="company" id="company">
-      <div class="container">
-        <div class="eyebrow reveal">Company</div>
-        <div class="company-copy reveal" style="margin-top:24px">
-          BLACK ONE is being built around a simple idea: <span>global finance should feel coherent, controlled and designed as one system.</span>
-        </div>
-        <div class="company-bottom">
-          <p class="reveal">
-            The brand is intentionally restrained. No fake customer counts, no invented market share and no claims of licenses or protections that are not yet in place.
-          </p>
-          <p class="reveal">
-            Product availability, card issuance, account functionality, digital asset services and regulated financial activity will depend on jurisdiction, licensing structure and future infrastructure partners.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="final" id="open">
-      <div class="container">
-        <div class="final-box reveal">
-          <div class="final-top">
-            <div>
-              <div class="eyebrow">BLACK ONE</div>
-              <h2 style="margin-top:22px">A new global financial environment.</h2>
-            </div>
-            <div class="pill">Private preview</div>
-          </div>
-          <div class="final-actions">
-            <a class="btn primary" href="mailto:hello@globalblackone.com">Contact BLACK ONE <span class="arrow">↗</span></a>
-            <a class="btn ghost" href="#top">Back to top</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer id="footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="wordmark">BLACK ONE</div>
-          <p>
-            A new global financial platform concept for fiat, digital assets, payments, cards and business finance.
-          </p>
-        </div>
-        <div class="footer-col"><h4>Personal</h4><a href="#personal">Account</a><a href="#card">Card</a><a href="#crypto">Digital assets</a><a href="#personal">Payments</a></div>
-        <div class="footer-col"><h4>Business</h4><a href="#business">Business account</a><a href="#business">Team access</a><a href="#business">Controls</a><a href="#business">API direction</a></div>
-        <div class="footer-col"><h4>Company</h4><a href="#company">About</a><a href="#security">Security</a><a href="mailto:hello@globalblackone.com">Contact</a><a href="#open">Private preview</a></div>
-        <div class="footer-col"><h4>Legal</h4><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Risk disclosure</a><a href="#">Cookies</a></div>
-      </div>
-      <div class="footer-bottom">
-        <p>
-          © 2026 BLACK ONE. BLACK ONE is currently an early-stage product concept. This website does not represent BLACK ONE as a licensed bank, deposit-taking institution, card issuer, payment institution or crypto-asset service provider. Services shown are product direction and interface concepts and may require licensed third-party infrastructure and regulatory approvals before launch.
-        </p>
-        <span>globalblackone.com</span>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script>
-\n    const I18N = {\n      es: {\n        "Personal":"Personal","Card":"Tarjeta","Digital assets":"Activos digitales","Business":"Empresas","Security":"Seguridad","Company":"Compañía","Sign in":"Iniciar sesión","Open account":"Abrir cuenta",\n        "BLACK ONE / Global financial platform":"BLACK ONE / Plataforma financiera global","One account.":"Una cuenta.","Every currency.":"Todas las divisas.",\n        "A new financial environment designed to bring fiat, digital assets, payments and card access into one precise global experience.":"Un nuevo entorno financiero diseñado para reunir dinero fiat, activos digitales, pagos y acceso con tarjeta en una experiencia global precisa.",\n        "Explore BLACK ONE":"Explorar BLACK ONE","The company":"La compañía",\n        "BLACK ONE is currently an early-stage product concept. Availability of accounts, cards and regulated financial services will depend on future licensed infrastructure and partners.":"BLACK ONE es actualmente un concepto de producto en fase inicial. La disponibilidad de cuentas, tarjetas y servicios financieros regulados dependerá de infraestructura y socios con licencia.",\n        "A physical expression of the BLACK ONE system — restrained, architectural and designed around a single global account.":"Una expresión física del sistema BLACK ONE: sobria, arquitectónica y diseñada alrededor de una única cuenta global.",\n        "Member":"Miembro","Global":"Global","The thesis":"La tesis",\n        "Money should not feel fragmented.":"El dinero no debería sentirse fragmentado.","Different currencies, assets, countries and payment rails should behave like one coherent system.":"Diferentes divisas, activos, países y redes de pago deberían funcionar como un único sistema coherente.",\n        "Fiat balances":"Saldos fiat","Movement":"Movimiento","Access":"Acceso","Personal / Account":"Personal / Cuenta",\n        "One balance sheet for the way money actually moves.":"Un único balance para la forma en que el dinero realmente se mueve.",\n        "A production-minded interface for balances, transfers, exchange and card controls — built to feel calm even when the financial picture is complex.":"Una interfaz pensada como producto real para saldos, transferencias, cambio y control de tarjetas, diseñada para mantener claridad incluso cuando la situación financiera es compleja.",\n        "Secure session":"Sesión segura","Overview":"Resumen","Accounts":"Cuentas","Payments":"Pagos","Exchange":"Cambio","Cards":"Tarjetas","Settings":"Ajustes","Total balance":"Saldo total","Across fiat and digital assets · sample interface data":"Entre fiat y activos digitales · datos de ejemplo","Send":"Enviar","Receive":"Recibir",\n        "Euro account":"Cuenta en euros","US dollar account":"Cuenta en dólares","Digital asset balance":"Saldo de activo digital","Stablecoin balance":"Saldo en stablecoin","Activity":"Actividad","Account":"Cuenta","Status":"Estado","Amount":"Importe","Completed":"Completado","International transfer":"Transferencia internacional","Card settlement":"Liquidación de tarjeta","Asset conversion":"Conversión de activos","Incoming payment":"Pago recibido",\n        "Global accounts":"Cuentas globales","Local clarity. Global reach.":"Claridad local. Alcance global.","The account system is designed around holding and moving multiple currencies without forcing the user into separate financial worlds.":"El sistema de cuentas está diseñado para mantener y mover múltiples divisas sin obligar al usuario a entrar en mundos financieros separados.",\n        "Primary fiat balances":"Saldos fiat principales","Account details":"Datos de cuenta","Designed for local rails":"Diseñado para redes locales","FX layer":"Capa FX","Clear quote before exchange":"Cotización clara antes del cambio","Financial history":"Historial financiero","Unified ledger":"Libro unificado","Account architecture":"Arquitectura de cuenta","Unified view":"Vista unificada","Illustrative equivalent value":"Valor equivalente ilustrativo",\n        "BLACK ONE Card":"Tarjeta BLACK ONE","A card designed as an object, not a commodity.":"Una tarjeta diseñada como objeto, no como producto genérico.","Physical + virtual":"Física + virtual","Freeze, limits and devices":"Bloqueo, límites y dispositivos","Balance selection":"Selección de saldo",\n        "Movement of value":"Movimiento de valor","Move money without losing context.":"Mueve dinero sin perder contexto.","New transfer":"Nueva transferencia","You send":"Envías","Recipient gets":"El destinatario recibe","Beneficiary":"Beneficiario","Estimated fee":"Comisión estimada","Review transfer":"Revisar transferencia","Global movement":"Movimiento global",\n        "Portfolio":"Cartera","Money and digital assets. One environment.":"Dinero y activos digitales. Un solo entorno.","From":"Desde","To":"Hacia","Indicative rate":"Tipo indicativo","Settlement":"Liquidación","Instant":"Instantáneo",\n        "Finance for teams that move fast.":"Finanzas para equipos que se mueven rápido.","Team access":"Acceso del equipo","Monthly spend":"Gasto mensual","Owner":"Propietario","Finance":"Finanzas","Operations":"Operaciones","Full access":"Acceso total","Controls":"Controles","Future API direction":"Dirección futura de API",\n        "Control should feel immediate.":"El control debe sentirse inmediato.","Device control":"Control de dispositivos","Authentication":"Autenticación","Transaction controls":"Controles de transacción","Current":"Actual","Enabled":"Activado","Recovery methods":"Métodos de recuperación","Card spending":"Gasto con tarjeta","Controlled":"Controlado","New beneficiaries":"Nuevos beneficiarios","Review":"Revisar",\n        "Mobile":"Móvil","The same system, designed for the hand.":"El mismo sistema, diseñado para la mano.","Good evening":"Buenas tardes","Portfolio":"Cartera","Control center":"Centro de control","Your devices, card states and authentication in one place.":"Tus dispositivos, estados de tarjeta y autenticación en un solo lugar.","Current device":"Dispositivo actual",\n        "The ecosystem":"El ecosistema","Not a collection of products. One financial environment.":"No es una colección de productos. Es un entorno financiero.",\n        "BLACK ONE is being built around a simple idea:":"BLACK ONE se construye alrededor de una idea simple:","global finance should feel coherent, controlled and designed as one system.":"las finanzas globales deberían sentirse coherentes, controladas y diseñadas como un único sistema.",\n        "A new global financial environment.":"Un nuevo entorno financiero global.","Private preview":"Vista previa privada","Contact BLACK ONE":"Contactar BLACK ONE","Back to top":"Volver arriba",\n        "BLACK ONE Private":"BLACK ONE Private","Higher access. Fewer limits. More control.":"Mayor acceso. Menos límites. Más control.","Card access":"Acceso con tarjeta","Designed for higher spending profiles.":"Diseñado para perfiles de gasto más altos.","Priority":"Prioridad","Private support layer.":"Capa de soporte privado.",\n        "Legal":"Legal","Terms":"Términos","Privacy":"Privacidad","Risk disclosure":"Divulgación de riesgos","Cookies":"Cookies","About":"Nosotros","Contact":"Contacto","Team access":"Acceso del equipo","Business account":"Cuenta empresa","API direction":"Dirección API"\n      },\n      uk: {\n        "Personal":"Особисте","Card":"Картка","Digital assets":"Цифрові активи","Business":"Бізнес","Security":"Безпека","Company":"Компанія","Sign in":"Увійти","Open account":"Відкрити рахунок",\n        "BLACK ONE / Global financial platform":"BLACK ONE / Глобальна фінансова платформа","One account.":"Один рахунок.","Every currency.":"Усі валюти.",\n        "A new financial environment designed to bring fiat, digital assets, payments and card access into one precise global experience.":"Нове фінансове середовище, яке об’єднує фіат, цифрові активи, платежі та картки в одному точному глобальному досвіді.",\n        "Explore BLACK ONE":"Дослідити BLACK ONE","The company":"Про компанію",\n        "BLACK ONE is currently an early-stage product concept. Availability of accounts, cards and regulated financial services will depend on future licensed infrastructure and partners.":"BLACK ONE наразі є продуктом на ранній стадії. Доступність рахунків, карток і регульованих фінансових послуг залежатиме від майбутньої ліцензованої інфраструктури та партнерів.",\n        "A physical expression of the BLACK ONE system — restrained, architectural and designed around a single global account.":"Фізичне втілення системи BLACK ONE — стримане, архітектурне й побудоване навколо одного глобального рахунку.",\n        "Member":"Клієнт","Global":"Глобальна","The thesis":"Ідея",\n        "Money should not feel fragmented.":"Гроші не повинні бути роздробленими.","Different currencies, assets, countries and payment rails should behave like one coherent system.":"Різні валюти, активи, країни та платіжні мережі мають працювати як одна цілісна система.",\n        "Fiat balances":"Фіатні баланси","Movement":"Рух коштів","Access":"Доступ","Personal / Account":"Особисте / Рахунок",\n        "One balance sheet for the way money actually moves.":"Один баланс для того, як гроші реально рухаються.",\n        "A production-minded interface for balances, transfers, exchange and card controls — built to feel calm even when the financial picture is complex.":"Інтерфейс рівня реального продукту для балансів, переказів, обміну та керування картками — спокійний навіть тоді, коли фінансова картина складна.",\n        "Secure session":"Захищена сесія","Overview":"Огляд","Accounts":"Рахунки","Payments":"Платежі","Exchange":"Обмін","Cards":"Картки","Settings":"Налаштування","Total balance":"Загальний баланс","Across fiat and digital assets · sample interface data":"Фіат і цифрові активи · демо-дані","Send":"Надіслати","Receive":"Отримати",\n        "Euro account":"Рахунок EUR","US dollar account":"Рахунок USD","Digital asset balance":"Баланс цифрового активу","Stablecoin balance":"Баланс стейблкоїна","Activity":"Операція","Account":"Рахунок","Status":"Статус","Amount":"Сума","Completed":"Завершено","International transfer":"Міжнародний переказ","Card settlement":"Розрахунок карткою","Asset conversion":"Конвертація активів","Incoming payment":"Вхідний платіж",\n        "Global accounts":"Глобальні рахунки","Local clarity. Global reach.":"Локальна ясність. Глобальні можливості.","The account system is designed around holding and moving multiple currencies without forcing the user into separate financial worlds.":"Система рахунків створена для зберігання та руху різних валют без поділу користувача між окремими фінансовими світами.",\n        "Primary fiat balances":"Основні фіатні баланси","Account details":"Реквізити рахунку","Designed for local rails":"Під локальні платіжні мережі","FX layer":"FX-рівень","Clear quote before exchange":"Чіткий курс до обміну","Financial history":"Фінансова історія","Unified ledger":"Єдиний леджер","Account architecture":"Архітектура рахунку","Unified view":"Єдиний вигляд","Illustrative equivalent value":"Орієнтовний еквівалент",\n        "BLACK ONE Card":"Картка BLACK ONE","A card designed as an object, not a commodity.":"Картка, спроєктована як об’єкт, а не як звичайний товар.","Physical + virtual":"Фізична + віртуальна","Freeze, limits and devices":"Блокування, ліміти та пристрої","Balance selection":"Вибір балансу",\n        "Movement of value":"Рух коштів","Move money without losing context.":"Переказуйте гроші без втрати контексту.","New transfer":"Новий переказ","You send":"Ви надсилаєте","Recipient gets":"Одержувач отримує","Beneficiary":"Одержувач","Estimated fee":"Орієнтовна комісія","Review transfer":"Перевірити переказ","Global movement":"Глобальний рух",\n        "Portfolio":"Портфель","Money and digital assets. One environment.":"Гроші та цифрові активи. Одне середовище.","From":"З","To":"В","Indicative rate":"Орієнтовний курс","Settlement":"Розрахунок","Instant":"Миттєво",\n        "Finance for teams that move fast.":"Фінанси для команд, які рухаються швидко.","Team access":"Доступ команди","Monthly spend":"Місячні витрати","Owner":"Власник","Finance":"Фінанси","Operations":"Операції","Full access":"Повний доступ","Controls":"Контроль","Future API direction":"Майбутній API",\n        "Control should feel immediate.":"Контроль має бути миттєвим.","Device control":"Контроль пристроїв","Authentication":"Автентифікація","Transaction controls":"Контроль транзакцій","Current":"Поточний","Enabled":"Увімкнено","Recovery methods":"Методи відновлення","Card spending":"Витрати карткою","Controlled":"Під контролем","New beneficiaries":"Нові одержувачі","Review":"Перевірка",\n        "Mobile":"Мобільний застосунок","The same system, designed for the hand.":"Та сама система, створена для смартфона.","Good evening":"Добрий вечір","Control center":"Центр контролю","Your devices, card states and authentication in one place.":"Ваші пристрої, стан карток та автентифікація в одному місці.","Current device":"Поточний пристрій",\n        "The ecosystem":"Екосистема","Not a collection of products. One financial environment.":"Не набір продуктів. Одне фінансове середовище.",\n        "BLACK ONE is being built around a simple idea:":"BLACK ONE створюється навколо простої ідеї:","global finance should feel coherent, controlled and designed as one system.":"глобальні фінанси мають бути цілісними, контрольованими та створеними як одна система.",\n        "A new global financial environment.":"Нове глобальне фінансове середовище.","Private preview":"Приватне прев’ю","Contact BLACK ONE":"Зв’язатися з BLACK ONE","Back to top":"На початок",\n        "BLACK ONE Private":"BLACK ONE Private","Higher access. Fewer limits. More control.":"Більше доступу. Менше обмежень. Більше контролю.","Card access":"Доступ через картку","Designed for higher spending profiles.":"Для клієнтів із вищими профілями витрат.","Priority":"Пріоритет","Private support layer.":"Приватний рівень підтримки.",\n        "Legal":"Юридичне","Terms":"Умови","Privacy":"Конфіденційність","Risk disclosure":"Розкриття ризиків","Cookies":"Cookies","About":"Про нас","Contact":"Контакти","Business account":"Бізнес-рахунок","API direction":"API-напрям"\n      },\n      zh: {\n        "Personal":"个人","Card":"卡片","Digital assets":"数字资产","Business":"企业","Security":"安全","Company":"公司","Sign in":"登录","Open account":"开立账户",\n        "BLACK ONE / Global financial platform":"BLACK ONE / 全球金融平台","One account.":"一个账户。","Every currency.":"所有货币。",\n        "A new financial environment designed to bring fiat, digital assets, payments and card access into one precise global experience.":"一个全新的金融环境，将法币、数字资产、支付与卡片整合为精准统一的全球体验。",\n        "Explore BLACK ONE":"探索 BLACK ONE","The company":"关于公司",\n        "BLACK ONE is currently an early-stage product concept. Availability of accounts, cards and regulated financial services will depend on future licensed infrastructure and partners.":"BLACK ONE 目前处于早期产品概念阶段。账户、卡片及受监管金融服务的可用性将取决于未来的持牌基础设施与合作伙伴。",\n        "A physical expression of the BLACK ONE system — restrained, architectural and designed around a single global account.":"BLACK ONE 系统的实体表达：克制、建筑感，并围绕一个全球账户设计。",\n        "Member":"持卡人","Global":"全球","The thesis":"核心理念",\n        "Money should not feel fragmented.":"资金不应是割裂的。","Different currencies, assets, countries and payment rails should behave like one coherent system.":"不同货币、资产、国家与支付网络应像一个统一系统一样运作。",\n        "Fiat balances":"法币余额","Movement":"资金流动","Access":"访问","Personal / Account":"个人 / 账户",\n        "One balance sheet for the way money actually moves.":"一个真正匹配资金流动方式的统一资产视图。",\n        "A production-minded interface for balances, transfers, exchange and card controls — built to feel calm even when the financial picture is complex.":"面向真实产品的余额、转账、兑换与卡片控制界面，即使金融结构复杂，也保持清晰与克制。",\n        "Secure session":"安全会话","Overview":"概览","Accounts":"账户","Payments":"支付","Exchange":"兑换","Cards":"卡片","Settings":"设置","Total balance":"总余额","Across fiat and digital assets · sample interface data":"法币与数字资产 · 示例界面数据","Send":"发送","Receive":"接收",\n        "Euro account":"欧元账户","US dollar account":"美元账户","Digital asset balance":"数字资产余额","Stablecoin balance":"稳定币余额","Activity":"活动","Account":"账户","Status":"状态","Amount":"金额","Completed":"已完成","International transfer":"国际转账","Card settlement":"卡片结算","Asset conversion":"资产兑换","Incoming payment":"收款",\n        "Global accounts":"全球账户","Local clarity. Global reach.":"本地清晰。全球覆盖。","The account system is designed around holding and moving multiple currencies without forcing the user into separate financial worlds.":"账户系统围绕多币种持有与流动设计，无需把用户分散到不同的金融产品中。",\n        "Primary fiat balances":"主要法币余额","Account details":"账户信息","Designed for local rails":"面向本地支付网络","FX layer":"外汇层","Clear quote before exchange":"兑换前清晰报价","Financial history":"金融历史","Unified ledger":"统一账本","Account architecture":"账户架构","Unified view":"统一视图","Illustrative equivalent value":"示例等值金额",\n        "BLACK ONE Card":"BLACK ONE 卡","A card designed as an object, not a commodity.":"一张被当作设计对象打造的卡，而不是普通商品。","Physical + virtual":"实体 + 虚拟","Freeze, limits and devices":"冻结、限额与设备","Balance selection":"余额选择",\n        "Movement of value":"价值流动","Move money without losing context.":"移动资金，同时保留完整上下文。","New transfer":"新转账","You send":"你发送","Recipient gets":"收款方收到","Beneficiary":"收款方","Estimated fee":"预计费用","Review transfer":"确认转账","Global movement":"全球资金流动",\n        "Portfolio":"资产组合","Money and digital assets. One environment.":"资金与数字资产。一个环境。","From":"从","To":"到","Indicative rate":"参考汇率","Settlement":"结算","Instant":"即时",\n        "Finance for teams that move fast.":"为快速行动的团队打造金融能力。","Team access":"团队访问","Monthly spend":"月度支出","Owner":"所有者","Finance":"财务","Operations":"运营","Full access":"完整权限","Controls":"控制","Future API direction":"未来 API 方向",\n        "Control should feel immediate.":"控制应该是即时的。","Device control":"设备控制","Authentication":"身份认证","Transaction controls":"交易控制","Current":"当前","Enabled":"已启用","Recovery methods":"恢复方式","Card spending":"卡片支出","Controlled":"受控","New beneficiaries":"新收款方","Review":"审核",\n        "Mobile":"移动端","The same system, designed for the hand.":"同一个系统，为手中设备重新设计。","Good evening":"晚上好","Control center":"控制中心","Your devices, card states and authentication in one place.":"设备、卡片状态和身份认证集中在一个地方。","Current device":"当前设备",\n        "The ecosystem":"生态系统","Not a collection of products. One financial environment.":"不是产品集合，而是一个金融环境。",\n        "BLACK ONE is being built around a simple idea:":"BLACK ONE 围绕一个简单理念打造：","global finance should feel coherent, controlled and designed as one system.":"全球金融应该统一、可控，并被设计成一个完整系统。",\n        "A new global financial environment.":"一个新的全球金融环境。","Private preview":"私人预览","Contact BLACK ONE":"联系 BLACK ONE","Back to top":"返回顶部",\n        "BLACK ONE Private":"BLACK ONE Private","Higher access. Fewer limits. More control.":"更高权限。更少限制。更多控制。","Card access":"卡片访问","Designed for higher spending profiles.":"面向更高支出需求而设计。","Priority":"优先服务","Private support layer.":"私人支持层。",\n        "Legal":"法律","Terms":"条款","Privacy":"隐私","Risk disclosure":"风险披露","Cookies":"Cookie","About":"关于","Contact":"联系","Business account":"企业账户","API direction":"API 方向"\n      }\n    };\n\n    const originalTexts = new WeakMap();\n    function allTextNodes(root=document.body){\n      const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>{\n        if(!n.parentElement || ['SCRIPT','STYLE','OPTION'].includes(n.parentElement.tagName)) return NodeFilter.FILTER_REJECT;\n        return n.nodeValue.trim()?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;\n      }});\n      const arr=[]; while(w.nextNode()) arr.push(w.currentNode); return arr;\n    }\n    const nodes=allTextNodes();\n    nodes.forEach(n=>originalTexts.set(n,n.nodeValue));\n    function setLanguage(lang){\n      const dict=I18N[lang]||{};\n      document.documentElement.lang=lang==='uk'?'uk':lang==='zh'?'zh-CN':lang;\n      nodes.forEach(n=>{\n        const base=originalTexts.get(n);\n        const t=base.trim();\n        if(lang==='en'){ n.nodeValue=base; return; }\n        if(dict[t]) n.nodeValue=base.replace(t,dict[t]); else n.nodeValue=base;\n      });\n      localStorage.setItem('blackone_lang',lang);\n      document.getElementById('langSelect').value=lang;\n    }\n    const savedLang=localStorage.getItem('blackone_lang');\n    const browserLang=(navigator.language||'en').toLowerCase();\n    const initialLang=savedLang || (browserLang.startsWith('uk')?'uk':browserLang.startsWith('es')?'es':browserLang.startsWith('zh')?'zh':'en');\n    setLanguage(initialLang);\n    document.getElementById('langSelect').addEventListener('change',e=>setLanguage(e.target.value));\n
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add('in');
-          observer.unobserve(entry.target);
-        }
-      });
-    },{threshold:.12});
-    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+<div class="strip">
+  <div class="container strip-in">
+    <div class="strip-item"><b data-t="strip.a">Global accounts</b><span data-t="strip.ac">Multi-currency financial view.</span></div>
+    <div class="strip-item"><b data-t="strip.b">BLACK ONE Card</b><span data-t="strip.bc">Physical and virtual card architecture.</span></div>
+    <div class="strip-item"><b data-t="strip.c">Digital assets</b><span data-t="strip.cc">Selected digital assets in one interface.</span></div>
+    <div class="strip-item"><b data-t="strip.d">Business</b><span data-t="strip.dc">Teams, roles, cards and spending controls.</span></div>
+    <div class="strip-item"><b data-t="strip.e">Security</b><span data-t="strip.ec">Device, transaction and account controls.</span></div>
+  </div>
+</div>
 
-    document.querySelectorAll('.interactive-card').forEach(card=>{
-      card.addEventListener('mousemove', e=>{
-        const r=card.getBoundingClientRect();
-        const x=(e.clientX-r.left)/r.width-.5;
-        const y=(e.clientY-r.top)/r.height-.5;
-        card.style.transform=`rotateX(${7-y*10}deg) rotateY(${-10+x*14}deg) rotateZ(${-2+x*1.5}deg)`;
-      });
-      card.addEventListener('mouseleave', ()=>{
-        card.style.transform='rotateX(8deg) rotateY(-12deg) rotateZ(-3deg)';
-      });
-    });
+<section class="section manifesto">
+  <div class="container">
+    <p data-html="manifesto">Finance should not feel fragmented. <span>Accounts, cards, payments and digital assets should work as one system.</span></p>
+  </div>
+</section>
 
-    const mobileToggle=document.querySelector('.mobile-toggle');
-    const mobileMenu=document.getElementById('mobileMenu');
-    mobileToggle.addEventListener('click',()=>mobileMenu.classList.toggle('open'));
-    mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));
-  </script>
+<section class="section" id="personal">
+  <div class="container">
+    <div class="section-head">
+      <div><div class="eyebrow" data-t="personal.eye">Personal</div><h2 data-t="personal.title">Your financial life, in one view.</h2></div>
+      <p class="section-copy" data-t="personal.copy">One interface for balances, currencies, payments, cards and digital assets — designed to feel structured, calm and immediate.</p>
+    </div>
+
+    <div class="dash">
+      <aside class="side">
+        <div class="side-logo">BLACK ONE</div>
+        <button class="active" data-t="dash.overview">Overview</button>
+        <button data-t="dash.accounts">Accounts</button>
+        <button data-t="dash.payments">Payments</button>
+        <button data-t="dash.cards">Cards</button>
+        <button data-t="dash.assets">Digital assets</button>
+        <button data-t="dash.security">Security</button>
+        <div class="profile"><div class="avatar">AM</div><div><div style="font-size:12px">Alex Morgan</div><div style="font-size:11px;color:#777780" data-t="dash.private">Private member</div></div></div>
+      </aside>
+      <div class="dash-main">
+        <div class="balance-label" data-t="dash.total">Total balance</div>
+        <div class="balance">$84,620.48</div>
+        <div class="quick">
+          <button data-t="dash.send">Send</button><button data-t="dash.receive">Receive</button><button data-t="dash.exchange">Exchange</button><button data-t="dash.add">Add money</button>
+        </div>
+        <div class="accounts">
+          <div class="acc"><small>EUR</small><b>€31,804.20</b><small data-t="dash.primary">Primary account</small></div>
+          <div class="acc"><small>USD</small><b>$22,960.64</b><small data-t="dash.available">Available</small></div>
+          <div class="acc"><small>BTC</small><b>0.2418 BTC</b><small>≈ $14,605</small></div>
+          <div class="acc"><small>USDC</small><b>15,250.00</b><small data-t="dash.available">Available</small></div>
+        </div>
+        <div class="table">
+          <table>
+            <thead><tr><th data-t="table.activity">Activity</th><th data-t="table.account">Account</th><th data-t="table.status">Status</th><th data-t="table.amount">Amount</th></tr></thead>
+            <tbody>
+              <tr><td>Apple Store</td><td>EUR</td><td class="ok" data-t="table.done">Completed</td><td>- €1,249.00</td></tr>
+              <tr><td>Incoming transfer</td><td>USD</td><td class="ok" data-t="table.done">Completed</td><td>+ $8,400.00</td></tr>
+              <tr><td>USDC exchange</td><td>USDC → EUR</td><td class="ok" data-t="table.done">Completed</td><td>€4,992.50</td></tr>
+              <tr><td>BLACK ONE Card</td><td>EUR</td><td class="ok" data-t="table.done">Completed</td><td>- €186.40</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="assets">
+  <div class="container">
+    <div class="section-head">
+      <div><div class="eyebrow" data-t="assets.eye">Digital assets</div><h2 data-t="assets.title">Digital value without a separate universe.</h2></div>
+      <p class="section-copy" data-t="assets.copy">Selected digital assets can live beside fiat balances, with transparent conversion and a consistent account experience.</p>
+    </div>
+    <div class="grid2">
+      <div class="panel">
+        <div class="eyebrow" data-t="assets.portfolio">Portfolio</div>
+        <h3>BTC · ETH · USDC</h3>
+        <p data-t="assets.pcopy">Balances, estimated values and exchange actions in the same environment as your primary accounts.</p>
+        <div class="accounts" style="grid-template-columns:1fr 1fr;margin-bottom:0">
+          <div class="acc"><small>BTC</small><b>0.2418</b><small>≈ $14,605</small></div>
+          <div class="acc"><small>ETH</small><b>2.91</b><small>≈ $7,840</small></div>
+          <div class="acc"><small>USDC</small><b>15,250</b><small>≈ $15,250</small></div>
+          <div class="acc"><small data-t="assets.total">Digital total</small><b>$37,695</b><small data-t="assets.demo">Illustrative</small></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="eyebrow" data-t="assets.exchange">Exchange</div>
+        <h3>5,000 USDC → €4,618</h3>
+        <p data-t="assets.excopy">See the indicative rate, expected fee and settlement before confirming an exchange.</p>
+        <div class="flow" style="grid-template-columns:1fr">
+          <div class="step"><small data-t="assets.from">From</small><b>5,000 USDC</b></div>
+          <div class="step"><small data-t="assets.to">To</small><b>€4,618 EUR</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div><div class="eyebrow" data-t="spend.eye">Crypto-funded spending concept</div><h2 data-t="spend.title">From digital balance to card purchase.</h2></div>
+      <p class="section-copy" data-t="spend.copy">A future card flow can connect selected digital assets to fiat settlement through licensed partners, while keeping the user experience simple.</p>
+    </div>
+    <div class="flow">
+      <div class="step"><small>01</small><b data-t="spend.s1">Select balance</b><p class="muted">USDC / BTC / EUR</p></div>
+      <div class="step"><small>02</small><b data-t="spend.s2">Convert if needed</b><p class="muted" data-t="spend.s2c">Indicative rate shown first</p></div>
+      <div class="step"><small>03</small><b data-t="spend.s3">Settle in fiat</b><p class="muted" data-t="spend.s3c">Through card infrastructure</p></div>
+      <div class="step"><small>04</small><b data-t="spend.s4">Complete purchase</b><p class="muted" data-t="spend.s4c">One transaction view</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="card">
+  <div class="container">
+    <div class="section-head">
+      <div><div class="eyebrow">BLACK ONE CARD</div><h2 data-t="card.title">Control the card, not the other way around.</h2></div>
+      <p class="section-copy" data-t="card.copy">Freeze instantly, manage limits, control online and contactless payments, and choose which balance supports spending.</p>
+    </div>
+    <div class="control-card">
+      <div class="panel" style="display:flex;align-items:center;justify-content:center;min-height:520px">
+        <div class="card" style="width:min(560px,95%);transform:rotate(-4deg)">
+          <div class="card-top"><div><div class="card-brand">BLACK ONE</div><div class="card-sub">PRIVATE METAL</div></div></div>
+          <div class="chip"></div><div class="card-num">5412 &nbsp;•••• &nbsp;•••• &nbsp;4821</div>
+          <div class="card-bottom"><div><span data-t="card.member">Member</span><strong>ALEX MORGAN</strong></div><div><span data-t="card.valid">Valid thru</span><strong>09/30</strong></div><div><strong>ONE</strong></div></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="eyebrow" data-t="card.controls">Card controls</div>
+        <h3 data-t="card.instant">Immediate control.</h3>
+        <div class="settings">
+          <div class="setting"><span data-t="card.freeze">Card active</span><div class="toggle"><i></i></div></div>
+          <div class="setting"><span data-t="card.online">Online payments</span><div class="toggle"><i></i></div></div>
+          <div class="setting"><span data-t="card.contactless">Contactless</span><div class="toggle"><i></i></div></div>
+          <div class="setting"><span data-t="card.atm">ATM withdrawals</span><div class="toggle"><i></i></div></div>
+          <div class="setting"><span data-t="card.limit">Monthly spend limit</span><strong>$100,000</strong></div>
+          <div class="setting"><span data-t="card.source">Spending source</span><strong>EUR</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="business">
+  <div class="container">
+    <div class="section-head">
+      <div><div class="eyebrow" data-t="business.eye">Business</div><h2 data-t="business.title">Financial control for modern teams.</h2></div>
+      <p class="section-copy" data-t="business.copy">Business accounts, team roles, employee cards, limits, approvals and future API workflows in one environment.</p>
+    </div>
+    <div class="grid3">
+      <div class="panel"><div class="eyebrow" data-t="business.roles">Roles</div><h3 data-t="business.team">Team access</h3><p data-t="business.teamc">Assign owner, finance and operations permissions without sharing one account login.</p></div>
+      <div class="panel"><div class="eyebrow" data-t="business.cards">Cards</div><h3 data-t="business.spend">Spending rules</h3><p data-t="business.spendc">Set card-level limits, merchant controls and approval flows for every team member.</p></div>
+      <div class="panel"><div class="eyebrow">API</div><h3 data-t="business.api">Future integrations</h3><p data-t="business.apic">A product direction for payment automation, reconciliation and treasury workflows.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="security">
+  <div class="container">
+    <div class="section-head">
+      <div><div class="eyebrow" data-t="security.eye">Security</div><h2 data-t="security.title">Security is part of the product.</h2></div>
+      <p class="section-copy" data-t="security.copy">Account authentication, device visibility, card controls and transaction monitoring should be visible and understandable to the customer.</p>
+    </div>
+    <div class="grid3">
+      <div class="panel"><h3 data-t="security.device">Device control</h3><p data-t="security.devicec">Review trusted devices, active sessions and revoke access immediately.</p></div>
+      <div class="panel"><h3 data-t="security.auth">Strong authentication</h3><p data-t="security.authc">Passkeys, biometrics and step-up verification for sensitive actions.</p></div>
+      <div class="panel"><h3 data-t="security.risk">Transaction monitoring</h3><p data-t="security.riskc">Risk-based monitoring and additional verification where required by the regulated infrastructure.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="private-box">
+      <div>
+        <div class="eyebrow">BLACK ONE PRIVATE</div>
+        <h3 data-t="private.title">A higher level of access.</h3>
+        <p class="section-copy" data-t="private.copy">A premium product direction for clients who need larger operational capacity, priority service and advanced card and account controls.</p>
+        <div class="private-list">
+          <div data-t="private.a">Premium metal card concept</div>
+          <div data-t="private.b">Priority service model</div>
+          <div data-t="private.c">Higher program limits subject to partner approval</div>
+          <div data-t="private.d">Advanced multi-currency controls</div>
+        </div>
+      </div>
+      <div class="private-visual">
+        <div class="card" style="width:min(520px,92%);transform:rotate(5deg)">
+          <div class="card-top"><div><div class="card-brand">BLACK ONE</div><div class="card-sub">PRIVATE</div></div></div>
+          <div class="chip"></div><div class="card-num">•••• &nbsp;•••• &nbsp;•••• &nbsp;9208</div>
+          <div class="card-bottom"><div><span data-t="card.member">Member</span><strong>SOFIA KLEIN</strong></div><div><span data-t="card.valid">Valid thru</span><strong>12/30</strong></div><div><strong>ONE</strong></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="company">
+  <div class="container">
+    <div class="section-head">
+      <div><div class="eyebrow" data-t="company.eye">Company</div><h2 data-t="company.title">Global finance, designed with discipline.</h2></div>
+      <p class="section-copy" data-t="company.copy">BLACK ONE is being developed as a global financial product concept with a partner-first path to regulated payments, cards and digital-asset infrastructure.</p>
+    </div>
+    <div class="grid2">
+      <div class="panel"><h3 data-t="company.philosophy">Our philosophy</h3><p data-t="company.philosophyc">Make complexity feel structured without hiding fees, risks, controls or regulatory boundaries.</p></div>
+      <div class="panel"><h3 data-t="company.principles">Principles</h3><p data-t="company.principlesc">No fake user counts. No invented licenses. No misleading claims. Product availability should be stated as it actually exists.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section cta">
+  <div class="container">
+    <div class="eyebrow">BLACK ONE</div>
+    <h2 data-t="cta.title">The global financial environment.</h2>
+    <p data-t="cta.copy">One account architecture for money, cards, business finance and digital assets. Currently in concept and product development.</p>
+    <div class="hero-actions">
+      <button class="btn primary" data-open data-t="cta.access">Request private access</button>
+      <a class="btn" href="mailto:business@globalblackone.com" data-t="cta.partner">Partnerships</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div><div class="brand">BLACK ONE</div><p class="muted" style="font-size:12px;line-height:1.6;max-width:340px" data-t="footer.desc">Global financial environment concept for accounts, cards, transfers, business finance and digital assets.</p></div>
+      <div><h4 data-t="footer.personal">Personal</h4><a href="#personal" data-t="footer.accounts">Accounts</a><a href="#card" data-t="footer.card">Card</a><a href="#assets" data-t="footer.assets">Digital assets</a></div>
+      <div><h4 data-t="footer.business">Business</h4><a href="#business" data-t="footer.team">Teams</a><a href="#business" data-t="footer.controls">Controls</a><a href="#business">API</a></div>
+      <div><h4 data-t="footer.company">Company</h4><a href="#company" data-t="footer.about">About</a><a href="#security" data-t="footer.security">Security</a><a href="mailto:hello@globalblackone.com" data-t="footer.contact">Contact</a></div>
+      <div><h4 data-t="footer.legal">Legal</h4><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a><a href="#">Risk disclosure</a></div>
+    </div>
+    <div class="legal" data-t="footer.note">BLACK ONE is currently an early-stage product concept. This website does not represent BLACK ONE as a licensed bank, deposit-taking institution, card issuer, payment institution or crypto-asset service provider. Services shown are product direction and interface concepts and may require licensed third-party infrastructure and regulatory approvals before launch. All balances, transactions and names shown are illustrative.</div>
+  </div>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <div class="eyebrow">BLACK ONE</div>
+    <h3 data-t="modal.title">Request private access</h3>
+    <p class="muted" data-t="modal.copy">Join the private product preview. This form is a front-end concept and does not create a financial account.</p>
+    <div class="field"><label data-t="modal.type">Account type</label><select><option data-t="modal.personal">Personal</option><option data-t="modal.business">Business</option></select></div>
+    <div class="field"><label data-t="modal.country">Country</label><input placeholder="Country"></div>
+    <div class="field"><label>Email</label><input type="email" placeholder="name@example.com"></div>
+    <div class="modal-actions">
+      <button class="btn primary" id="submitDemo" data-t="modal.join">Join preview</button>
+      <button class="btn" id="closeModal" data-t="modal.close">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const T={
+en:{
+"nav.personal":"Personal","nav.card":"Card","nav.assets":"Digital assets","nav.business":"Business","nav.security":"Security","nav.company":"Company","nav.signin":"Sign in","nav.open":"Open account",
+"hero.tag":"BLACK ONE / Global financial environment","hero.title":"One account. Every currency.","hero.copy":"Accounts, cards, transfers, business finance and digital assets — designed as one global financial environment.","hero.join":"Request private access","hero.explore":"Explore platform","hero.note":"BLACK ONE is currently an early-stage financial product concept. Regulated services, card issuance and asset services depend on jurisdiction, approvals and licensed partners.","hero.balance":"Available balance","hero.route":"Settlement layer",
+"card.member":"Member","card.valid":"Valid thru","strip.a":"Global accounts","strip.ac":"Multi-currency financial view.","strip.b":"BLACK ONE Card","strip.bc":"Physical and virtual card architecture.","strip.c":"Digital assets","strip.cc":"Selected digital assets in one interface.","strip.d":"Business","strip.dc":"Teams, roles, cards and spending controls.","strip.e":"Security","strip.ec":"Device, transaction and account controls.",
+"manifesto":"Finance should not feel fragmented. <span>Accounts, cards, payments and digital assets should work as one system.</span>",
+"personal.eye":"Personal","personal.title":"Your financial life, in one view.","personal.copy":"One interface for balances, currencies, payments, cards and digital assets — designed to feel structured, calm and immediate.",
+"dash.overview":"Overview","dash.accounts":"Accounts","dash.payments":"Payments","dash.cards":"Cards","dash.assets":"Digital assets","dash.security":"Security","dash.private":"Private member","dash.total":"Total balance","dash.send":"Send","dash.receive":"Receive","dash.exchange":"Exchange","dash.add":"Add money","dash.primary":"Primary account","dash.available":"Available",
+"table.activity":"Activity","table.account":"Account","table.status":"Status","table.amount":"Amount","table.done":"Completed",
+"assets.eye":"Digital assets","assets.title":"Digital value without a separate universe.","assets.copy":"Selected digital assets can live beside fiat balances, with transparent conversion and a consistent account experience.","assets.portfolio":"Portfolio","assets.pcopy":"Balances, estimated values and exchange actions in the same environment as your primary accounts.","assets.total":"Digital total","assets.demo":"Illustrative","assets.exchange":"Exchange","assets.excopy":"See the indicative rate, expected fee and settlement before confirming an exchange.","assets.from":"From","assets.to":"To",
+"spend.eye":"Crypto-funded spending concept","spend.title":"From digital balance to card purchase.","spend.copy":"A future card flow can connect selected digital assets to fiat settlement through licensed partners, while keeping the user experience simple.","spend.s1":"Select balance","spend.s2":"Convert if needed","spend.s2c":"Indicative rate shown first","spend.s3":"Settle in fiat","spend.s3c":"Through card infrastructure","spend.s4":"Complete purchase","spend.s4c":"One transaction view",
+"card.title":"Control the card, not the other way around.","card.copy":"Freeze instantly, manage limits, control online and contactless payments, and choose which balance supports spending.","card.controls":"Card controls","card.instant":"Immediate control.","card.freeze":"Card active","card.online":"Online payments","card.contactless":"Contactless","card.atm":"ATM withdrawals","card.limit":"Monthly spend limit","card.source":"Spending source",
+"business.eye":"Business","business.title":"Financial control for modern teams.","business.copy":"Business accounts, team roles, employee cards, limits, approvals and future API workflows in one environment.","business.roles":"Roles","business.team":"Team access","business.teamc":"Assign owner, finance and operations permissions without sharing one account login.","business.cards":"Cards","business.spend":"Spending rules","business.spendc":"Set card-level limits, merchant controls and approval flows for every team member.","business.api":"Future integrations","business.apic":"A product direction for payment automation, reconciliation and treasury workflows.",
+"security.eye":"Security","security.title":"Security is part of the product.","security.copy":"Account authentication, device visibility, card controls and transaction monitoring should be visible and understandable to the customer.","security.device":"Device control","security.devicec":"Review trusted devices, active sessions and revoke access immediately.","security.auth":"Strong authentication","security.authc":"Passkeys, biometrics and step-up verification for sensitive actions.","security.risk":"Transaction monitoring","security.riskc":"Risk-based monitoring and additional verification where required by the regulated infrastructure.",
+"private.title":"A higher level of access.","private.copy":"A premium product direction for clients who need larger operational capacity, priority service and advanced card and account controls.","private.a":"Premium metal card concept","private.b":"Priority service model","private.c":"Higher program limits subject to partner approval","private.d":"Advanced multi-currency controls",
+"company.eye":"Company","company.title":"Global finance, designed with discipline.","company.copy":"BLACK ONE is being developed as a global financial product concept with a partner-first path to regulated payments, cards and digital-asset infrastructure.","company.philosophy":"Our philosophy","company.philosophyc":"Make complexity feel structured without hiding fees, risks, controls or regulatory boundaries.","company.principles":"Principles","company.principlesc":"No fake user counts. No invented licenses. No misleading claims. Product availability should be stated as it actually exists.",
+"cta.title":"The global financial environment.","cta.copy":"One account architecture for money, cards, business finance and digital assets. Currently in concept and product development.","cta.access":"Request private access","cta.partner":"Partnerships",
+"footer.desc":"Global financial environment concept for accounts, cards, transfers, business finance and digital assets.","footer.personal":"Personal","footer.accounts":"Accounts","footer.card":"Card","footer.assets":"Digital assets","footer.business":"Business","footer.team":"Teams","footer.controls":"Controls","footer.company":"Company","footer.about":"About","footer.security":"Security","footer.contact":"Contact","footer.legal":"Legal","footer.note":"BLACK ONE is currently an early-stage product concept. This website does not represent BLACK ONE as a licensed bank, deposit-taking institution, card issuer, payment institution or crypto-asset service provider. Services shown are product direction and interface concepts and may require licensed third-party infrastructure and regulatory approvals before launch. All balances, transactions and names shown are illustrative.",
+"modal.title":"Request private access","modal.copy":"Join the private product preview. This form is a front-end concept and does not create a financial account.","modal.type":"Account type","modal.personal":"Personal","modal.business":"Business","modal.country":"Country","modal.join":"Join preview","modal.close":"Close"
+},
+uk:{
+"nav.personal":"Особисте","nav.card":"Картка","nav.assets":"Цифрові активи","nav.business":"Бізнес","nav.security":"Безпека","nav.company":"Компанія","nav.signin":"Увійти","nav.open":"Відкрити рахунок",
+"hero.tag":"BLACK ONE / Глобальне фінансове середовище","hero.title":"Один рахунок. Усі валюти.","hero.copy":"Рахунки, картки, перекази, бізнес-фінанси та цифрові активи — як одне глобальне фінансове середовище.","hero.join":"Запросити приватний доступ","hero.explore":"Переглянути платформу","hero.note":"BLACK ONE наразі є фінансовим продуктом на ранній стадії розробки. Регульовані послуги, випуск карток і сервіси цифрових активів залежать від юрисдикції, дозволів і ліцензованих партнерів.","hero.balance":"Доступний баланс","hero.route":"Рівень розрахунків",
+"card.member":"Клієнт","card.valid":"Дійсна до","strip.a":"Глобальні рахунки","strip.ac":"Єдиний мультивалютний огляд.","strip.b":"Картка BLACK ONE","strip.bc":"Фізична та віртуальна карткова архітектура.","strip.c":"Цифрові активи","strip.cc":"Вибрані цифрові активи в одному інтерфейсі.","strip.d":"Бізнес","strip.dc":"Команди, ролі, картки та контроль витрат.","strip.e":"Безпека","strip.ec":"Контроль пристроїв, транзакцій і рахунку.",
+"manifesto":"Фінанси не повинні бути роздробленими. <span>Рахунки, картки, платежі та цифрові активи мають працювати як одна система.</span>",
+"personal.eye":"Особисте","personal.title":"Усе фінансове життя в одному місці.","personal.copy":"Один інтерфейс для балансів, валют, платежів, карток і цифрових активів — структурований, спокійний і швидкий.",
+"dash.overview":"Огляд","dash.accounts":"Рахунки","dash.payments":"Платежі","dash.cards":"Картки","dash.assets":"Цифрові активи","dash.security":"Безпека","dash.private":"Private-клієнт","dash.total":"Загальний баланс","dash.send":"Надіслати","dash.receive":"Отримати","dash.exchange":"Обміняти","dash.add":"Поповнити","dash.primary":"Основний рахунок","dash.available":"Доступно",
+"table.activity":"Операція","table.account":"Рахунок","table.status":"Статус","table.amount":"Сума","table.done":"Завершено",
+"assets.eye":"Цифрові активи","assets.title":"Цифрова вартість без окремого світу.","assets.copy":"Вибрані цифрові активи можуть бути поруч із фіатними балансами — з прозорою конвертацією та єдиним досвідом рахунку.","assets.portfolio":"Портфель","assets.pcopy":"Баланси, орієнтовна вартість та обмін у тому самому середовищі, що й основні рахунки.","assets.total":"Разом цифрових активів","assets.demo":"Демо","assets.exchange":"Обмін","assets.excopy":"До підтвердження видно орієнтовний курс, очікувану комісію та спосіб розрахунку.","assets.from":"З","assets.to":"В",
+"spend.eye":"Концепція витрат із криптобалансу","spend.title":"Від цифрового балансу до покупки карткою.","spend.copy":"Майбутній картковий потік може з’єднати вибрані цифрові активи з фіатним розрахунком через ліцензованих партнерів, зберігаючи простий UX.","spend.s1":"Вибрати баланс","spend.s2":"Конвертувати за потреби","spend.s2c":"Спочатку показується курс","spend.s3":"Розрахунок у фіаті","spend.s3c":"Через карткову інфраструктуру","spend.s4":"Завершити покупку","spend.s4c":"Одна транзакція в історії",
+"card.title":"Контролюйте картку, а не навпаки.","card.copy":"Миттєве блокування, ліміти, онлайн- і безконтактні платежі та вибір балансу для витрат.","card.controls":"Контроль картки","card.instant":"Миттєвий контроль.","card.freeze":"Картка активна","card.online":"Онлайн-платежі","card.contactless":"Безконтактні платежі","card.atm":"Зняття в банкоматі","card.limit":"Місячний ліміт витрат","card.source":"Джерело витрат",
+"business.eye":"Бізнес","business.title":"Фінансовий контроль для сучасних команд.","business.copy":"Бізнес-рахунки, ролі команди, картки співробітників, ліміти, погодження та майбутні API-процеси в одному середовищі.","business.roles":"Ролі","business.team":"Доступ команди","business.teamc":"Призначайте права власника, фінансів та операцій без спільного логіна.","business.cards":"Картки","business.spend":"Правила витрат","business.spendc":"Налаштовуйте ліміти, merchant-контроль і погодження для кожного члена команди.","business.api":"Майбутні інтеграції","business.apic":"Напрям для автоматизації платежів, звірки та treasury-процесів.",
+"security.eye":"Безпека","security.title":"Безпека — частина продукту.","security.copy":"Автентифікація, контроль пристроїв, карток і транзакцій мають бути видимими та зрозумілими клієнту.","security.device":"Контроль пристроїв","security.devicec":"Переглядайте довірені пристрої, активні сесії та миттєво відкликайте доступ.","security.auth":"Сильна автентифікація","security.authc":"Passkeys, біометрія та додаткова перевірка для чутливих дій.","security.risk":"Моніторинг транзакцій","security.riskc":"Ризик-орієнтований моніторинг і додаткова перевірка там, де це вимагає регульована інфраструктура.",
+"private.title":"Вищий рівень доступу.","private.copy":"Преміальний напрям для клієнтів, яким потрібні більші операційні можливості, пріоритетний сервіс і розширений контроль карток та рахунків.","private.a":"Преміальна металева картка","private.b":"Пріоритетна модель сервісу","private.c":"Вищі програмні ліміти за погодженням партнера","private.d":"Розширений мультивалютний контроль",
+"company.eye":"Компанія","company.title":"Глобальні фінанси, створені дисципліновано.","company.copy":"BLACK ONE розробляється як глобальний фінансовий продукт із партнерським шляхом до регульованих платежів, карток та інфраструктури цифрових активів.","company.philosophy":"Наша філософія","company.philosophyc":"Структурувати складність, не приховуючи комісії, ризики, контроль чи регуляторні межі.","company.principles":"Принципи","company.principlesc":"Без вигаданих користувачів. Без вигаданих ліцензій. Без оманливих заяв. Доступність продукту має описуватися такою, якою вона є.",
+"cta.title":"Глобальне фінансове середовище.","cta.copy":"Єдина архітектура для грошей, карток, бізнес-фінансів і цифрових активів. Наразі — концепція та розробка продукту.","cta.access":"Запросити приватний доступ","cta.partner":"Партнерство",
+"footer.desc":"Концепція глобального фінансового середовища для рахунків, карток, переказів, бізнес-фінансів і цифрових активів.","footer.personal":"Особисте","footer.accounts":"Рахунки","footer.card":"Картка","footer.assets":"Цифрові активи","footer.business":"Бізнес","footer.team":"Команди","footer.controls":"Контроль","footer.company":"Компанія","footer.about":"Про нас","footer.security":"Безпека","footer.contact":"Контакти","footer.legal":"Юридичне","footer.note":"BLACK ONE наразі є продуктом на ранній стадії. Цей сайт не представляє BLACK ONE як ліцензований банк, депозитну установу, емітента карток, платіжну установу чи постачальника послуг із криптоактивами. Показані сервіси є напрямом продукту та концептами інтерфейсу й можуть потребувати ліцензованої сторонньої інфраструктури та регуляторних дозволів до запуску. Усі баланси, транзакції та імена на сайті наведені для прикладу.",
+"modal.title":"Запросити приватний доступ","modal.copy":"Приєднайтесь до приватного прев’ю продукту. Ця форма є front-end концептом і не створює фінансовий рахунок.","modal.type":"Тип рахунку","modal.personal":"Особистий","modal.business":"Бізнес","modal.country":"Країна","modal.join":"Приєднатися","modal.close":"Закрити"
+},
+es:{
+"nav.personal":"Personal","nav.card":"Tarjeta","nav.assets":"Activos digitales","nav.business":"Empresas","nav.security":"Seguridad","nav.company":"Compañía","nav.signin":"Iniciar sesión","nav.open":"Abrir cuenta",
+"hero.tag":"BLACK ONE / Entorno financiero global","hero.title":"Una cuenta. Todas las divisas.","hero.copy":"Cuentas, tarjetas, transferencias, finanzas empresariales y activos digitales diseñados como un único entorno financiero global.","hero.join":"Solicitar acceso privado","hero.explore":"Explorar plataforma","hero.note":"BLACK ONE es actualmente un concepto de producto financiero en fase inicial. Los servicios regulados, la emisión de tarjetas y los servicios de activos dependen de la jurisdicción, autorizaciones y socios con licencia.","hero.balance":"Saldo disponible","hero.route":"Capa de liquidación",
+"card.member":"Miembro","card.valid":"Válida hasta","strip.a":"Cuentas globales","strip.ac":"Vista financiera multidivisa.","strip.b":"Tarjeta BLACK ONE","strip.bc":"Arquitectura de tarjeta física y virtual.","strip.c":"Activos digitales","strip.cc":"Activos digitales seleccionados en una sola interfaz.","strip.d":"Empresas","strip.dc":"Equipos, roles, tarjetas y control del gasto.","strip.e":"Seguridad","strip.ec":"Control de dispositivos, transacciones y cuenta.",
+"manifesto":"Las finanzas no deberían sentirse fragmentadas. <span>Cuentas, tarjetas, pagos y activos digitales deberían funcionar como un único sistema.</span>",
+"personal.eye":"Personal","personal.title":"Toda tu vida financiera, en una sola vista.","personal.copy":"Una sola interfaz para saldos, divisas, pagos, tarjetas y activos digitales, diseñada para sentirse estructurada, tranquila e inmediata.",
+"dash.overview":"Resumen","dash.accounts":"Cuentas","dash.payments":"Pagos","dash.cards":"Tarjetas","dash.assets":"Activos digitales","dash.security":"Seguridad","dash.private":"Miembro Private","dash.total":"Saldo total","dash.send":"Enviar","dash.receive":"Recibir","dash.exchange":"Cambiar","dash.add":"Añadir dinero","dash.primary":"Cuenta principal","dash.available":"Disponible",
+"table.activity":"Actividad","table.account":"Cuenta","table.status":"Estado","table.amount":"Importe","table.done":"Completado",
+"assets.eye":"Activos digitales","assets.title":"Valor digital sin un universo separado.","assets.copy":"Los activos digitales seleccionados pueden convivir con saldos fiat, con conversión transparente y una experiencia de cuenta coherente.","assets.portfolio":"Cartera","assets.pcopy":"Saldos, valores estimados y acciones de cambio en el mismo entorno que tus cuentas principales.","assets.total":"Total digital","assets.demo":"Ilustrativo","assets.exchange":"Cambio","assets.excopy":"Consulta el tipo indicativo, la comisión esperada y la liquidación antes de confirmar.","assets.from":"Desde","assets.to":"Hacia",
+"spend.eye":"Concepto de gasto financiado con cripto","spend.title":"Del saldo digital a la compra con tarjeta.","spend.copy":"Un futuro flujo de tarjeta puede conectar activos digitales seleccionados con liquidación fiat mediante socios con licencia, manteniendo una experiencia simple.","spend.s1":"Seleccionar saldo","spend.s2":"Convertir si es necesario","spend.s2c":"Primero se muestra el tipo","spend.s3":"Liquidar en fiat","spend.s3c":"Mediante infraestructura de tarjetas","spend.s4":"Completar compra","spend.s4c":"Una sola vista de transacción",
+"card.title":"Controla la tarjeta, no al revés.","card.copy":"Congela al instante, gestiona límites, controla pagos online y contactless y elige el saldo utilizado para gastar.","card.controls":"Controles de tarjeta","card.instant":"Control inmediato.","card.freeze":"Tarjeta activa","card.online":"Pagos online","card.contactless":"Contactless","card.atm":"Retiros en cajero","card.limit":"Límite mensual de gasto","card.source":"Fuente de gasto",
+"business.eye":"Empresas","business.title":"Control financiero para equipos modernos.","business.copy":"Cuentas de empresa, roles, tarjetas de empleados, límites, aprobaciones y futuros flujos API en un único entorno.","business.roles":"Roles","business.team":"Acceso del equipo","business.teamc":"Asigna permisos de propietario, finanzas y operaciones sin compartir un solo inicio de sesión.","business.cards":"Tarjetas","business.spend":"Reglas de gasto","business.spendc":"Configura límites, controles de comercios y flujos de aprobación para cada miembro.","business.api":"Integraciones futuras","business.apic":"Dirección de producto para automatización de pagos, conciliación y tesorería.",
+"security.eye":"Seguridad","security.title":"La seguridad forma parte del producto.","security.copy":"La autenticación, los dispositivos, las tarjetas y el monitoreo de transacciones deben ser visibles y comprensibles.","security.device":"Control de dispositivos","security.devicec":"Revisa dispositivos de confianza y sesiones activas, y revoca acceso al instante.","security.auth":"Autenticación fuerte","security.authc":"Passkeys, biometría y verificación reforzada para acciones sensibles.","security.risk":"Monitoreo de transacciones","security.riskc":"Monitoreo basado en riesgo y verificación adicional cuando lo requiera la infraestructura regulada.",
+"private.title":"Un nivel superior de acceso.","private.copy":"Una dirección premium para clientes que necesitan mayor capacidad operativa, servicio prioritario y controles avanzados de tarjetas y cuentas.","private.a":"Concepto de tarjeta metálica premium","private.b":"Modelo de servicio prioritario","private.c":"Límites superiores sujetos a aprobación del socio","private.d":"Controles multidivisa avanzados",
+"company.eye":"Compañía","company.title":"Finanzas globales, diseñadas con disciplina.","company.copy":"BLACK ONE se desarrolla como un concepto financiero global con una ruta basada en socios hacia pagos, tarjetas e infraestructura de activos digitales regulados.","company.philosophy":"Nuestra filosofía","company.philosophyc":"Estructurar la complejidad sin ocultar comisiones, riesgos, controles ni límites regulatorios.","company.principles":"Principios","company.principlesc":"Sin cifras falsas de usuarios. Sin licencias inventadas. Sin afirmaciones engañosas. La disponibilidad debe describirse tal como existe.",
+"cta.title":"El entorno financiero global.","cta.copy":"Una arquitectura de cuenta para dinero, tarjetas, finanzas empresariales y activos digitales. Actualmente en concepto y desarrollo.","cta.access":"Solicitar acceso privado","cta.partner":"Colaboraciones",
+"footer.desc":"Concepto de entorno financiero global para cuentas, tarjetas, transferencias, finanzas empresariales y activos digitales.","footer.personal":"Personal","footer.accounts":"Cuentas","footer.card":"Tarjeta","footer.assets":"Activos digitales","footer.business":"Empresas","footer.team":"Equipos","footer.controls":"Controles","footer.company":"Compañía","footer.about":"Nosotros","footer.security":"Seguridad","footer.contact":"Contacto","footer.legal":"Legal","footer.note":"BLACK ONE es actualmente un concepto de producto en fase inicial. Este sitio no presenta BLACK ONE como banco con licencia, entidad depositaria, emisor de tarjetas, institución de pago ni proveedor de servicios de criptoactivos. Los servicios mostrados son dirección de producto y conceptos de interfaz y pueden requerir infraestructura de terceros con licencia y autorizaciones regulatorias antes del lanzamiento. Todos los saldos, transacciones y nombres mostrados son ilustrativos.",
+"modal.title":"Solicitar acceso privado","modal.copy":"Únete a la vista previa privada. Este formulario es un concepto front-end y no crea una cuenta financiera.","modal.type":"Tipo de cuenta","modal.personal":"Personal","modal.business":"Empresa","modal.country":"País","modal.join":"Unirse","modal.close":"Cerrar"
+},
+zh:{
+"nav.personal":"个人","nav.card":"卡片","nav.assets":"数字资产","nav.business":"企业","nav.security":"安全","nav.company":"公司","nav.signin":"登录","nav.open":"开立账户",
+"hero.tag":"BLACK ONE / 全球金融环境","hero.title":"一个账户。所有货币。","hero.copy":"账户、卡片、转账、企业金融与数字资产，被设计为一个统一的全球金融环境。","hero.join":"申请私人访问","hero.explore":"探索平台","hero.note":"BLACK ONE 目前处于早期金融产品概念阶段。受监管服务、卡片发行与资产服务取决于司法辖区、审批以及持牌合作伙伴。","hero.balance":"可用余额","hero.route":"结算层",
+"card.member":"持卡人","card.valid":"有效期至","strip.a":"全球账户","strip.ac":"统一的多币种金融视图。","strip.b":"BLACK ONE 卡","strip.bc":"实体卡与虚拟卡架构。","strip.c":"数字资产","strip.cc":"精选数字资产集中于一个界面。","strip.d":"企业","strip.dc":"团队、角色、卡片与支出控制。","strip.e":"安全","strip.ec":"设备、交易与账户控制。",
+"manifesto":"金融不应该是割裂的。<span>账户、卡片、支付与数字资产应该像一个系统一样运作。</span>",
+"personal.eye":"个人","personal.title":"一个界面，看清全部金融生活。","personal.copy":"余额、货币、支付、卡片与数字资产集中在一个结构清晰、安静且即时的界面中。",
+"dash.overview":"概览","dash.accounts":"账户","dash.payments":"支付","dash.cards":"卡片","dash.assets":"数字资产","dash.security":"安全","dash.private":"Private 客户","dash.total":"总余额","dash.send":"发送","dash.receive":"接收","dash.exchange":"兑换","dash.add":"充值","dash.primary":"主账户","dash.available":"可用",
+"table.activity":"活动","table.account":"账户","table.status":"状态","table.amount":"金额","table.done":"已完成",
+"assets.eye":"数字资产","assets.title":"数字价值，无需另一个世界。","assets.copy":"精选数字资产可与法币余额共存，并提供透明兑换和一致的账户体验。","assets.portfolio":"资产组合","assets.pcopy":"余额、估值与兑换操作和主账户处于同一个环境。","assets.total":"数字资产总额","assets.demo":"示例","assets.exchange":"兑换","assets.excopy":"确认前查看参考汇率、预计费用与结算信息。","assets.from":"从","assets.to":"到",
+"spend.eye":"加密资产消费概念","spend.title":"从数字余额到卡片消费。","spend.copy":"未来的卡片流程可通过持牌合作伙伴，将精选数字资产连接到法币结算，同时保持简单的用户体验。","spend.s1":"选择余额","spend.s2":"必要时兑换","spend.s2c":"先显示参考汇率","spend.s3":"以法币结算","spend.s3c":"通过卡片基础设施","spend.s4":"完成购买","spend.s4c":"统一交易视图",
+"card.title":"控制卡片，而不是被卡片控制。","card.copy":"即时冻结、管理限额、控制线上与非接触支付，并选择用于消费的余额。","card.controls":"卡片控制","card.instant":"即时控制。","card.freeze":"卡片已启用","card.online":"线上支付","card.contactless":"非接触支付","card.atm":"ATM 取现","card.limit":"月度消费限额","card.source":"消费来源",
+"business.eye":"企业","business.title":"为现代团队提供金融控制。","business.copy":"企业账户、团队角色、员工卡、限额、审批与未来 API 工作流集中于一个环境。","business.roles":"角色","business.team":"团队访问","business.teamc":"分配所有者、财务与运营权限，无需共享同一登录。","business.cards":"卡片","business.spend":"支出规则","business.spendc":"为每位成员设置卡片限额、商户控制与审批流程。","business.api":"未来集成","business.apic":"面向支付自动化、对账与资金管理的产品方向。",
+"security.eye":"安全","security.title":"安全就是产品的一部分。","security.copy":"账户认证、设备可见性、卡片控制与交易监控都应对客户清晰可见。","security.device":"设备控制","security.devicec":"查看可信设备与活跃会话，并立即撤销访问权限。","security.auth":"强认证","security.authc":"Passkey、生物识别与敏感操作的加强验证。","security.risk":"交易监控","security.riskc":"在受监管基础设施要求时进行基于风险的监控与额外验证。",
+"private.title":"更高等级的访问。","private.copy":"面向需要更高运营能力、优先服务以及高级卡片与账户控制的客户的高端产品方向。","private.a":"高端金属卡概念","private.b":"优先服务模式","private.c":"更高项目限额需合作伙伴批准","private.d":"高级多币种控制",
+"company.eye":"公司","company.title":"以纪律打造全球金融。","company.copy":"BLACK ONE 正作为全球金融产品概念开发，并通过合作伙伴优先的路径接入受监管支付、卡片和数字资产基础设施。","company.philosophy":"我们的理念","company.philosophyc":"让复杂性变得有结构，同时不隐藏费用、风险、控制或监管边界。","company.principles":"原则","company.principlesc":"不虚构用户数量。不虚构牌照。不做误导性声明。产品可用性应如实描述。",
+"cta.title":"全球金融环境。","cta.copy":"一个面向资金、卡片、企业金融与数字资产的账户架构。目前处于概念和产品开发阶段。","cta.access":"申请私人访问","cta.partner":"合作",
+"footer.desc":"面向账户、卡片、转账、企业金融与数字资产的全球金融环境概念。","footer.personal":"个人","footer.accounts":"账户","footer.card":"卡片","footer.assets":"数字资产","footer.business":"企业","footer.team":"团队","footer.controls":"控制","footer.company":"公司","footer.about":"关于","footer.security":"安全","footer.contact":"联系","footer.legal":"法律","footer.note":"BLACK ONE 目前处于早期产品概念阶段。本网站不代表 BLACK ONE 是持牌银行、吸收存款机构、卡片发行方、支付机构或加密资产服务提供商。所展示服务属于产品方向和界面概念，在上线前可能需要持牌第三方基础设施与监管审批。所有余额、交易与姓名均为示例。",
+"modal.title":"申请私人访问","modal.copy":"加入私人产品预览。此表单仅为前端概念，不会创建金融账户。","modal.type":"账户类型","modal.personal":"个人","modal.business":"企业","modal.country":"国家","modal.join":"加入预览","modal.close":"关闭"
+}
+};
+
+const lang=document.getElementById('lang');
+function applyLang(code){
+ const d=T[code]||T.en;
+ document.documentElement.lang=code==='zh'?'zh-CN':code;
+ document.querySelectorAll('[data-t]').forEach(el=>{
+   const k=el.dataset.t;
+   if(d[k]!==undefined) el.textContent=d[k];
+ });
+ document.querySelectorAll('[data-html]').forEach(el=>{
+   const k=el.dataset.html;
+   if(d[k]!==undefined) el.innerHTML=d[k];
+ });
+ lang.value=code;
+ localStorage.setItem('bo_lang',code);
+}
+const saved=localStorage.getItem('bo_lang');
+const browser=(navigator.language||'en').toLowerCase();
+applyLang(saved || (browser.startsWith('uk')?'uk':browser.startsWith('es')?'es':browser.startsWith('zh')?'zh':'en'));
+lang.addEventListener('change',e=>applyLang(e.target.value));
+
+const modal=document.getElementById('modal');
+document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>modal.classList.add('open')));
+document.getElementById('closeModal').addEventListener('click',()=>modal.classList.remove('open'));
+modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});
+document.getElementById('submitDemo').addEventListener('click',()=>{
+ alert(lang.value==='uk'?'Демо-форма: підключення бекенду буде на наступному етапі.':lang.value==='es'?'Formulario demo: el backend se conectará en la siguiente fase.':lang.value==='zh'?'演示表单：后端将在下一阶段连接。':'Demo form: backend connection comes in the next phase.');
+});
+
+const menuBtn=document.getElementById('menuBtn');
+menuBtn.addEventListener('click',()=>{
+ const n=document.getElementById('navLinks');
+ const open=n.classList.toggle('mobile-open');
+ if(open){
+   n.style.display='flex';n.style.position='absolute';n.style.top='68px';n.style.left='14px';n.style.right='14px';
+   n.style.margin='0';n.style.padding='16px';n.style.flexDirection='column';n.style.background='#0d0d10';
+   n.style.border='1px solid rgba(255,255,255,.1)';n.style.borderRadius='18px';
+ }else n.removeAttribute('style');
+});
+</script>
 </body>
 </html>
