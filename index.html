@@ -632,6 +632,42 @@
     }
 
   </style>
+
+<style id="full-language-mobile-fix">
+/* Translation + responsive hardening */
+html,body{max-width:100%;overflow-x:hidden}
+body[data-ui-lang="uk"] .hero-title,
+body[data-ui-lang="es"] .hero-title{letter-spacing:-.065em}
+body[data-ui-lang="zh"]{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans CJK SC","Segoe UI",sans-serif}
+body[data-ui-lang="zh"] .hero-title,
+body[data-ui-lang="zh"] .section-title,
+body[data-ui-lang="zh"] .v2-title{letter-spacing:-.035em;word-break:keep-all;overflow-wrap:break-word}
+.reveal{opacity:1!important;transform:none!important}
+@media(max-width:760px){
+  .container{width:min(100% - 28px,1440px)!important}
+  .hero{min-height:auto!important;padding-top:100px!important}
+  .hero-title{font-size:clamp(54px,15.8vw,82px)!important;line-height:.88!important;max-width:100%!important}
+  body[data-ui-lang="uk"] .hero-title{font-size:clamp(50px,14.5vw,76px)!important}
+  body[data-ui-lang="es"] .hero-title{font-size:clamp(49px,14vw,74px)!important}
+  body[data-ui-lang="zh"] .hero-title{font-size:clamp(48px,13.8vw,72px)!important;line-height:1.03!important}
+  .section-title,.v2-head h2,.private-hero h3{overflow-wrap:anywhere}
+  body[data-ui-lang="uk"] .section-title,
+  body[data-ui-lang="es"] .section-title{font-size:clamp(42px,11.5vw,64px)!important}
+  body[data-ui-lang="zh"] .section-title{font-size:clamp(40px,11vw,60px)!important;line-height:1.05!important}
+  .btn,.exchange-cta,.ob-action{white-space:normal!important;text-align:center!important;line-height:1.25!important;height:auto!important;min-height:46px!important;padding-top:12px!important;padding-bottom:12px!important}
+  .dashboard,.business-grid,.security-grid,.phone-grid,.v2-grid-3,.tx-shell,.onboarding,.private-hero{max-width:100%;overflow:hidden}
+  .account-grid,.currency-list,.country-grid{min-width:0}
+  .account-card,.currency-row,.country,.v2-panel{min-width:0}
+  .account-value,.currency-name,.currency-code,.v2-copy,.lead,p{overflow-wrap:anywhere}
+  .mobile-menu a{font-size:15px!important}
+  #langSelect{max-width:92px}
+}
+@media(min-width:761px) and (max-width:1180px){
+ body[data-ui-lang="uk"] .hero-title,
+ body[data-ui-lang="es"] .hero-title{font-size:clamp(66px,8vw,108px)!important}
+}
+</style>
+
 </head>
 <body>
   <nav class="nav">
@@ -1047,8 +1083,8 @@
               <h3>Device control</h3>
               <p>See active sessions and revoke access without hunting through settings.</p>
               <div class="device-panel">
-                <div class="device"><span>MacBook Pro</span><span>Current</span></div>
-                <div class="device"><span>Mobile device</span><span>18 min</span></div>
+                <div class="device"><span>Trusted laptop</span><span>Current</span></div>
+                <div class="device"><span>Trusted mobile</span><span>18 min</span></div>
               </div>
             </div>
           </div>
@@ -1120,8 +1156,8 @@
               </div>
               <div style="margin-top:24px;border:1px solid var(--line);border-radius:16px;padding:14px">
                 <small>Current device</small>
-                <div style="font-size:12px;margin-top:6px">Mobile device</div>
-                <div style="font-size:10px;color:#6f7275;margin-top:4px">Face ID · Passkey verified</div>
+                <div style="font-size:12px;margin-top:6px">Trusted mobile</div>
+                <div style="font-size:10px;color:#6f7275;margin-top:4px">Biometrics · Passkey verified</div>
               </div>
             </div>
           </div>
@@ -1383,6 +1419,126 @@
   document.querySelectorAll('.open-modal').forEach(b=>b.addEventListener('click',()=>{previewModal.classList.add('open');previewModal.setAttribute('aria-hidden','false')}));
   document.getElementById('modalClose')?.addEventListener('click',()=>{previewModal.classList.remove('open');previewModal.setAttribute('aria-hidden','true')});
   previewModal?.addEventListener('click',e=>{if(e.target===previewModal){previewModal.classList.remove('open');previewModal.setAttribute('aria-hidden','true')}});
+</script>
+
+
+<script id="black-one-complete-i18n">
+(() => {
+  const EXTRA = {"es": {"BLACK ONE — One account. Every currency.": "BLACK ONE — Una cuenta. Todas las divisas.", "BLACK ONE is being designed as a single environment for personal and business finance — where traditional money and digital assets can live under one visual language, one control layer and one account experience.": "BLACK ONE está siendo diseñado como un único entorno para finanzas personales y empresariales, donde el dinero tradicional y los activos digitales conviven bajo un mismo lenguaje visual, una misma capa de control y una única experiencia de cuenta.", "Send · Receive · Exchange": "Enviar · Recibir · Cambiar", "Web · Mobile · Card": "Web · Móvil · Tarjeta", "BLACK ONE / Personal": "BLACK ONE / Personal", "Euro": "Euro", "EUR · Main account": "EUR · Cuenta principal", "US Dollar": "Dólar estadounidense", "USD · Global account": "USD · Cuenta global", "British Pound": "Libra esterlina", "GBP · Secondary account": "GBP · Cuenta secundaria", "Bitcoin": "Bitcoin", "BTC · Digital asset": "BTC · Activo digital", "USD Coin": "USD Coin", "USDC · Stablecoin": "USDC · Stablecoin", "The financial system, made physical.": "El sistema financiero, convertido en un objeto físico.", "A card concept built around black metal, restrained engraving and a design language that does not need decoration to feel premium.": "Un concepto de tarjeta basado en metal negro, grabado sobrio y un lenguaje de diseño que no necesita decoración para sentirse premium.", "Valid thru": "Válida hasta", "Material": "Material", "Black metal concept": "Concepto en metal negro", "Control": "Control", "Freeze · limits · devices": "Bloqueo · límites · dispositivos", "Funding": "Financiación", "Account balance selection": "Selección del saldo de la cuenta", "Send money without losing sight of the details.": "Envía dinero sin perder de vista los detalles.", "Exchange rate, fee, destination amount and estimated arrival should be visible before the transfer is confirmed.": "El tipo de cambio, la comisión, el importe de destino y la llegada estimada deben ser visibles antes de confirmar la transferencia.", "Recipient receives": "El destinatario recibe", "Business beneficiary": "Beneficiario empresarial", "Transfer fee": "Comisión de transferencia", "Estimated arrival": "Llegada estimada", "Same business day": "El mismo día hábil", "Global movement / system view": "Movimiento global / vista del sistema", "Assets, not a separate universe.": "Activos, no un universo separado.", "The product direction places digital assets beside fiat balances inside the same account environment, with a single exchange experience.": "La dirección del producto sitúa los activos digitales junto a los saldos fiat dentro del mismo entorno de cuenta, con una única experiencia de cambio.", "Portfolio value": "Valor de la cartera", "Ethereum": "Ethereum", "Illustrative quote · rate and fees shown before confirmation": "Cotización ilustrativa · tipo y comisiones visibles antes de confirmar", "Review exchange": "Revisar cambio", "Financial control for teams, not just individuals.": "Control financiero para equipos, no solo para particulares.", "The business layer is designed around permissions, spend controls, account visibility and future integrations rather than a separate visual product.": "La capa empresarial está diseñada alrededor de permisos, controles de gasto, visibilidad de cuentas e integraciones futuras, no como un producto visual separado.", "Role based": "Basado en roles", "Card controls": "Controles de tarjeta", "Per user / per card": "Por usuario / por tarjeta", "Approvals": "Aprobaciones", "Designed for workflows": "Diseñado para flujos de trabajo", "Integration layer": "Capa de integración", "BLACK ONE / Business controls": "BLACK ONE / Controles empresariales", "Owner · Full access": "Propietario · Acceso total", "Finance · Payments": "Finanzas · Pagos", "Operations · Cards": "Operaciones · Tarjetas", "Accounting · Read only": "Contabilidad · Solo lectura", "Viewer": "Lector", "Monthly team spend": "Gasto mensual del equipo", "Security & control": "Seguridad y control", "Security should be visible where decisions happen.": "La seguridad debe ser visible donde se toman las decisiones.", "The interface is designed around device visibility, authentication, permissions and transaction control. Specific regulated safeguards will depend on the infrastructure used at launch.": "La interfaz está diseñada alrededor de la visibilidad de dispositivos, autenticación, permisos y control de transacciones. Las protecciones reguladas específicas dependerán de la infraestructura utilizada en el lanzamiento.", "See active sessions and revoke access without hunting through settings.": "Consulta las sesiones activas y revoca el acceso sin buscar entre menús.", "Trusted laptop": "Portátil de confianza", "Trusted mobile": "Móvil de confianza", "Designed for passkeys, multi-factor authentication and sensitive-action confirmation.": "Diseñado para passkeys, autenticación multifactor y confirmación de acciones sensibles.", "Passkey": "Passkey", "Clear limits, card freezes, beneficiary review and approval states at the point of action.": "Límites claros, bloqueo de tarjetas, revisión de beneficiarios y estados de aprobación justo donde se realiza la acción.", "Mobile is composed around immediate balances, movement and control — not a desktop interface squeezed into a phone.": "La experiencia móvil se compone alrededor de saldos, movimiento y control inmediatos; no es una interfaz de escritorio comprimida en un teléfono.", "Get": "Recibir", "Card balance": "Saldo de tarjeta", "Transfer": "Transferencia", "Total digital asset value": "Valor total de activos digitales", "Card online payments": "Pagos online con tarjeta", "ATM withdrawals": "Retiros en cajero", "Crypto withdrawals": "Retiros de cripto", "Biometrics · Passkey verified": "Biometría · Passkey verificada", "Fiat balances, digital assets, transfers and history designed around one ledger view.": "Saldos fiat, activos digitales, transferencias e historial diseñados alrededor de una única vista de libro.", "A physical and digital access layer controlled from the same account.": "Una capa de acceso física y digital controlada desde la misma cuenta.", "Currency and asset conversion with the quote visible before execution.": "Conversión de divisas y activos con la cotización visible antes de ejecutar.", "Permissions, team access and future integration paths.": "Permisos, acceso de equipo y futuras rutas de integración.", "Authentication, devices, approvals and transaction control embedded into the system.": "Autenticación, dispositivos, aprobaciones y control de transacciones integrados en el sistema.", "EUR ACCOUNT": "CUENTA EUR", "SEPA / International": "SEPA / Internacional", "USD ACCOUNT": "CUENTA USD", "Routing": "Código de ruta", "Domestic / International": "Nacional / Internacional", "EUR account": "Cuenta EUR", "No conversion": "Sin conversión", "USDC balance": "Saldo USDC", "Incoming transfer": "Transferencia recibida", "Today": "Hoy", "Yesterday": "Ayer", "European Union": "Unión Europea", "United Kingdom": "Reino Unido", "United States": "Estados Unidos", "Middle East": "Oriente Medio", "Asia Pacific": "Asia-Pacífico", "A future service tier for fully verified clients who need larger card spending, priority support and tailored financial infrastructure. Final limits and availability depend on issuer, compliance and program partners.": "Un futuro nivel de servicio para clientes totalmente verificados que necesiten mayor capacidad de gasto con tarjeta, soporte prioritario e infraestructura financiera adaptada. Los límites finales y la disponibilidad dependen del emisor, del cumplimiento y de los socios del programa.", "Program-level limits can be structured above standard retail tiers where the issuer and risk framework support them.": "Los límites del programa pueden situarse por encima de los niveles minoristas estándar cuando el emisor y el marco de riesgo lo permitan.", "Dedicated escalation, higher-touch verification and faster handling of complex account needs.": "Escalación dedicada, verificación de mayor atención y gestión más rápida de necesidades de cuenta complejas.", "The brand is intentionally restrained. No fake customer counts, no invented market share and no claims of licenses or protections that are not yet in place.": "La marca es deliberadamente sobria. Sin cifras falsas de clientes, sin cuota de mercado inventada y sin afirmar licencias o protecciones que todavía no existan.", "Product availability, card issuance, account functionality, digital asset services and regulated financial activity will depend on jurisdiction, licensing structure and future infrastructure partners.": "La disponibilidad del producto, emisión de tarjetas, funcionalidad de cuentas, servicios de activos digitales y actividad financiera regulada dependerán de la jurisdicción, la estructura de licencias y los futuros socios de infraestructura.", "A new global financial platform concept for fiat, digital assets, payments, cards and business finance.": "Un nuevo concepto de plataforma financiera global para dinero fiat, activos digitales, pagos, tarjetas y finanzas empresariales.", "© 2026 BLACK ONE. BLACK ONE is currently an early-stage product concept. This website does not represent BLACK ONE as a licensed bank, deposit-taking institution, card issuer, payment institution or crypto-asset service provider. Services shown are product direction and interface concepts and may require licensed third-party infrastructure and regulatory approvals before launch.": "© 2026 BLACK ONE. BLACK ONE es actualmente un concepto de producto en fase inicial. Este sitio no presenta a BLACK ONE como banco con licencia, entidad depositaria, emisor de tarjetas, institución de pago ni proveedor de servicios de criptoactivos. Los servicios mostrados representan dirección de producto y conceptos de interfaz y pueden requerir infraestructura de terceros con licencia y autorizaciones regulatorias antes del lanzamiento."}, "uk": {"BLACK ONE — One account. Every currency.": "BLACK ONE — Один рахунок. Усі валюти.", "BLACK ONE is being designed as a single environment for personal and business finance — where traditional money and digital assets can live under one visual language, one control layer and one account experience.": "BLACK ONE створюється як єдине середовище для особистих і бізнес-фінансів, де традиційні гроші та цифрові активи працюють в одній візуальній системі, з одним рівнем контролю та єдиним досвідом рахунку.", "Send · Receive · Exchange": "Надіслати · Отримати · Обміняти", "Web · Mobile · Card": "Веб · Мобільний · Картка", "BLACK ONE / Personal": "BLACK ONE / Особисте", "Euro": "Євро", "EUR · Main account": "EUR · Основний рахунок", "US Dollar": "Долар США", "USD · Global account": "USD · Глобальний рахунок", "British Pound": "Британський фунт", "GBP · Secondary account": "GBP · Додатковий рахунок", "Bitcoin": "Bitcoin", "BTC · Digital asset": "BTC · Цифровий актив", "USD Coin": "USD Coin", "USDC · Stablecoin": "USDC · Стейблкоїн", "The financial system, made physical.": "Фінансова система у фізичній формі.", "A card concept built around black metal, restrained engraving and a design language that does not need decoration to feel premium.": "Концепція картки з чорного металу, стриманого гравіювання та дизайну, якому не потрібен зайвий декор, щоб виглядати преміально.", "Valid thru": "Дійсна до", "Material": "Матеріал", "Black metal concept": "Концепція з чорного металу", "Control": "Контроль", "Freeze · limits · devices": "Блокування · ліміти · пристрої", "Funding": "Джерело коштів", "Account balance selection": "Вибір балансу рахунку", "Send money without losing sight of the details.": "Надсилайте гроші, не втрачаючи деталей.", "Exchange rate, fee, destination amount and estimated arrival should be visible before the transfer is confirmed.": "Курс, комісія, сума одержувача та очікуваний час надходження мають бути видимі до підтвердження переказу.", "Recipient receives": "Одержувач отримує", "Business beneficiary": "Бізнес-одержувач", "Transfer fee": "Комісія за переказ", "Estimated arrival": "Очікуване надходження", "Same business day": "Того ж робочого дня", "Global movement / system view": "Глобальний рух / системний огляд", "Assets, not a separate universe.": "Активи, а не окремий світ.", "The product direction places digital assets beside fiat balances inside the same account environment, with a single exchange experience.": "Концепція продукту розміщує цифрові активи поруч із фіатними балансами в одному середовищі рахунку та з єдиним процесом обміну.", "Portfolio value": "Вартість портфеля", "Ethereum": "Ethereum", "Illustrative quote · rate and fees shown before confirmation": "Демо-котирування · курс і комісії видно до підтвердження", "Review exchange": "Перевірити обмін", "Financial control for teams, not just individuals.": "Фінансовий контроль для команд, а не лише для окремих користувачів.", "The business layer is designed around permissions, spend controls, account visibility and future integrations rather than a separate visual product.": "Бізнес-рівень побудований навколо прав доступу, контролю витрат, видимості рахунків і майбутніх інтеграцій, а не як окремий продукт.", "Role based": "На основі ролей", "Card controls": "Керування картками", "Per user / per card": "На користувача / картку", "Approvals": "Погодження", "Designed for workflows": "Для робочих процесів", "Integration layer": "Рівень інтеграцій", "BLACK ONE / Business controls": "BLACK ONE / Бізнес-контроль", "Owner · Full access": "Власник · Повний доступ", "Finance · Payments": "Фінанси · Платежі", "Operations · Cards": "Операції · Картки", "Accounting · Read only": "Бухгалтерія · Лише перегляд", "Viewer": "Перегляд", "Monthly team spend": "Місячні витрати команди", "Security & control": "Безпека та контроль", "Security should be visible where decisions happen.": "Безпека має бути видимою саме там, де приймаються рішення.", "The interface is designed around device visibility, authentication, permissions and transaction control. Specific regulated safeguards will depend on the infrastructure used at launch.": "Інтерфейс побудований навколо контролю пристроїв, автентифікації, прав доступу та транзакцій. Конкретні регульовані механізми захисту залежатимуть від інфраструктури на момент запуску.", "See active sessions and revoke access without hunting through settings.": "Переглядайте активні сесії та миттєво відкликайте доступ без пошуку в налаштуваннях.", "Trusted laptop": "Довірений ноутбук", "Trusted mobile": "Довірений мобільний пристрій", "Designed for passkeys, multi-factor authentication and sensitive-action confirmation.": "Підтримка passkey, багатофакторної автентифікації та підтвердження важливих дій.", "Passkey": "Passkey", "Clear limits, card freezes, beneficiary review and approval states at the point of action.": "Зрозумілі ліміти, блокування картки, перевірка одержувачів і статуси погодження безпосередньо під час дії.", "Mobile is composed around immediate balances, movement and control — not a desktop interface squeezed into a phone.": "Мобільний інтерфейс створений навколо швидкого доступу до балансів, руху коштів і контролю — це не стиснута desktop-версія.", "Get": "Отримати", "Card balance": "Баланс картки", "Transfer": "Переказ", "Total digital asset value": "Загальна вартість цифрових активів", "Card online payments": "Онлайн-платежі карткою", "ATM withdrawals": "Зняття в банкоматі", "Crypto withdrawals": "Виведення криптоактивів", "Biometrics · Passkey verified": "Біометрія · Passkey підтверджено", "Fiat balances, digital assets, transfers and history designed around one ledger view.": "Фіатні баланси, цифрові активи, перекази та історія в одному леджері.", "A physical and digital access layer controlled from the same account.": "Фізичний і цифровий доступ, керований з одного рахунку.", "Currency and asset conversion with the quote visible before execution.": "Конвертація валют і активів із курсом, видимим до виконання.", "Permissions, team access and future integration paths.": "Права доступу, командний доступ і майбутні інтеграції.", "Authentication, devices, approvals and transaction control embedded into the system.": "Автентифікація, пристрої, погодження та контроль транзакцій вбудовані в систему.", "EUR ACCOUNT": "РАХУНОК EUR", "SEPA / International": "SEPA / Міжнародний", "USD ACCOUNT": "РАХУНОК USD", "Routing": "Routing-код", "Domestic / International": "Внутрішній / Міжнародний", "EUR account": "Рахунок EUR", "No conversion": "Без конвертації", "USDC balance": "Баланс USDC", "Incoming transfer": "Вхідний переказ", "Today": "Сьогодні", "Yesterday": "Вчора", "European Union": "Європейський Союз", "United Kingdom": "Велика Британія", "United States": "Сполучені Штати", "Middle East": "Близький Схід", "Asia Pacific": "Азійсько-Тихоокеанський регіон", "A future service tier for fully verified clients who need larger card spending, priority support and tailored financial infrastructure. Final limits and availability depend on issuer, compliance and program partners.": "Майбутній рівень сервісу для повністю верифікованих клієнтів, яким потрібні більші карткові витрати, пріоритетна підтримка та індивідуальна фінансова інфраструктура. Остаточні ліміти й доступність залежать від емітента, комплаєнсу та партнерів програми.", "Program-level limits can be structured above standard retail tiers where the issuer and risk framework support them.": "Ліміти програми можуть бути вищими за стандартні роздрібні рівні, якщо це підтримують емітент і ризик-модель.", "Dedicated escalation, higher-touch verification and faster handling of complex account needs.": "Окрема ескалація, поглиблена верифікація та швидше опрацювання складних запитів щодо рахунку.", "The brand is intentionally restrained. No fake customer counts, no invented market share and no claims of licenses or protections that are not yet in place.": "Бренд навмисно стриманий. Без вигаданих цифр клієнтів, частки ринку та заяв про ліцензії чи захист, яких ще немає.", "Product availability, card issuance, account functionality, digital asset services and regulated financial activity will depend on jurisdiction, licensing structure and future infrastructure partners.": "Доступність продукту, випуск карток, функції рахунку, сервіси цифрових активів і регульована фінансова діяльність залежатимуть від юрисдикції, ліцензійної структури та майбутніх інфраструктурних партнерів.", "A new global financial platform concept for fiat, digital assets, payments, cards and business finance.": "Концепція нової глобальної фінансової платформи для фіату, цифрових активів, платежів, карток і бізнес-фінансів.", "© 2026 BLACK ONE. BLACK ONE is currently an early-stage product concept. This website does not represent BLACK ONE as a licensed bank, deposit-taking institution, card issuer, payment institution or crypto-asset service provider. Services shown are product direction and interface concepts and may require licensed third-party infrastructure and regulatory approvals before launch.": "© 2026 BLACK ONE. BLACK ONE наразі є продуктом на ранній стадії. Цей сайт не представляє BLACK ONE як ліцензований банк, депозитну установу, емітента карток, платіжну установу чи постачальника послуг із криптоактивами. Показані сервіси є напрямом продукту та концептами інтерфейсу й можуть потребувати ліцензованої сторонньої інфраструктури та регуляторних дозволів до запуску."}, "zh": {"BLACK ONE — One account. Every currency.": "BLACK ONE — 一个账户。所有货币。", "BLACK ONE is being designed as a single environment for personal and business finance — where traditional money and digital assets can live under one visual language, one control layer and one account experience.": "BLACK ONE 正被设计为统一的个人与企业金融环境，让传统资金与数字资产在同一视觉语言、同一控制层和同一账户体验中运行。", "Send · Receive · Exchange": "发送 · 接收 · 兑换", "Web · Mobile · Card": "网页 · 移动端 · 卡片", "BLACK ONE / Personal": "BLACK ONE / 个人", "Euro": "欧元", "EUR · Main account": "EUR · 主账户", "US Dollar": "美元", "USD · Global account": "USD · 全球账户", "British Pound": "英镑", "GBP · Secondary account": "GBP · 辅助账户", "Bitcoin": "比特币", "BTC · Digital asset": "BTC · 数字资产", "USD Coin": "USD Coin", "USDC · Stablecoin": "USDC · 稳定币", "The financial system, made physical.": "把金融系统变成一件实体产品。", "A card concept built around black metal, restrained engraving and a design language that does not need decoration to feel premium.": "以黑色金属、克制雕刻和无需多余装饰的高端设计语言打造的卡片概念。", "Valid thru": "有效期至", "Material": "材质", "Black metal concept": "黑色金属概念", "Control": "控制", "Freeze · limits · devices": "冻结 · 限额 · 设备", "Funding": "资金来源", "Account balance selection": "账户余额选择", "Send money without losing sight of the details.": "转账时，每个重要细节都清晰可见。", "Exchange rate, fee, destination amount and estimated arrival should be visible before the transfer is confirmed.": "确认转账前，应清晰显示汇率、费用、到账金额和预计到账时间。", "Recipient receives": "收款方收到", "Business beneficiary": "企业收款方", "Transfer fee": "转账费用", "Estimated arrival": "预计到账", "Same business day": "同一工作日", "Global movement / system view": "全球资金流动 / 系统视图", "Assets, not a separate universe.": "资产，而不是另一个独立世界。", "The product direction places digital assets beside fiat balances inside the same account environment, with a single exchange experience.": "产品方向将数字资产与法币余额放在同一账户环境中，并提供统一兑换体验。", "Portfolio value": "资产组合价值", "Ethereum": "以太坊", "Illustrative quote · rate and fees shown before confirmation": "示例报价 · 确认前显示汇率与费用", "Review exchange": "确认兑换", "Financial control for teams, not just individuals.": "面向团队的金融控制，而不只是个人。", "The business layer is designed around permissions, spend controls, account visibility and future integrations rather than a separate visual product.": "企业层围绕权限、支出控制、账户可见性和未来集成设计，而不是另一个独立产品。", "Role based": "基于角色", "Card controls": "卡片控制", "Per user / per card": "按用户 / 按卡片", "Approvals": "审批", "Designed for workflows": "为工作流设计", "Integration layer": "集成层", "BLACK ONE / Business controls": "BLACK ONE / 企业控制", "Owner · Full access": "所有者 · 完整权限", "Finance · Payments": "财务 · 支付", "Operations · Cards": "运营 · 卡片", "Accounting · Read only": "会计 · 只读", "Viewer": "查看者", "Monthly team spend": "团队月度支出", "Security & control": "安全与控制", "Security should be visible where decisions happen.": "安全控制应该出现在做决定的地方。", "The interface is designed around device visibility, authentication, permissions and transaction control. Specific regulated safeguards will depend on the infrastructure used at launch.": "界面围绕设备可见性、身份认证、权限和交易控制设计。具体受监管保护措施取决于上线时使用的基础设施。", "See active sessions and revoke access without hunting through settings.": "直接查看活跃会话并撤销访问，无需在设置中寻找。", "Trusted laptop": "可信笔记本电脑", "Trusted mobile": "可信移动设备", "Designed for passkeys, multi-factor authentication and sensitive-action confirmation.": "支持 Passkey、多因素认证以及敏感操作确认。", "Passkey": "Passkey", "Clear limits, card freezes, beneficiary review and approval states at the point of action.": "在执行操作的位置直接显示限额、卡片冻结、收款方审核与审批状态。", "Mobile is composed around immediate balances, movement and control — not a desktop interface squeezed into a phone.": "移动端围绕即时余额、资金流动与控制设计，而不是把桌面界面压缩到手机里。", "Get": "接收", "Card balance": "卡片余额", "Transfer": "转账", "Total digital asset value": "数字资产总价值", "Card online payments": "卡片线上支付", "ATM withdrawals": "ATM 取现", "Crypto withdrawals": "加密资产提取", "Biometrics · Passkey verified": "生物识别 · Passkey 已验证", "Fiat balances, digital assets, transfers and history designed around one ledger view.": "法币余额、数字资产、转账和历史记录集中在统一账本视图。", "A physical and digital access layer controlled from the same account.": "实体与数字访问层均由同一账户控制。", "Currency and asset conversion with the quote visible before execution.": "货币与资产兑换在执行前显示报价。", "Permissions, team access and future integration paths.": "权限、团队访问以及未来集成路径。", "Authentication, devices, approvals and transaction control embedded into the system.": "身份认证、设备、审批与交易控制直接嵌入系统。", "EUR ACCOUNT": "EUR 账户", "SEPA / International": "SEPA / 国际", "USD ACCOUNT": "USD 账户", "Routing": "路由号码", "Domestic / International": "境内 / 国际", "EUR account": "EUR 账户", "No conversion": "无需兑换", "USDC balance": "USDC 余额", "Incoming transfer": "入账转账", "Today": "今天", "Yesterday": "昨天", "European Union": "欧盟", "United Kingdom": "英国", "United States": "美国", "Middle East": "中东", "Asia Pacific": "亚太地区", "A future service tier for fully verified clients who need larger card spending, priority support and tailored financial infrastructure. Final limits and availability depend on issuer, compliance and program partners.": "面向已完成完整验证、需要更高卡片消费能力、优先支持和定制金融基础设施客户的未来服务层级。最终限额和可用性取决于发卡方、合规要求和项目合作伙伴。", "Program-level limits can be structured above standard retail tiers where the issuer and risk framework support them.": "在发卡方和风险框架允许的情况下，项目级限额可以高于标准零售层级。", "Dedicated escalation, higher-touch verification and faster handling of complex account needs.": "专属升级处理、更深入的验证，以及更快处理复杂账户需求。", "The brand is intentionally restrained. No fake customer counts, no invented market share and no claims of licenses or protections that are not yet in place.": "品牌刻意保持克制：不虚构客户数量，不编造市场份额，也不声称尚不存在的牌照或保护。", "Product availability, card issuance, account functionality, digital asset services and regulated financial activity will depend on jurisdiction, licensing structure and future infrastructure partners.": "产品可用性、卡片发行、账户功能、数字资产服务和受监管金融活动将取决于司法辖区、牌照结构以及未来基础设施合作伙伴。", "A new global financial platform concept for fiat, digital assets, payments, cards and business finance.": "面向法币、数字资产、支付、卡片与企业金融的新一代全球金融平台概念。", "© 2026 BLACK ONE. BLACK ONE is currently an early-stage product concept. This website does not represent BLACK ONE as a licensed bank, deposit-taking institution, card issuer, payment institution or crypto-asset service provider. Services shown are product direction and interface concepts and may require licensed third-party infrastructure and regulatory approvals before launch.": "© 2026 BLACK ONE。BLACK ONE 目前处于早期产品概念阶段。本网站不代表 BLACK ONE 是持牌银行、吸收存款机构、卡片发行方、支付机构或加密资产服务提供商。所展示服务属于产品方向和界面概念，在上线前可能需要持牌第三方基础设施与监管批准。"}};
+  const langSelect = document.getElementById('langSelect');
+
+  // Reset the older translators to English before capturing canonical source text.
+  try { if (typeof setLanguage === 'function') setLanguage('en'); } catch(e) {}
+  try { if (typeof setV2Lang === 'function') setV2Lang('en'); } catch(e) {}
+
+  const textNodes = [];
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+      const p = node.parentElement;
+      if (!p || ['SCRIPT','STYLE','NOSCRIPT'].includes(p.tagName)) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  let n;
+  while ((n = walker.nextNode())) textNodes.push(n);
+
+  const canonical = new WeakMap(textNodes.map(n => [n, n.nodeValue]));
+  const v2Canonical = new WeakMap();
+  document.querySelectorAll('[data-v2]').forEach(el => v2Canonical.set(el, el.textContent));
+
+  const titleEN = 'BLACK ONE — One account. Every currency.';
+  const titleMap = {
+    en:titleEN,
+    es:'BLACK ONE — Una cuenta. Todas las divisas.',
+    uk:'BLACK ONE — Один рахунок. Усі валюти.',
+    zh:'BLACK ONE — 一个账户。所有货币。'
+  };
+
+  function replaceTimeParts(value, lang) {
+    if (lang === 'en') return value;
+    const d = EXTRA[lang] || {};
+    return value.replace(/Today/g, d.Today || 'Today').replace(/Yesterday/g, d.Yesterday || 'Yesterday');
+  }
+
+  function merged(lang) {
+    let base = {};
+    try { base = (typeof I18N !== 'undefined' && I18N[lang]) ? I18N[lang] : {}; } catch(e) {}
+    return Object.assign({}, base, EXTRA[lang] || {});
+  }
+
+  function renderTransactionDetail(lang) {
+    const active = document.querySelector('.tx-item.active');
+    if (!active) return;
+    const d = merged(lang);
+    const source = active.dataset.source || '';
+    const rate = active.dataset.rate || '';
+    const time = active.dataset.time || '';
+    const sourceOut = lang === 'en' ? source : (d[source] || source);
+    const rateOut = lang === 'en' ? rate : (d[rate] || rate);
+    const timeOut = replaceTimeParts(time, lang);
+    const sourceEl=document.getElementById('txSource'), rateEl=document.getElementById('txRate'), timeEl=document.getElementById('txTime');
+    if(sourceEl) sourceEl.textContent=sourceOut;
+    if(rateEl) rateEl.textContent=rateOut;
+    if(timeEl) timeEl.textContent=timeOut;
+  }
+
+  function applyCompleteLanguage(lang) {
+    const dict = merged(lang);
+    document.documentElement.lang = lang === 'uk' ? 'uk' : lang === 'zh' ? 'zh-CN' : lang;
+    document.documentElement.dataset.uiLang = lang;
+    document.body.setAttribute('data-ui-lang', lang);
+
+    // Restore all canonical English first, then translate by exact source string.
+    textNodes.forEach(node => {
+      const raw = canonical.get(node);
+      if (raw == null) return;
+      if (lang === 'en') { node.nodeValue = raw; return; }
+      const trimmed = raw.trim();
+      let out = dict[trimmed];
+      if (!out) {
+        // Translate Today/Yesterday inside timestamp strings.
+        out = replaceTimeParts(trimmed, lang);
+        if (out === trimmed) out = null;
+      }
+      if (out) node.nodeValue = raw.replace(trimmed, out);
+      else node.nodeValue = raw;
+    });
+
+    // V2 keyed content has its own complete dictionaries.
+    try {
+      const vd = (typeof V2_LANG !== 'undefined' && V2_LANG[lang]) ? V2_LANG[lang] : {};
+      document.querySelectorAll('[data-v2]').forEach(el => {
+        const key = el.dataset.v2;
+        const en = v2Canonical.get(el);
+        el.textContent = (lang === 'en' || !vd[key]) ? en : vd[key];
+      });
+    } catch(e) {}
+
+    document.title = titleMap[lang] || titleEN;
+    if (langSelect) langSelect.value = lang;
+    localStorage.setItem('blackone_lang', lang);
+    renderTransactionDetail(lang);
+  }
+
+  // Re-bind tx items so dynamic detail values also follow selected language.
+  document.querySelectorAll('.tx-item').forEach(item => {
+    item.addEventListener('click', () => setTimeout(() => applyCompleteLanguage(langSelect?.value || 'en'), 0));
+  });
+
+  if (langSelect) {
+    // Our listener runs after the legacy listener and finalizes every text node.
+    langSelect.addEventListener('change', e => setTimeout(() => applyCompleteLanguage(e.target.value), 0));
+  }
+
+  const saved = localStorage.getItem('blackone_lang');
+  const browser=(navigator.language||'en').toLowerCase();
+  const initial=saved || (browser.startsWith('uk')?'uk':browser.startsWith('es')?'es':browser.startsWith('zh')?'zh':'en');
+  applyCompleteLanguage(initial);
+
+  // Fail-safe: content must never become invisible if animation JS is blocked.
+  document.querySelectorAll('.reveal').forEach(el => { el.style.opacity='1'; el.style.transform='none'; });
+})();
 </script>
 
 </body>
