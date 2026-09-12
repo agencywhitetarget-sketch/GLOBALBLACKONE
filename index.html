@@ -104,18 +104,52 @@ section[id]{scroll-margin-top:88px}
 
 
 /* =========================================================
-   05. INVESTORS / STRATEGIC PARTNERS
+   05. FOUNDER / INVESTOR VIEW
    ========================================================= */
-.investor-shell{border:1px solid var(--line);border-radius:28px;padding:42px;background:radial-gradient(circle at 78% 10%,rgba(255,255,255,.06),transparent 26%),linear-gradient(145deg,#101013,#09090b 72%)}
-.investor-top{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:end}
-.investor-shell h2{font-size:clamp(46px,5.4vw,82px);line-height:.96;letter-spacing:-.05em;margin:12px 0 0}
-.investor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:38px}
-.investor-item{border-top:1px solid var(--line);padding:22px 4px 4px}
-.investor-item b{display:block;font-size:17px;margin-bottom:9px}
-.investor-item span{color:#85858d;font-size:13px;line-height:1.6}
-@media(max-width:1050px){.investor-top{grid-template-columns:1fr;gap:24px}}
-@media(max-width:700px){.investor-shell{padding:23px;border-radius:22px}.investor-grid{grid-template-columns:1fr}.investor-item{padding-top:18px}}
-
+.founder-investor-section{position:relative;overflow:hidden}
+.fi-shell{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:32px;padding:48px;background:radial-gradient(circle at 82% 10%,rgba(255,255,255,.075),transparent 25%),radial-gradient(circle at 18% 88%,rgba(255,255,255,.025),transparent 30%),linear-gradient(145deg,#101013,#070708 64%,#0b0b0e)}
+.fi-shell:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.014) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 82%);opacity:.5}
+.fi-top,.fi-stage,.fi-principles{position:relative;z-index:1}
+.fi-top{display:grid;grid-template-columns:1.08fr .92fr;gap:76px;align-items:end}
+.fi-shell h2{font-size:clamp(50px,5.65vw,88px);line-height:.94;letter-spacing:-.055em;margin:13px 0 0;max-width:850px}
+.fi-intro .copy{max-width:610px}
+.fi-mode-tag{display:inline-flex;align-items:center;gap:9px;margin-top:20px;padding:9px 12px;border:1px solid rgba(255,255,255,.11);border-radius:999px;background:rgba(255,255,255,.025);color:#9c9ca4;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.fi-mode-tag i{width:6px;height:6px;border-radius:50%;background:#f1f1ed;box-shadow:0 0 14px rgba(255,255,255,.42)}
+.fi-stage{display:grid;grid-template-columns:1.08fr .92fr;gap:16px;margin-top:44px}
+.fi-network,.fi-brief{border:1px solid rgba(255,255,255,.09);border-radius:25px;background:rgba(8,8,10,.78)}
+.fi-network{min-height:560px;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.06),transparent 18%),radial-gradient(circle at 50% 50%,rgba(255,255,255,.018),transparent 48%),#09090b}
+.fi-network:before,.fi-network:after{content:"";position:absolute;left:50%;top:50%;border-radius:50%;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,.055);pointer-events:none}
+.fi-network:before{width:420px;height:420px}.fi-network:after{width:265px;height:265px}
+.fi-grid-glow{position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.014) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(circle at center,black,transparent 72%);opacity:.5}
+.fi-network-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.fi-network-svg path{fill:none;stroke:rgba(255,255,255,.13);stroke-width:1}
+.fi-network-svg .fi-flow{stroke:rgba(255,255,255,.52);stroke-dasharray:3 18;animation:fiDash 4.5s linear infinite}
+.fi-network-svg .fi-flow:nth-child(2){animation-delay:-1.1s}.fi-network-svg .fi-flow:nth-child(3){animation-delay:-2.3s}.fi-network-svg .fi-flow:nth-child(4){animation-delay:-3.2s}
+@keyframes fiDash{to{stroke-dashoffset:-84}}
+.fi-node{position:absolute;transform:translate(-50%,-50%);width:152px;min-height:80px;padding:15px;border:1px solid rgba(255,255,255,.1);border-radius:17px;background:rgba(13,13,16,.92);backdrop-filter:blur(12px);box-shadow:0 22px 55px rgba(0,0,0,.28);transition:transform .25s ease,border-color .25s ease,background .25s ease}
+.fi-node:hover{transform:translate(-50%,-50%) scale(1.035);border-color:rgba(255,255,255,.24);background:#111115}
+.fi-node small{display:block;color:#696971;font-size:8px;letter-spacing:.12em;text-transform:uppercase}.fi-node strong{display:block;margin-top:8px;font-size:13px;letter-spacing:-.01em}.fi-node span{display:block;color:#777780;font-size:9px;line-height:1.4;margin-top:5px}
+.fi-node.core{left:50%;top:50%;width:190px;min-height:112px;padding:22px;border-radius:22px;text-align:center;background:radial-gradient(circle at 70% 15%,rgba(255,255,255,.1),transparent 28%),linear-gradient(145deg,#1a1a1e,#0a0a0c 66%);border-color:rgba(255,255,255,.2);box-shadow:0 30px 80px rgba(0,0,0,.48),0 0 60px rgba(255,255,255,.025)}
+.fi-node.core strong{font-size:18px;letter-spacing:.13em}.fi-node.core span{margin-top:8px}
+.fi-node.personal{left:18%;top:20%}.fi-node.private-node{left:82%;top:20%}.fi-node.business-node{left:18%;top:80%}.fi-node.infrastructure{left:82%;top:80%}
+.fi-network-caption{position:absolute;left:20px;bottom:18px;color:#5f5f67;font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.fi-brief{padding:25px;min-width:0;display:flex;flex-direction:column}
+.fi-brief-kicker{display:flex;justify-content:space-between;gap:15px;align-items:center;padding-bottom:17px;border-bottom:1px solid rgba(255,255,255,.07);color:#777780;font-size:9px;letter-spacing:.13em;text-transform:uppercase}
+.fi-live{display:inline-flex;align-items:center;gap:7px;color:#a8a8ae}.fi-live:before{content:"";width:5px;height:5px;border-radius:50%;background:#eee;box-shadow:0 0 10px rgba(255,255,255,.42)}
+.fi-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:18px 0}
+.fi-tab{min-width:0;border:1px solid rgba(255,255,255,.08);border-radius:11px;background:#0d0d10;color:#73737b;padding:11px 8px;font-size:9px;letter-spacing:.04em;cursor:pointer;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease}
+.fi-tab:hover{color:#d7d7db;border-color:rgba(255,255,255,.18);transform:translateY(-1px)}.fi-tab.active{background:#f1f1ed;color:#080809;border-color:#f1f1ed}
+.fi-panels{position:relative;flex:1;min-height:390px}
+.fi-panel{position:absolute;inset:0;opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity .3s ease,transform .38s cubic-bezier(.2,.7,.2,1)}.fi-panel.active{opacity:1;transform:none;pointer-events:auto}
+.fi-panel h3{font-size:clamp(30px,3vw,44px);line-height:1.02;letter-spacing:-.045em;margin:18px 0 13px}.fi-panel>p{color:#8d8d95;font-size:13px;line-height:1.65;margin:0 0 20px;max-width:520px}
+.fi-rows{border-top:1px solid rgba(255,255,255,.075)}
+.fi-row{display:grid;grid-template-columns:minmax(110px,.72fr) minmax(0,1.28fr);gap:20px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:11px}.fi-row b{font-weight:650;color:#dadade}.fi-row span{color:#777780;line-height:1.45}
+.fi-principles{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:18px;border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;background:#0a0a0c}
+.fi-principle{padding:22px 24px;border-left:1px solid rgba(255,255,255,.07)}.fi-principle:first-child{border-left:0}.fi-principle small{color:#5f5f67;font-size:9px;letter-spacing:.14em}.fi-principle b{display:block;font-size:15px;margin:9px 0 6px}.fi-principle span{display:block;color:#7b7b83;font-size:11px;line-height:1.55}
+.fi-company-link{margin-top:28px}
+@media(max-width:1100px){.fi-top,.fi-stage{grid-template-columns:1fr}.fi-top{gap:24px}.fi-network{min-height:520px}.fi-panels{min-height:330px}.fi-principles{grid-template-columns:1fr}.fi-principle{border-left:0;border-top:1px solid rgba(255,255,255,.07)}.fi-principle:first-child{border-top:0}}
+@media(max-width:700px){.fi-shell{padding:22px;border-radius:23px}.fi-shell h2{font-size:clamp(42px,12vw,64px)}.fi-stage{margin-top:30px}.fi-network{min-height:440px;border-radius:20px}.fi-network:before{width:320px;height:320px}.fi-network:after{width:205px;height:205px}.fi-node{width:118px;min-height:70px;padding:11px}.fi-node.core{width:150px;min-height:98px;padding:17px}.fi-node.core strong{font-size:15px}.fi-node.personal{left:20%;top:18%}.fi-node.private-node{left:80%;top:18%}.fi-node.business-node{left:20%;top:82%}.fi-node.infrastructure{left:80%;top:82%}.fi-node span{display:none}.fi-brief{padding:18px;border-radius:20px}.fi-tabs{grid-template-columns:1fr 1fr}.fi-panels{min-height:390px}.fi-row{grid-template-columns:1fr;gap:4px}.fi-principle{padding:18px}.fi-mode-tag{margin-top:15px}}
+@media(prefers-reduced-motion:reduce){.fi-network-svg .fi-flow{animation:none}.fi-panel,.fi-tab,.fi-node{transition:none!important}}
 
 
 /* =========================================================
@@ -210,6 +244,225 @@ section[id]{scroll-margin-top:88px}
 @media(max-width:980px){.cinematic-story{height:470vh}.story-sticky{min-height:620px}.story-shell{width:calc(100% - 34px);grid-template-columns:1fr;gap:0}.story-copy-wrap{position:absolute;left:0;right:0;top:92px;height:250px;z-index:8}.story-kicker{top:-25px}.story-copy{justify-content:flex-start}.story-copy h2{font-size:clamp(38px,8.5vw,66px);max-width:680px}.story-copy p{font-size:14px;max-width:520px;margin-top:15px}.story-copy .story-meta{display:none}.story-stage{position:absolute;left:0;right:0;bottom:20px;height:56vh;min-height:360px}.story-metal-card{width:min(460px,72%)}.story-screen{width:min(640px,92%);min-height:350px;padding:20px}.story-progress,.story-progress-dots{display:none}.story-currency-grid{margin-top:16px}.story-balance-big{margin-top:18px}.story-orbit-label{display:none}}
 @media(max-width:620px){.cinematic-story{height:430vh}.story-sticky{min-height:600px}.story-copy-wrap{top:86px;height:220px}.story-copy h2{font-size:clamp(34px,10.7vw,54px);line-height:.95}.story-copy p{font-size:13px;line-height:1.55;margin-top:12px}.story-stage{height:50vh;bottom:8px}.story-metal-card{width:86%;border-radius:21px}.story-metal-card .chip{top:72px;width:45px;height:33px}.story-metal-card .digits{bottom:52px;font-size:11px}.story-metal-card .cardhead{top:20px;left:22px}.story-metal-card .cardfoot{left:22px;right:22px;bottom:18px}.story-screen{width:96%;min-height:305px;border-radius:22px;padding:16px}.story-window-top{padding-bottom:12px}.story-balance-big{font-size:38px;margin-top:14px}.story-currency-grid{grid-template-columns:1fr 1fr;gap:7px}.story-currency:last-child{display:none}.story-currency{padding:11px}.story-card-control,.story-assets{grid-template-columns:1fr}.story-control-list{display:none}.story-transfer{gap:8px;margin-top:28px}.story-transfer-box{padding:14px}.story-transfer-box b{font-size:18px}.story-transfer-arrow{width:38px;height:38px}.story-asset-side{display:none}.hero-scroll-cue{margin-top:15px}}
 @media(prefers-reduced-motion:reduce){.story-copy,.story-screen,.hero-scroll-cue:before{transition:none!important}.story-transfer-line:after{animation:none}.cinematic-story{height:auto}.story-sticky{position:relative;min-height:900px}.story-copy[data-story-copy]:not([data-story-copy="0"]),.story-screen{display:none}.story-copy[data-story-copy="0"]{opacity:1;transform:none;filter:none}.story-metal-card{transform:none!important}}
+
+
+/* =========================================================
+   09. INTERACTIVE PRODUCT SYSTEM / NAV REPAIR
+   ========================================================= */
+
+/* Navigation repair */
+.nav,.navin,.links,.navact{pointer-events:auto}
+#navLinks a{position:relative;z-index:2;cursor:pointer;pointer-events:auto}
+#navLinks a.nav-current{color:#fff}
+#navLinks a.nav-current:after{content:"";position:absolute;left:0;right:0;bottom:-11px;height:1px;background:rgba(255,255,255,.6)}
+.menu{cursor:pointer;position:relative;z-index:1302}
+
+@media(max-width:1050px){
+  #navLinks.mobile-open{
+    display:flex!important;
+    position:fixed!important;
+    top:82px!important;
+    left:16px!important;
+    right:16px!important;
+    z-index:1301!important;
+    padding:12px!important;
+    margin:0!important;
+    flex-direction:column!important;
+    gap:2px!important;
+    border:1px solid rgba(255,255,255,.14)!important;
+    border-radius:22px!important;
+    background:rgba(12,12,15,.98)!important;
+    box-shadow:0 30px 90px rgba(0,0,0,.62)!important;
+    backdrop-filter:blur(24px)!important;
+    -webkit-backdrop-filter:blur(24px)!important;
+  }
+  #navLinks.mobile-open a{
+    display:flex!important;
+    align-items:center;
+    min-height:48px;
+    padding:0 13px;
+    border-radius:12px;
+    color:#c9c9cf;
+    font-size:14px;
+  }
+  #navLinks.mobile-open a:hover,
+  #navLinks.mobile-open a.nav-current{background:#17171b;color:#fff}
+  #navLinks.mobile-open a.nav-current:after{display:none}
+}
+
+/* Existing controls become clickable */
+.app-nav-item,.app-quick-action,.toggle,.mini-toggle,.story-switch,.mobile-action,.mobile-tab{cursor:pointer}
+.toggle,.mini-toggle,.story-switch{transition:background .22s ease}
+.toggle i,.mini-toggle:after,.story-switch:after{transition:transform .22s ease,margin .22s ease}
+.toggle.off{background:#1d1d22}
+.toggle.off i{margin-left:0}
+.mini-toggle.off,.story-switch.off{background:#2b2b31}
+.mini-toggle.off:after{margin-left:0;background:#8d8d95}
+.story-switch.off:after{margin-left:0;background:#8d8d95}
+
+/* In-app interactive screen */
+.product-ui .app-shell{position:relative;overflow:hidden}
+.app-view-layer{
+  position:absolute;inset:0;z-index:40;
+  background:linear-gradient(155deg,rgba(14,14,18,.995),rgba(7,7,9,.995));
+  padding:26px 28px 30px;
+  transform:translateX(104%);
+  opacity:0;
+  transition:transform .58s cubic-bezier(.16,.8,.2,1),opacity .32s ease;
+  overflow:auto;
+}
+.app-view-layer.open{transform:translateX(0);opacity:1}
+.app-view-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.app-view-back{width:42px;height:42px;border-radius:13px;border:1px solid var(--line);background:#101013;color:#fff;cursor:pointer}
+.app-view-head h3{margin:0;font-size:24px;letter-spacing:-.035em}
+.app-view-head small{display:block;color:#72727b;margin-top:4px}
+.app-view-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;margin-top:20px}
+.app-view-card{border:1px solid var(--line);border-radius:22px;background:#0d0d10;padding:22px;min-height:180px}
+.app-view-card h4{margin:0 0 15px;font-size:16px}
+.demo-field{border:1px solid var(--line);border-radius:15px;padding:13px 14px;background:#111115;margin-top:10px}
+.demo-field small{display:block;color:#717179;font-size:9px;text-transform:uppercase;letter-spacing:.09em}
+.demo-field strong{display:block;margin-top:7px;font-size:16px}
+.demo-primary{margin-top:18px;width:100%;min-height:46px;border:0;border-radius:14px;background:#f2f2ef;color:#080809;font-weight:750;cursor:pointer}
+.demo-secondary{margin-top:10px;width:100%;min-height:44px;border:1px solid var(--line2);border-radius:14px;background:transparent;color:#fff;cursor:pointer}
+.demo-status{display:flex;align-items:center;gap:8px;color:#a8dfc2;font-size:12px}.demo-status i{width:7px;height:7px;border-radius:50%;background:#a8dfc2}
+.demo-biometric{min-height:250px;display:grid;place-items:center;text-align:center}
+.demo-face{width:105px;height:105px;border:1px solid rgba(255,255,255,.22);border-radius:30px;position:relative;box-shadow:0 0 0 18px rgba(255,255,255,.018)}
+.demo-face:before,.demo-face:after{content:"";position:absolute;inset:18px;border:1px dashed rgba(255,255,255,.22);border-radius:22px}
+.demo-face:after{inset:46px 20px auto;height:1px;border:0;background:#f0f0ec;box-shadow:0 0 18px rgba(255,255,255,.5);animation:bioScan 1.8s ease-in-out infinite}
+@keyframes bioScan{0%,100%{transform:translateY(-24px);opacity:.35}50%{transform:translateY(24px);opacity:1}}
+.demo-progress{height:3px;border-radius:99px;background:#25252b;overflow:hidden;margin-top:18px}.demo-progress i{display:block;width:0;height:100%;background:#efefeb;transition:width 1.35s cubic-bezier(.16,.8,.2,1)}
+.demo-progress.running i{width:100%}
+
+/* Dashboard micro animation */
+.app-chart-line{stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 1.7s cubic-bezier(.2,.7,.2,1)}
+.product-ui.in-view .app-chart-line{stroke-dashoffset:0}
+.app-tx-row{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+.product-ui.in-view .app-tx-row{opacity:1;transform:none}
+.product-ui.in-view .app-tx-row:nth-child(2){transition-delay:.08s}
+.product-ui.in-view .app-tx-row:nth-child(3){transition-delay:.16s}
+.product-ui.in-view .app-tx-row:nth-child(4){transition-delay:.24s}
+.product-ui.in-view .app-tx-row:nth-child(5){transition-delay:.32s}
+
+/* Card cinematic reveal + pulse */
+.story-metal-card{
+  cursor:pointer;
+  --pulse-x:50%;
+  --pulse-y:50%;
+}
+.story-metal-card:after{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(circle at var(--pulse-x) var(--pulse-y),rgba(255,255,255,.16),transparent 25%);
+  opacity:.25;mix-blend-mode:screen;transition:opacity .25s ease;
+}
+.story-metal-card:hover:after{opacity:.75}
+.story-card-edge{box-shadow:0 0 0 0 rgba(255,255,255,0);transition:box-shadow .28s ease}
+.story-metal-card:hover .story-card-edge{box-shadow:0 0 22px rgba(255,255,255,.08) inset}
+
+/* Card inspector */
+.card-inspector{
+  position:fixed;inset:0;z-index:5000;display:none;place-items:center;padding:22px;
+  background:rgba(0,0,0,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)
+}
+.card-inspector.open{display:grid}
+.card-inspector-shell{width:min(980px,100%);min-height:580px;border:1px solid rgba(255,255,255,.14);border-radius:30px;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.07),transparent 27%),#09090b;padding:28px;display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;align-items:center}
+.card-inspector-copy h3{font-size:clamp(38px,5vw,68px);letter-spacing:-.055em;line-height:.95;margin:12px 0 18px}
+.card-inspector-copy p{color:#8f8f98;line-height:1.65}
+.card-inspector-close{position:absolute;right:22px;top:22px;width:46px;height:46px;border-radius:50%;border:1px solid var(--line2);background:#111114;color:#fff;cursor:pointer}
+.inspect-stage{height:420px;display:grid;place-items:center;perspective:1600px}
+.inspect-card{width:min(520px,92%);aspect-ratio:1.586/1;border-radius:28px;position:relative;transform-style:preserve-3d;transition:transform .15s ease;background:radial-gradient(circle at 75% 18%,rgba(255,255,255,.17),transparent 22%),linear-gradient(145deg,#232327,#08090a 52%,#17171a);border:1px solid rgba(255,255,255,.22);box-shadow:0 60px 120px rgba(0,0,0,.7);overflow:hidden}
+.inspect-card:before{content:"";position:absolute;inset:-80% -25%;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.17) 50%,transparent 58%);transform:translateX(-35%) rotate(12deg)}
+.inspect-card-label{position:absolute;top:28px;left:30px;font-weight:850;letter-spacing:.16em}
+.inspect-card-chip{position:absolute;left:30px;top:104px;width:58px;height:43px;border-radius:9px;background:linear-gradient(145deg,#d1d0c8,#777872)}
+.inspect-card-no{position:absolute;left:30px;bottom:60px;letter-spacing:.16em}
+.inspect-card-foot{position:absolute;left:30px;right:30px;bottom:24px;display:flex;justify-content:space-between;color:#8c8c94;font-size:10px}
+
+/* Card Collection */
+.card-collection-shell{border:1px solid var(--line);border-radius:30px;background:linear-gradient(145deg,#0e0e11,#070708);padding:34px;overflow:hidden}
+.collection-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.collection-tab{border:1px solid var(--line);background:#0d0d10;color:#8f8f98;padding:11px 15px;border-radius:999px;cursor:pointer}
+.collection-tab.active{background:#f1f1ed;color:#080809;border-color:#f1f1ed}
+.collection-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center}
+.collection-stage{height:470px;position:relative;display:grid;place-items:center;perspective:1600px}
+.collection-card{position:absolute;width:min(560px,88%);aspect-ratio:1.586/1;border-radius:28px;border:1px solid rgba(255,255,255,.18);box-shadow:0 55px 110px rgba(0,0,0,.65);padding:28px;opacity:0;transform:translateY(35px) scale(.9) rotateY(-12deg);transition:opacity .5s ease,transform .7s cubic-bezier(.16,.8,.2,1);cursor:pointer;overflow:hidden}
+.collection-card.active{opacity:1;transform:translateY(0) scale(1) rotateY(0)}
+.collection-card.core{background:linear-gradient(150deg,#111114,#030304 70%);box-shadow:0 55px 110px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.03) inset}
+.collection-card.core:after{content:"";position:absolute;right:-70px;top:-110px;width:300px;height:300px;border-radius:50%;border:1px solid rgba(255,255,255,.06);box-shadow:0 0 0 45px rgba(255,255,255,.015),0 0 0 90px rgba(255,255,255,.01)}
+.collection-card.private-tier{background:radial-gradient(circle at 77% 17%,rgba(255,255,255,.18),transparent 22%),linear-gradient(135deg,rgba(255,255,255,.13),transparent 17%),linear-gradient(145deg,#252529,#050506 52%,#17171b)}
+.collection-card.private-tier:after{content:"";position:absolute;inset:-80% -30%;background:linear-gradient(103deg,transparent 44%,rgba(255,255,255,.18) 50%,transparent 56%);animation:cardSheen 4s ease-in-out infinite}
+@keyframes cardSheen{0%,30%{transform:translateX(-65%) rotate(12deg)}70%,100%{transform:translateX(65%) rotate(12deg)}}
+.collection-card.business-tier{background:repeating-linear-gradient(92deg,rgba(255,255,255,.022) 0 1px,transparent 1px 5px),linear-gradient(145deg,#202126,#090a0c 55%,#14161a)}
+.collection-card.business-tier:after{content:"";position:absolute;left:0;right:0;top:55%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent)}
+.collection-card-brand{font-size:15px;font-weight:850;letter-spacing:.16em}.collection-card-tier{margin-top:6px;color:#8d8d95;font-size:9px;letter-spacing:.17em}.collection-card-chip{position:absolute;left:28px;top:112px;width:58px;height:43px;border-radius:9px;background:linear-gradient(145deg,#d1d0c8,#777872)}.collection-card-number{position:absolute;left:28px;bottom:66px;letter-spacing:.17em}.collection-card-footer{position:absolute;left:28px;right:28px;bottom:24px;display:flex;justify-content:space-between;color:#8d8d95;font-size:9px}
+.collection-details h3{font-size:clamp(38px,4.5vw,62px);letter-spacing:-.055em;line-height:.98;margin:8px 0 16px}.collection-details p{color:#909098;line-height:1.65}.collection-specs{margin-top:24px}.collection-spec{display:flex;justify-content:space-between;gap:18px;padding:14px 0;border-top:1px solid var(--line);font-size:12px}.collection-spec span{color:#7f7f87}
+
+/* Onboarding */
+.onboarding-shell{display:grid;grid-template-columns:.92fr 1.08fr;gap:28px;align-items:stretch}
+.onboarding-copy,.onboarding-demo{border:1px solid var(--line);border-radius:28px;background:#0c0c0f;padding:34px}
+.onboarding-copy h3{font-size:clamp(40px,4.6vw,66px);letter-spacing:-.055em;line-height:.98;margin:10px 0 18px}
+.onboarding-progress{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:26px 0}.onboarding-progress i{height:3px;border-radius:99px;background:#24242a;overflow:hidden}.onboarding-progress i:after{content:"";display:block;width:0;height:100%;background:#efefeb;transition:width .45s ease}.onboarding-progress i.done:after{width:100%}
+.onboarding-step{display:none}.onboarding-step.active{display:block;animation:obIn .45s ease both}@keyframes obIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.onboarding-step small{color:#6f6f77;letter-spacing:.12em}.onboarding-step h4{font-size:28px;margin:10px 0}.onboarding-step p{color:#8c8c95;line-height:1.6}
+.onboarding-controls{display:flex;gap:9px;margin-top:24px}
+.onboarding-phone{width:min(330px,92%);height:620px;margin:auto;border:1px solid rgba(255,255,255,.19);border-radius:44px;background:#050506;padding:10px;box-shadow:0 35px 90px rgba(0,0,0,.5)}
+.onboarding-screen{height:100%;border-radius:35px;background:linear-gradient(180deg,#151519,#09090b);padding:20px;position:relative;overflow:hidden}
+.onboarding-island{width:86px;height:23px;background:#000;border-radius:99px;margin:0 auto 25px}.ob-logo{font-size:12px;font-weight:850;letter-spacing:.15em}.ob-preview{margin-top:55px}.ob-preview .icon{width:68px;height:68px;border-radius:22px;border:1px solid var(--line2);display:grid;place-items:center;font-size:24px;background:#111115}.ob-preview h4{font-size:30px;letter-spacing:-.04em;margin:20px 0 9px}.ob-preview p{color:#81818a;font-size:13px;line-height:1.6}.ob-card-preview{height:170px;border-radius:22px;margin-top:25px;background:linear-gradient(145deg,#222226,#070708 58%,#17171a);border:1px solid var(--line2);position:relative;padding:20px}.ob-card-preview b{letter-spacing:.14em;font-size:11px}.ob-card-preview span{position:absolute;left:20px;bottom:20px;font-size:11px;letter-spacing:.12em}
+
+/* World movement */
+.world-live{border:1px solid var(--line);border-radius:30px;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.05),transparent 32%),#09090b;min-height:590px;position:relative;overflow:hidden}
+.world-live:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:55px 55px}
+.world-map-grid{position:absolute;inset:8% 6%;opacity:.82}
+.world-map-grid svg{width:100%;height:100%}.world-route{fill:none;stroke:rgba(255,255,255,.16);stroke-width:1}.world-route-live{fill:none;stroke:#e9e9e5;stroke-width:1.5;stroke-dasharray:8 12;animation:routeMove 2.6s linear infinite}@keyframes routeMove{to{stroke-dashoffset:-40}}
+.world-node{position:absolute;transform:translate(-50%,-50%);z-index:3}.world-node i{display:block;width:9px;height:9px;border-radius:50%;background:#efefeb;box-shadow:0 0 0 7px rgba(255,255,255,.05),0 0 20px rgba(255,255,255,.32)}.world-node span{display:block;margin-top:9px;padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(12,12,15,.9);font-size:9px;color:#a5a5ad;white-space:nowrap}
+.world-node.ny{left:18%;top:38%}.world-node.lon{left:43%;top:29%}.world-node.dubai{left:59%;top:48%}.world-node.sg{left:77%;top:63%}
+.world-feed{position:absolute;right:24px;bottom:24px;width:min(360px,calc(100% - 48px));border:1px solid var(--line);border-radius:20px;background:rgba(10,10,13,.94);padding:18px;z-index:4}.world-feed-row{display:flex;justify-content:space-between;gap:20px;padding:11px 0;border-top:1px solid rgba(255,255,255,.06);font-size:11px}.world-feed-row:first-of-type{border-top:0}.world-feed-row span{color:#777780}
+
+/* Transaction cinema */
+.tx-cinema{border:1px solid var(--line);border-radius:30px;background:linear-gradient(145deg,#0e0e11,#080809);padding:34px;overflow:hidden}
+.tx-cinema-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:center}.tx-cinema-copy h3{font-size:clamp(42px,5vw,70px);letter-spacing:-.055em;line-height:.96;margin:10px 0 18px}.tx-cinema-copy p{color:#8d8d96;line-height:1.65}
+.tx-track{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding-top:32px}.tx-track:before{content:"";position:absolute;left:8%;right:8%;top:47px;height:1px;background:#2b2b31}.tx-track:after{content:"";position:absolute;left:8%;top:47px;height:1px;width:0;background:#efefeb;transition:width 2.8s cubic-bezier(.16,.8,.2,1)}.tx-cinema.running .tx-track:after{width:84%}
+.tx-stage{position:relative;z-index:2;text-align:center}.tx-dot{width:31px;height:31px;margin:auto;border-radius:50%;border:1px solid #303038;background:#0b0b0e;display:grid;place-items:center;color:#66666f;transition:.35s ease}.tx-stage b{display:block;margin-top:15px;font-size:12px}.tx-stage span{display:block;margin-top:6px;font-size:9px;color:#6f6f77}.tx-cinema.running .tx-stage .tx-dot{animation:txStep 3.2s ease forwards}.tx-cinema.running .tx-stage:nth-child(2) .tx-dot{animation-delay:.8s}.tx-cinema.running .tx-stage:nth-child(3) .tx-dot{animation-delay:1.6s}.tx-cinema.running .tx-stage:nth-child(4) .tx-dot{animation-delay:2.4s}@keyframes txStep{0%,25%{background:#0b0b0e;color:#666}35%,100%{background:#f0f0ed;color:#080809;box-shadow:0 0 24px rgba(255,255,255,.17)}}
+.tx-receipt{margin-top:30px;border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.tx-receipt div small{display:block;color:#6f6f77;font-size:9px}.tx-receipt div b{display:block;margin-top:7px;font-size:13px}
+
+/* Security moment */
+.security-moment{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.security-theatre{border:1px solid var(--line);border-radius:28px;background:#0c0c0f;min-height:460px;padding:30px;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden}
+.security-theatre:before{content:"";position:absolute;width:380px;height:380px;border-radius:50%;border:1px solid rgba(255,255,255,.05);box-shadow:0 0 0 60px rgba(255,255,255,.012),0 0 0 120px rgba(255,255,255,.008)}
+.security-content{position:relative;z-index:2}.security-content h3{font-size:35px;letter-spacing:-.04em;margin:18px 0 9px}.security-content p{color:#85858e;max-width:430px;line-height:1.6}.security-check{width:92px;height:92px;margin:auto;border:1px solid rgba(255,255,255,.2);border-radius:29px;display:grid;place-items:center;font-size:32px;position:relative}.security-check.scanning:after{content:"";position:absolute;left:15px;right:15px;top:50%;height:1px;background:#fff;box-shadow:0 0 18px rgba(255,255,255,.5);animation:secScan 1.4s ease-in-out infinite}@keyframes secScan{0%,100%{transform:translateY(-25px)}50%{transform:translateY(25px)}}.security-check.verified{background:#f0f0ed;color:#080809}
+.security-log{border:1px solid var(--line);border-radius:28px;background:#0c0c0f;padding:30px}.security-log h3{margin:0 0 18px;font-size:28px}.security-log-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0;border-top:1px solid var(--line);font-size:12px}.security-log-row span{color:#81818a}
+
+/* Wealth cockpit */
+.wealth-shell{border:1px solid var(--line);border-radius:30px;background:radial-gradient(circle at 80% 0%,rgba(255,255,255,.06),transparent 28%),#09090b;padding:34px}
+.wealth-top{display:flex;align-items:end;justify-content:space-between;gap:30px}.wealth-total-label{font-size:10px;color:#74747d;letter-spacing:.12em;text-transform:uppercase}.wealth-total{font-size:clamp(62px,8vw,118px);letter-spacing:-.065em;line-height:.9;margin-top:11px}.wealth-change{font-size:12px;color:#a8dfc2}
+.wealth-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px}.wealth-card{border:1px solid var(--line);border-radius:20px;background:#0d0d10;padding:20px;min-height:160px}.wealth-card small{color:#717179}.wealth-card strong{display:block;margin-top:15px;font-size:25px;letter-spacing:-.035em}.wealth-meter{height:3px;background:#24242a;border-radius:99px;margin-top:26px;overflow:hidden}.wealth-meter i{display:block;height:100%;width:var(--w,50%);background:#e8e8e4;transform-origin:left;transform:scaleX(0);transition:transform 1.2s cubic-bezier(.16,.8,.2,1)}.wealth-shell.in-view .wealth-meter i{transform:scaleX(1)}
+
+/* Mobile */
+@media(max-width:900px){
+  .app-view-grid,.collection-grid,.onboarding-shell,.tx-cinema-grid,.security-moment{grid-template-columns:1fr}
+  .collection-stage{height:390px}
+  .wealth-grid{grid-template-columns:1fr 1fr}
+  .card-inspector-shell{grid-template-columns:1fr;min-height:auto}
+  .card-inspector-copy{display:none}
+  .inspect-stage{height:430px}
+}
+@media(max-width:620px){
+  .app-view-layer{padding:16px}
+  .app-view-grid{gap:10px}
+  .app-view-card{padding:16px}
+  .card-collection-shell,.onboarding-copy,.onboarding-demo,.tx-cinema,.wealth-shell{padding:20px;border-radius:22px}
+  .collection-stage{height:320px}
+  .collection-card{width:96%;border-radius:21px;padding:20px}
+  .collection-card-chip{left:20px;top:78px;width:46px;height:34px}
+  .collection-card-number{left:20px;bottom:50px;font-size:11px}
+  .collection-card-footer{left:20px;right:20px;bottom:18px}
+  .onboarding-phone{height:570px}
+  .world-live{min-height:500px}
+  .world-feed{right:14px;bottom:14px;width:calc(100% - 28px)}
+  .tx-track{grid-template-columns:repeat(4,1fr);gap:4px}
+  .tx-stage b{font-size:9px}.tx-stage span{display:none}
+  .tx-receipt{grid-template-columns:1fr}
+  .wealth-top{display:block}.wealth-change{margin-top:14px}.wealth-grid{grid-template-columns:1fr}
+  .card-inspector-shell{padding:18px}.inspect-stage{height:350px}.inspect-card{width:98%;border-radius:21px}
+}
 
 </style></head><body>
 <!-- =======================================================
@@ -353,14 +606,278 @@ section[id]{scroll-margin-top:88px}
 </div></div></section>
 <section class="section"><div class="wrap"><div class="private"><div><div class="eyebrow" data-i="private.eye" ></div><h3 data-i="private.title" ></h3><p class="copy" data-i="private.copy" ></p><div class="private-list"><div data-i="private.metal" ></div><div data-i="private.priority" ></div><div data-i="private.limits" ></div><div data-i="private.multi" ></div><div data-i="private.dedicated" ></div></div></div><div style="display:grid;place-items:center"><div class="bankcard" style="transform:rotate(5deg)"><div class="cardhead"><div><div class="cardbrand">BLACK ONE</div><div class="cardsub" data-i="private.card" ></div></div></div><div class="chip"></div><div class="digits">•••• &nbsp;•••• &nbsp;•••• &nbsp;9208</div><div class="cardfoot"><div><span data-i="card.member" ></span><b data-i="card.client" ></b></div><div><span data-i="card.valid" ></span><b>12/30</b></div><div><b>BLACK ONE</b></div></div></div></div></div></div></section>
 <section class="section"><div class="wrap"><div class="head"><div><div class="eyebrow" data-i="plans.eye" ></div><h2 data-i="plans.title" ></h2></div><p class="copy" data-i="plans.copy" ></p></div><div class="pricing"><div class="price "><div class="eyebrow" data-i="plans.core" ></div><h3 data-i="plans.personal" ></h3><p class="muted" data-i="plans.personalc" ></p><ul><li data-i="plans.p1" ></li><li data-i="plans.p2" ></li><li data-i="plans.p3" ></li><li data-i="plans.p4" ></li></ul></div><div class="price featured"><div class="eyebrow" data-i="plans.premium" ></div><h3 data-i="plans.private" ></h3><p class="muted" data-i="plans.privatec" ></p><ul><li data-i="plans.r1" ></li><li data-i="plans.r2" ></li><li data-i="plans.r3" ></li><li data-i="plans.r4" ></li></ul></div><div class="price "><div class="eyebrow" data-i="plans.company" ></div><h3 data-i="plans.business" ></h3><p class="muted" data-i="plans.businessc" ></p><ul><li data-i="plans.b1" ></li><li data-i="plans.b2" ></li><li data-i="plans.b3" ></li><li data-i="plans.b4" ></li></ul></div></div></div></section>
+
+<!-- INTERACTIVE CARD COLLECTION -->
+<section class="section" id="collection">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="eyebrow" data-i="collection.eye"></div><h2 data-i="collection.title"></h2></div>
+      <p class="copy" data-i="collection.copy"></p>
+    </div>
+    <div class="card-collection-shell">
+      <div class="collection-tabs" role="tablist">
+        <button class="collection-tab active" type="button" data-card-tier="core" data-i="collection.core"></button>
+        <button class="collection-tab" type="button" data-card-tier="private" data-i="collection.private"></button>
+        <button class="collection-tab" type="button" data-card-tier="business" data-i="collection.business"></button>
+      </div>
+      <div class="collection-grid">
+        <div class="collection-stage">
+          <div class="collection-card core active" data-collection-card="core">
+            <div class="collection-card-brand">BLACK ONE</div><div class="collection-card-tier">CORE</div><div class="collection-card-chip"></div>
+            <div class="collection-card-number">5412 &nbsp;•••• &nbsp;•••• &nbsp;1148</div>
+            <div class="collection-card-footer"><span data-i="collection.personal"></span><span>BLACK ONE</span></div>
+          </div>
+          <div class="collection-card private-tier" data-collection-card="private">
+            <div class="collection-card-brand">BLACK ONE</div><div class="collection-card-tier">PRIVATE / METAL</div><div class="collection-card-chip"></div>
+            <div class="collection-card-number">5412 &nbsp;•••• &nbsp;•••• &nbsp;9208</div>
+            <div class="collection-card-footer"><span>BLACK ONE PRIVATE</span><span>METAL</span></div>
+          </div>
+          <div class="collection-card business-tier" data-collection-card="business">
+            <div class="collection-card-brand">BLACK ONE</div><div class="collection-card-tier">BUSINESS</div><div class="collection-card-chip"></div>
+            <div class="collection-card-number">5412 &nbsp;•••• &nbsp;•••• &nbsp;6701</div>
+            <div class="collection-card-footer"><span data-i="collection.company"></span><span>BUSINESS</span></div>
+          </div>
+        </div>
+        <div class="collection-details">
+          <div class="eyebrow">BLACK ONE / CARD COLLECTION</div>
+          <h3 id="collectionTitle" data-i="collection.coreTitle"></h3>
+          <p id="collectionCopy" data-i="collection.coreCopy"></p>
+          <div class="collection-specs">
+            <div class="collection-spec"><span data-i="collection.material"></span><b id="collectionMaterial" data-i="collection.coreMaterial"></b></div>
+            <div class="collection-spec"><span data-i="collection.use"></span><b id="collectionUse" data-i="collection.coreUse"></b></div>
+            <div class="collection-spec"><span data-i="collection.controls"></span><b data-i="collection.appControl"></b></div>
+          </div>
+          <div class="buttons"><button class="btn white" id="inspectCollectionCard" data-i="collection.inspect"></button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE ONBOARDING -->
+<section class="section" id="onboarding">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="eyebrow" data-i="onboarding.eye"></div><h2 data-i="onboarding.title"></h2></div>
+      <p class="copy" data-i="onboarding.copy"></p>
+    </div>
+    <div class="onboarding-shell">
+      <div class="onboarding-copy">
+        <div class="eyebrow">BLACK ONE / ONBOARDING</div>
+        <h3 data-i="onboarding.demoTitle"></h3>
+        <div class="onboarding-progress"><i class="done"></i><i></i><i></i><i></i></div>
+        <div class="onboarding-step active" data-ob-step="0"><small>01 / 04</small><h4 data-i="onboarding.s1"></h4><p data-i="onboarding.s1c"></p></div>
+        <div class="onboarding-step" data-ob-step="1"><small>02 / 04</small><h4 data-i="onboarding.s2"></h4><p data-i="onboarding.s2c"></p></div>
+        <div class="onboarding-step" data-ob-step="2"><small>03 / 04</small><h4 data-i="onboarding.s3"></h4><p data-i="onboarding.s3c"></p></div>
+        <div class="onboarding-step" data-ob-step="3"><small>04 / 04</small><h4 data-i="onboarding.s4"></h4><p data-i="onboarding.s4c"></p></div>
+        <div class="onboarding-controls"><button class="btn" id="obBack" data-i="onboarding.back"></button><button class="btn white" id="obNext" data-i="onboarding.next"></button></div>
+      </div>
+      <div class="onboarding-demo">
+        <div class="onboarding-phone"><div class="onboarding-screen">
+          <div class="onboarding-island"></div><div class="ob-logo">BLACK ONE</div>
+          <div class="ob-preview" id="obPreview">
+            <div class="icon">01</div><h4 data-i="onboarding.preview1"></h4><p data-i="onboarding.preview1c"></p>
+            <div class="ob-card-preview"><b>BLACK ONE</b><span>•••• 4821</span></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBAL MOVEMENT -->
+<section class="section" id="global-movement">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="eyebrow" data-i="world.eye"></div><h2 data-i="world.title"></h2></div>
+      <p class="copy" data-i="world.copy"></p>
+    </div>
+    <div class="world-live">
+      <div class="world-map-grid">
+        <svg viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
+          <path class="world-route" d="M180 200 C300 130 330 125 430 150 C520 170 520 245 590 250 C680 258 705 320 770 330"/>
+          <path class="world-route-live" d="M180 200 C300 130 330 125 430 150 C520 170 520 245 590 250 C680 258 705 320 770 330"/>
+          <path class="world-route" d="M430 150 C510 110 620 120 770 330"/>
+          <path class="world-route-live" d="M430 150 C510 110 620 120 770 330" style="animation-delay:-1.2s"/>
+        </svg>
+      </div>
+      <div class="world-node ny"><i></i><span>New York</span></div>
+      <div class="world-node lon"><i></i><span>London</span></div>
+      <div class="world-node dubai"><i></i><span>Dubai</span></div>
+      <div class="world-node sg"><i></i><span>Singapore</span></div>
+      <div class="world-feed">
+        <div class="eyebrow" data-i="world.feed"></div>
+        <div class="world-feed-row"><span>London → Dubai</span><b>€12,400</b></div>
+        <div class="world-feed-row"><span>New York → London</span><b>$8,250</b></div>
+        <div class="world-feed-row"><span>Dubai → Singapore</span><b>5,000 USDC</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSACTION CINEMA -->
+<section class="section" id="transaction-cinema">
+  <div class="wrap">
+    <div class="tx-cinema" id="txCinema">
+      <div class="tx-cinema-grid">
+        <div class="tx-cinema-copy">
+          <div class="eyebrow" data-i="cinema.eye"></div><h3 data-i="cinema.title"></h3><p data-i="cinema.copy"></p>
+          <div class="buttons"><button class="btn white" id="txReplay" data-i="cinema.replay"></button></div>
+        </div>
+        <div>
+          <div class="tx-track">
+            <div class="tx-stage"><div class="tx-dot">1</div><b data-i="cinema.s1"></b><span data-i="cinema.s1c"></span></div>
+            <div class="tx-stage"><div class="tx-dot">2</div><b data-i="cinema.s2"></b><span data-i="cinema.s2c"></span></div>
+            <div class="tx-stage"><div class="tx-dot">3</div><b data-i="cinema.s3"></b><span data-i="cinema.s3c"></span></div>
+            <div class="tx-stage"><div class="tx-dot">✓</div><b data-i="cinema.s4"></b><span data-i="cinema.s4c"></span></div>
+          </div>
+          <div class="tx-receipt"><div><small data-i="cinema.amount"></small><b>5,000 USDC</b></div><div><small data-i="cinema.converted"></small><b>€4,618</b></div><div><small data-i="cinema.status"></small><b class="good" data-i="cinema.complete"></b></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY MOMENT -->
+<section class="section" id="security-demo">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="eyebrow" data-i="securityMoment.eye"></div><h2 data-i="securityMoment.title"></h2></div>
+      <p class="copy" data-i="securityMoment.copy"></p>
+    </div>
+    <div class="security-moment">
+      <div class="security-theatre">
+        <div class="security-content">
+          <div class="security-check" id="securityCheck">⌁</div>
+          <h3 id="securityMomentTitle" data-i="securityMoment.ready"></h3>
+          <p id="securityMomentCopy" data-i="securityMoment.readyc"></p>
+          <button class="btn white" id="securityRun" data-i="securityMoment.verify"></button>
+        </div>
+      </div>
+      <div class="security-log">
+        <div class="eyebrow">BLACK ONE / SECURITY</div><h3 data-i="securityMoment.log"></h3>
+        <div class="security-log-row"><span data-i="securityMoment.device"></span><b class="good" data-i="securityMoment.trusted"></b></div>
+        <div class="security-log-row"><span data-i="securityMoment.biometric"></span><b class="good" data-i="securityMoment.enabled"></b></div>
+        <div class="security-log-row"><span data-i="securityMoment.card"></span><b>•••• 4821</b></div>
+        <div class="security-log-row"><span data-i="securityMoment.risk"></span><b data-i="securityMoment.normal"></b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEALTH COCKPIT -->
+<section class="section" id="wealth">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="eyebrow" data-i="wealth.eye"></div><h2 data-i="wealth.title"></h2></div>
+      <p class="copy" data-i="wealth.copy"></p>
+    </div>
+    <div class="wealth-shell" id="wealthShell">
+      <div class="wealth-top"><div><div class="wealth-total-label" data-i="wealth.total"></div><div class="wealth-total" data-count-money="137565.48">$137,565.48</div></div><div class="wealth-change">+4.8% · 30D</div></div>
+      <div class="wealth-grid">
+        <div class="wealth-card"><small data-i="wealth.cash"></small><strong>$54,764</strong><div class="wealth-meter"><i style="--w:72%"></i></div></div>
+        <div class="wealth-card"><small data-i="wealth.cards"></small><strong>$12,840</strong><div class="wealth-meter"><i style="--w:34%"></i></div></div>
+        <div class="wealth-card"><small data-i="wealth.assets"></small><strong>$37,695</strong><div class="wealth-meter"><i style="--w:58%"></i></div></div>
+        <div class="wealth-card"><small data-i="wealth.business"></small><strong>$32,266</strong><div class="wealth-meter"><i style="--w:49%"></i></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- COMPANY -->
-<section class="section" id="company"><div class="wrap"><div class="head"><div><div class="eyebrow" data-i="company.eye" ></div><h2 data-i="company.title" ></h2></div><p class="copy" data-i="company.copy" ></p></div><div class="grid3"><div class="panel"><h3 data-i="company.philosophy" ></h3><p data-i="company.philosophyc" ></p></div><div class="panel"><h3 data-i="company.principles" ></h3><p data-i="company.principlesc" ></p></div><div class="panel"><h3 data-i="company.partner" ></h3><p data-i="company.partnerc" ></p></div></div></div></section>
-<!-- INVESTORS / STRATEGIC PARTNERS -->
-<section class="section" id="investors"><div class="wrap"><div class="investor-shell">
-<div class="investor-top"><div><div class="eyebrow" data-i="investor.eye"></div><h2 data-i="investor.title"></h2></div>
-<div><p class="copy" data-i="investor.copy"></p><div class="buttons"><a class="btn white" href="mailto:business@globalblackone.com?subject=BLACK%20ONE%20investment%20or%20strategic%20partnership" data-i="investor.cta"></a></div></div></div>
-<div class="investor-grid"><div class="investor-item"><b data-i="investor.item1"></b><span data-i="investor.item1c"></span></div><div class="investor-item"><b data-i="investor.item2"></b><span data-i="investor.item2c"></span></div><div class="investor-item"><b data-i="investor.item3"></b><span data-i="investor.item3c"></span></div></div>
-</div></div></section>
+<section class="section" id="company"><div class="wrap"><div class="head"><div><div class="eyebrow" data-i="company.eye" ></div><h2 data-i="company.title" ></h2></div><p class="copy" data-i="company.copy" ></p></div><div class="grid3"><div class="panel"><h3 data-i="company.philosophy" ></h3><p data-i="company.philosophyc" ></p></div><div class="panel"><h3 data-i="company.principles" ></h3><p data-i="company.principlesc" ></p></div><div class="panel"><h3 data-i="company.partner" ></h3><p data-i="company.partnerc" ></p></div></div><div class="buttons fi-company-link"><a class="btn" href="#investors" data-i="investor.modeLink"></a></div></div></section>
+<!-- FOUNDER / INVESTOR VIEW -->
+<section class="section founder-investor-section" id="investors">
+  <div class="wrap">
+    <div class="fi-shell">
+      <div class="fi-top">
+        <div>
+          <div class="eyebrow" data-i="investor.eye"></div>
+          <div class="fi-mode-tag"><i></i><span data-i="investor.mode"></span></div>
+          <h2 data-i="investor.title"></h2>
+        </div>
+        <div class="fi-intro">
+          <p class="copy" data-i="investor.copy"></p>
+          <div class="buttons"><a class="btn white" href="mailto:business@globalblackone.com?subject=BLACK%20ONE%20investment%20or%20strategic%20partnership" data-i="investor.cta"></a></div>
+        </div>
+      </div>
+
+      <div class="fi-stage">
+        <div class="fi-network" aria-label="BLACK ONE product architecture">
+          <div class="fi-grid-glow"></div>
+          <svg class="fi-network-svg" viewBox="0 0 700 560" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M350 280 C285 225 210 165 126 112"/>
+            <path d="M350 280 C415 225 490 165 574 112"/>
+            <path d="M350 280 C285 335 210 395 126 448"/>
+            <path d="M350 280 C415 335 490 395 574 448"/>
+            <path class="fi-flow" d="M350 280 C285 225 210 165 126 112"/>
+            <path class="fi-flow" d="M350 280 C415 225 490 165 574 112"/>
+            <path class="fi-flow" d="M350 280 C285 335 210 395 126 448"/>
+            <path class="fi-flow" d="M350 280 C415 335 490 395 574 448"/>
+          </svg>
+
+          <div class="fi-node core"><small data-i="investor.network.core"></small><strong>BLACK ONE</strong><span data-i="investor.network.corec"></span></div>
+          <div class="fi-node personal"><small>01</small><strong data-i="investor.network.personal"></strong><span data-i="investor.network.personalc"></span></div>
+          <div class="fi-node private-node"><small>02</small><strong>BLACK ONE Private</strong><span data-i="investor.network.privatec"></span></div>
+          <div class="fi-node business-node"><small>03</small><strong data-i="investor.network.business"></strong><span data-i="investor.network.businessc"></span></div>
+          <div class="fi-node infrastructure"><small>04</small><strong data-i="investor.network.infrastructure"></strong><span data-i="investor.network.infrastructurec"></span></div>
+          <div class="fi-network-caption">BLACK ONE / SYSTEM ARCHITECTURE</div>
+        </div>
+
+        <div class="fi-brief">
+          <div class="fi-brief-kicker"><span data-i="investor.brief"></span><span class="fi-live" data-i="investor.live"></span></div>
+          <div class="fi-tabs" role="tablist" aria-label="Founder investor view">
+            <button class="fi-tab active" type="button" data-fi-tab="0" data-i="investor.tab.product"></button>
+            <button class="fi-tab" type="button" data-fi-tab="1" data-i="investor.tab.infrastructure"></button>
+            <button class="fi-tab" type="button" data-fi-tab="2" data-i="investor.tab.scale"></button>
+            <button class="fi-tab" type="button" data-fi-tab="3" data-i="investor.tab.partnership"></button>
+          </div>
+          <div class="fi-panels">
+            <article class="fi-panel active" data-fi-panel="0">
+              <h3 data-i="investor.product.title"></h3><p data-i="investor.product.copy"></p>
+              <div class="fi-rows">
+                <div class="fi-row"><b data-i="investor.product.r1"></b><span data-i="investor.product.r1c"></span></div>
+                <div class="fi-row"><b>BLACK ONE Private</b><span data-i="investor.product.r2c"></span></div>
+                <div class="fi-row"><b data-i="investor.product.r3"></b><span data-i="investor.product.r3c"></span></div>
+              </div>
+            </article>
+            <article class="fi-panel" data-fi-panel="1">
+              <h3 data-i="investor.infrastructure.title"></h3><p data-i="investor.infrastructure.copy"></p>
+              <div class="fi-rows">
+                <div class="fi-row"><b data-i="investor.infrastructure.r1"></b><span data-i="investor.infrastructure.r1c"></span></div>
+                <div class="fi-row"><b data-i="investor.infrastructure.r2"></b><span data-i="investor.infrastructure.r2c"></span></div>
+                <div class="fi-row"><b data-i="investor.infrastructure.r3"></b><span data-i="investor.infrastructure.r3c"></span></div>
+                <div class="fi-row"><b data-i="investor.infrastructure.r4"></b><span data-i="investor.infrastructure.r4c"></span></div>
+              </div>
+            </article>
+            <article class="fi-panel" data-fi-panel="2">
+              <h3 data-i="investor.scale.title"></h3><p data-i="investor.scale.copy"></p>
+              <div class="fi-rows">
+                <div class="fi-row"><b data-i="investor.scale.r1"></b><span data-i="investor.scale.r1c"></span></div>
+                <div class="fi-row"><b data-i="investor.scale.r2"></b><span data-i="investor.scale.r2c"></span></div>
+                <div class="fi-row"><b data-i="investor.scale.r3"></b><span data-i="investor.scale.r3c"></span></div>
+              </div>
+            </article>
+            <article class="fi-panel" data-fi-panel="3">
+              <h3 data-i="investor.partnership.title"></h3><p data-i="investor.partnership.copy"></p>
+              <div class="fi-rows">
+                <div class="fi-row"><b data-i="investor.partnership.r1"></b><span data-i="investor.partnership.r1c"></span></div>
+                <div class="fi-row"><b data-i="investor.partnership.r2"></b><span data-i="investor.partnership.r2c"></span></div>
+                <div class="fi-row"><b data-i="investor.partnership.r3"></b><span data-i="investor.partnership.r3c"></span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="fi-principles">
+        <div class="fi-principle"><small>01</small><b data-i="investor.item1"></b><span data-i="investor.item1c"></span></div>
+        <div class="fi-principle"><small>02</small><b data-i="investor.item2"></b><span data-i="investor.item2c"></span></div>
+        <div class="fi-principle"><small>03</small><b data-i="investor.item3"></b><span data-i="investor.item3c"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="section"><div class="wrap"><div class="head"><div><div class="eyebrow" data-i="faq.eye" ></div><h2 data-i="faq.title" ></h2></div><p class="copy" data-i="faq.copy" ></p></div><div class="faq"><details><summary data-i="faq.q1" ></summary><p data-i="faq.a1" ></p></details><details><summary data-i="faq.q2" ></summary><p data-i="faq.a2" ></p></details><details><summary data-i="faq.q3" ></summary><p data-i="faq.a3" ></p></details><details><summary data-i="faq.q4" ></summary><p data-i="faq.a4" ></p></details><details><summary data-i="faq.q5" ></summary><p data-i="faq.a5" ></p></details></div></div></section>
 <!-- CONTACT -->
 <section class="section" id="contact">
@@ -396,6 +913,16 @@ section[id]{scroll-margin-top:88px}
 
 <!-- FOOTER -->
 <footer><div class="wrap"><div class="footgrid"><div><div class="brand">BLACK ONE</div><p class="muted" data-i="footer.desc" ></p></div><div><h4 data-i="footer.personal" ></h4><a data-i="footer.accounts" href="#accounts"></a><a data-i="footer.card" href="#card"></a><a data-i="footer.assets" href="#assets"></a></div><div><h4 data-i="footer.business" ></h4><a data-i="footer.teams" href="#business"></a><a data-i="footer.controls" href="#business"></a><a data-i="footer.integrations" href="#business"></a></div><div><h4 data-i="footer.company" ></h4><a data-i="footer.about" href="#company"></a><a data-i="footer.security" href="#security"></a><a href="#investors" data-i="investor.eye"></a><a data-i="footer.contact" href="#contact"></a><a class="footer-email" href="mailto:hello@globalblackone.com">hello@globalblackone.com</a></div><div><h4 data-i="footer.legal" ></h4><a data-i="footer.privacy" href="javascript:void(0)" aria-disabled="true"></a><a data-i="footer.terms" href="javascript:void(0)" aria-disabled="true"></a><a data-i="footer.cookies" href="javascript:void(0)" aria-disabled="true"></a><a data-i="footer.risk" href="javascript:void(0)" aria-disabled="true"></a></div></div><div class="legal" data-i="footer.note" ></div></div></footer>
+
+
+<!-- CARD INSPECTOR -->
+<div class="card-inspector" id="cardInspector" aria-hidden="true">
+  <button class="card-inspector-close" id="cardInspectorClose" aria-label="Close">×</button>
+  <div class="card-inspector-shell">
+    <div class="card-inspector-copy"><div class="eyebrow">BLACK ONE / OBJECT</div><h3 data-i="inspect.title"></h3><p data-i="inspect.copy"></p><div class="details"><div class="row"><span data-i="inspect.finish"></span><b data-i="inspect.finishv"></b></div><div class="row"><span data-i="inspect.form"></span><b data-i="inspect.formv"></b></div><div class="row"><span data-i="inspect.control"></span><b>BLACK ONE APP</b></div></div></div>
+    <div class="inspect-stage" id="inspectStage"><div class="inspect-card" id="inspectCard"><div class="inspect-card-label">BLACK ONE</div><div class="inspect-card-chip"></div><div class="inspect-card-no">5412 &nbsp;•••• &nbsp;•••• &nbsp;9208</div><div class="inspect-card-foot"><span id="inspectTier">PRIVATE / METAL</span><span>BLACK ONE</span></div></div></div>
+  </div>
+</div>
 
 <!-- ACCESS MODAL -->
 <div class="modal" id="modal"><div class="modalbox"><div class="eyebrow" data-i="modal.eye" ></div><h3 data-i="modal.title" ></h3><p class="muted" data-i="modal.copy" ></p><div class="field"><label data-i="modal.type" ></label><select id="requestType"><option value="personal" data-i="modal.personal" ></option><option value="business" data-i="modal.business" ></option></select></div><div class="field"><label data-i="modal.country" ></label><input id="requestCountry" autocomplete="country-name" data-ph="modal.countryph"></div><div class="field"><label data-i="modal.email" ></label><input id="requestEmail" type="email" autocomplete="email" placeholder="name@example.com"></div><div class="buttons"><button class="btn white" data-i="modal.join" id="requestSubmit"></button><button class="btn" data-i="modal.close" id="close"></button></div></div></div>
@@ -1699,6 +2226,53 @@ Object.assign(I18N.uk,{"hero.scroll":"Гортайте, щоб побачити 
 Object.assign(I18N.es,{"hero.scroll":"Desliza para ver el producto","story.kicker":"Experiencia de producto","story.meta.physical":"Física + virtual","story.meta.assets":"Activos digitales","story.meta.controls":"Control de tarjeta","story.meta.limits":"Límites","story.meta.security":"Seguridad","story.meta.transfers":"Transferencias","story.meta.exchange":"Cambio","story.meta.settlement":"Liquidación","story.meta.personal":"Personal","story.meta.business":"Empresas","story.s1.title":"El sistema financiero, hecho físico.","story.s1.copy":"BLACK ONE Card lleva la plataforma al formato físico y virtual, diseñada para gastos diarios, movimiento global y control directo desde la aplicación.","story.s2.title":"Todos los saldos. Una sola vista.","story.s2.copy":"Cuentas multidivisa, saldos de tarjeta y activos digitales conviven en un único entorno financiero en lugar de productos separados y pantallas desconectadas.","story.s3.title":"Controla la tarjeta tan rápido como la utilizas.","story.s3.copy":"Gestiona pagos online, contactless, cajeros, límites y preferencias de gasto directamente desde BLACK ONE.","story.s4.title":"Mueve valor sin perder los detalles.","story.s4.copy":"Transferencias y cambio se diseñan alrededor de rutas, tipos, comisiones e información de liquidación claras antes de confirmar cada movimiento.","story.s5.title":"Un sistema. Diferentes niveles de acceso.","story.s5.copy":"BLACK ONE conecta finanzas personales, acceso premium y controles empresariales mediante una arquitectura de producto creada para escala internacional.","story.screen.account":"CUENTA GLOBAL","story.screen.card":"CONTROL DE TARJETA","story.screen.transfer":"TRANSFERENCIA Y CAMBIO","story.screen.assets":"ACTIVOS DIGITALES"});
 Object.assign(I18N.zh,{"hero.scroll":"向下滚动体验产品","story.kicker":"产品体验","story.meta.physical":"实体 + 虚拟","story.meta.assets":"数字资产","story.meta.controls":"卡片控制","story.meta.limits":"限额","story.meta.security":"安全","story.meta.transfers":"转账","story.meta.exchange":"兑换","story.meta.settlement":"结算","story.meta.personal":"个人","story.meta.business":"企业","story.s1.title":"让金融系统成为触手可及的实体。","story.s1.copy":"BLACK ONE Card 将平台延伸至实体与虚拟卡片形态，面向日常消费、全球资金流动与应用内直接控制。","story.s2.title":"所有余额，一览无余。","story.s2.copy":"多币种账户、卡片余额与数字资产集中在同一个金融环境中，而不是分散在彼此割裂的产品与页面里。","story.s3.title":"用多快，就能多快地控制卡片。","story.s3.copy":"在线支付、非接触支付、ATM、限额与消费设置都可直接在 BLACK ONE 中管理。","story.s4.title":"流动价值，同时保留每一个细节。","story.s4.copy":"转账与兑换围绕清晰的路径、汇率、费用和结算信息设计，让用户在确认前了解每一步。","story.s5.title":"一个系统，不同层级的访问。","story.s5.copy":"BLACK ONE 通过同一产品架构连接个人金融、高端服务与企业控制，并面向国际化规模进行设计。","story.screen.account":"全球账户","story.screen.card":"卡片控制","story.screen.transfer":"转账与兑换","story.screen.assets":"数字资产"});
 
+
+/* Founder / Investor view translations */
+Object.assign(I18N.en,{"investor.eye":"Investors & strategic partners","investor.mode":"Founder / Investor view","investor.modeLink":"Founder / Investor view","investor.title":"One product. A financial system built to scale.","investor.copy":"BLACK ONE is being built as a connected financial platform across Personal, Private and Business, with partner infrastructure supporting cards, payments and digital-asset flows. This view shows the architecture behind the product and where strategic capital and infrastructure partnerships can accelerate scale.","investor.cta":"Discuss BLACK ONE","investor.brief":"Architecture brief","investor.live":"Product direction","investor.tab.product":"Product","investor.tab.infrastructure":"Infrastructure","investor.tab.scale":"Scale","investor.tab.partnership":"Partnership","investor.network.core":"Core system","investor.network.corec":"Accounts · cards · transfers · controls","investor.network.personal":"Personal","investor.network.personalc":"Everyday financial experience","investor.network.privatec":"Premium access and service","investor.network.business":"Business","investor.network.businessc":"Teams, cards and approvals","investor.network.infrastructure":"Infrastructure","investor.network.infrastructurec":"Partner financial rails","investor.product.title":"Three product layers. One architecture.","investor.product.copy":"Personal, BLACK ONE Private and Business share the same core logic for balances, cards, transfers, controls and digital assets.","investor.product.r1":"Personal","investor.product.r1c":"Everyday multi-currency finance and card access.","investor.product.r2c":"Premium access, advanced controls and higher-touch service.","investor.product.r3":"Business","investor.product.r3c":"Roles, cards, approvals and operational finance controls.","investor.infrastructure.title":"Built on connected financial rails.","investor.infrastructure.copy":"The product is designed to connect account, payment, card and digital-asset infrastructure through strategic partners instead of fragmenting the customer experience.","investor.infrastructure.r1":"Accounts","investor.infrastructure.r1c":"Multi-currency account layer and money movement.","investor.infrastructure.r2":"Cards","investor.infrastructure.r2c":"Physical and virtual card program integrated into BLACK ONE.","investor.infrastructure.r3":"Payments","investor.infrastructure.r3c":"Transfers, exchange and settlement flows.","investor.infrastructure.r4":"Digital assets","investor.infrastructure.r4c":"Supported asset conversion and control inside the same interface.","investor.scale.title":"Expand the system, not rebuild it.","investor.scale.copy":"The architecture is designed so new markets, customer segments and partner capabilities can be added without changing the core product language.","investor.scale.r1":"Markets","investor.scale.r1c":"An international product architecture designed for expansion.","investor.scale.r2":"Segments","investor.scale.r2c":"Personal · Private · Business.","investor.scale.r3":"Platform","investor.scale.r3c":"One interface across connected product layers.","investor.partnership.title":"Where strategic partners fit.","investor.partnership.copy":"BLACK ONE is open to serious conversations with investors and infrastructure partners that can strengthen launch, distribution and international expansion.","investor.partnership.r1":"Capital","investor.partnership.r1c":"Strategic investment aligned with long-term product direction.","investor.partnership.r2":"Infrastructure","investor.partnership.r2c":"Cards · payments · accounts · digital assets.","investor.partnership.r3":"Distribution","investor.partnership.r3c":"Market access and product partnerships.","investor.item1":"Product architecture","investor.item1c":"One core system across Personal, Private and Business.","investor.item2":"Partner infrastructure","investor.item2c":"Cards, payments, account and digital-asset capabilities connected through strategic partners.","investor.item3":"International scale","investor.item3c":"Built for expansion across markets without turning the product into disconnected local experiences."});
+Object.assign(I18N.uk,{"investor.eye":"Інвестори та стратегічні партнери","investor.mode":"Погляд засновника / інвестора","investor.modeLink":"Погляд засновника / інвестора","investor.title":"Один продукт. Фінансова система, створена для масштабування.","investor.copy":"BLACK ONE будується як єдина фінансова платформа для Personal, Private і Business, де партнерська інфраструктура підтримує картки, платежі та потоки цифрових активів. Цей режим показує архітектуру продукту та напрямки, де стратегічний капітал і партнерства можуть прискорити масштабування.","investor.cta":"Обговорити BLACK ONE","investor.brief":"Архітектура продукту","investor.live":"Напрям продукту","investor.tab.product":"Продукт","investor.tab.infrastructure":"Інфраструктура","investor.tab.scale":"Масштаб","investor.tab.partnership":"Партнерство","investor.network.core":"Ядро системи","investor.network.corec":"Рахунки · картки · перекази · контроль","investor.network.personal":"Personal","investor.network.personalc":"Щоденний фінансовий досвід","investor.network.privatec":"Преміальний доступ і сервіс","investor.network.business":"Business","investor.network.businessc":"Команди, картки та погодження","investor.network.infrastructure":"Інфраструктура","investor.network.infrastructurec":"Партнерські фінансові рейли","investor.product.title":"Три рівні продукту. Одна архітектура.","investor.product.copy":"Personal, BLACK ONE Private і Business використовують спільну логіку балансів, карток, переказів, контролю та цифрових активів.","investor.product.r1":"Personal","investor.product.r1c":"Щоденні мультивалютні фінанси та доступ до картки.","investor.product.r2c":"Преміальний доступ, розширений контроль і пріоритетний сервіс.","investor.product.r3":"Business","investor.product.r3c":"Ролі, картки, погодження та операційний фінансовий контроль.","investor.infrastructure.title":"Побудовано на з’єднаній фінансовій інфраструктурі.","investor.infrastructure.copy":"Продукт спроєктований так, щоб об’єднати рахунки, платежі, карткову та інфраструктуру цифрових активів через стратегічних партнерів, не розділяючи досвід клієнта на окремі продукти.","investor.infrastructure.r1":"Рахунки","investor.infrastructure.r1c":"Мультивалютний рівень рахунків і рух коштів.","investor.infrastructure.r2":"Картки","investor.infrastructure.r2c":"Фізична та віртуальна карткова програма, інтегрована в BLACK ONE.","investor.infrastructure.r3":"Платежі","investor.infrastructure.r3c":"Перекази, обмін і розрахункові потоки.","investor.infrastructure.r4":"Цифрові активи","investor.infrastructure.r4c":"Конвертація та контроль підтримуваних активів в одному інтерфейсі.","investor.scale.title":"Масштабувати систему, а не будувати її заново.","investor.scale.copy":"Архітектура створена так, щоб додавати нові ринки, сегменти клієнтів і можливості партнерів без зміни основної логіки продукту.","investor.scale.r1":"Ринки","investor.scale.r1c":"Міжнародна продуктова архітектура, створена для розширення.","investor.scale.r2":"Сегменти","investor.scale.r2c":"Personal · Private · Business.","investor.scale.r3":"Платформа","investor.scale.r3c":"Один інтерфейс для пов’язаних рівнів продукту.","investor.partnership.title":"Де підключаються стратегічні партнери.","investor.partnership.copy":"BLACK ONE відкритий до серйозних розмов з інвесторами та інфраструктурними партнерами, які можуть посилити запуск, дистрибуцію та міжнародне розширення.","investor.partnership.r1":"Капітал","investor.partnership.r1c":"Стратегічні інвестиції, узгоджені з довгостроковим розвитком продукту.","investor.partnership.r2":"Інфраструктура","investor.partnership.r2c":"Картки · платежі · рахунки · цифрові активи.","investor.partnership.r3":"Дистрибуція","investor.partnership.r3c":"Доступ до ринків і продуктові партнерства.","investor.item1":"Архітектура продукту","investor.item1c":"Єдина основна система для Personal, Private і Business.","investor.item2":"Партнерська інфраструктура","investor.item2c":"Картки, платежі, рахунки та цифрові активи, підключені через стратегічних партнерів.","investor.item3":"Міжнародний масштаб","investor.item3c":"Створено для розширення на нові ринки без перетворення продукту на набір розрізнених локальних рішень."});
+Object.assign(I18N.es,{"investor.eye":"Inversores y socios estratégicos","investor.mode":"Vista fundador / inversor","investor.modeLink":"Vista fundador / inversor","investor.title":"Un producto. Un sistema financiero creado para escalar.","investor.copy":"BLACK ONE se está construyendo como una plataforma financiera conectada para Personal, Private y Business, con infraestructura de socios para tarjetas, pagos y flujos de activos digitales. Esta vista muestra la arquitectura detrás del producto y dónde el capital estratégico y las alianzas de infraestructura pueden acelerar la escala.","investor.cta":"Hablar sobre BLACK ONE","investor.brief":"Arquitectura del producto","investor.live":"Dirección del producto","investor.tab.product":"Producto","investor.tab.infrastructure":"Infraestructura","investor.tab.scale":"Escala","investor.tab.partnership":"Alianzas","investor.network.core":"Sistema central","investor.network.corec":"Cuentas · tarjetas · transferencias · control","investor.network.personal":"Personal","investor.network.personalc":"Experiencia financiera diaria","investor.network.privatec":"Acceso y servicio premium","investor.network.business":"Business","investor.network.businessc":"Equipos, tarjetas y aprobaciones","investor.network.infrastructure":"Infraestructura","investor.network.infrastructurec":"Rieles financieros de socios","investor.product.title":"Tres capas de producto. Una arquitectura.","investor.product.copy":"Personal, BLACK ONE Private y Business comparten la misma lógica central para saldos, tarjetas, transferencias, controles y activos digitales.","investor.product.r1":"Personal","investor.product.r1c":"Finanzas multidivisa diarias y acceso a tarjeta.","investor.product.r2c":"Acceso premium, controles avanzados y servicio prioritario.","investor.product.r3":"Business","investor.product.r3c":"Roles, tarjetas, aprobaciones y controles financieros operativos.","investor.infrastructure.title":"Construido sobre infraestructura financiera conectada.","investor.infrastructure.copy":"El producto está diseñado para conectar cuentas, pagos, tarjetas e infraestructura de activos digitales mediante socios estratégicos, sin fragmentar la experiencia del cliente.","investor.infrastructure.r1":"Cuentas","investor.infrastructure.r1c":"Capa de cuentas multidivisa y movimiento de fondos.","investor.infrastructure.r2":"Tarjetas","investor.infrastructure.r2c":"Programa de tarjetas físicas y virtuales integrado en BLACK ONE.","investor.infrastructure.r3":"Pagos","investor.infrastructure.r3c":"Transferencias, cambio y flujos de liquidación.","investor.infrastructure.r4":"Activos digitales","investor.infrastructure.r4c":"Conversión y control de activos compatibles dentro de la misma interfaz.","investor.scale.title":"Escalar el sistema, no reconstruirlo.","investor.scale.copy":"La arquitectura está diseñada para añadir nuevos mercados, segmentos de clientes y capacidades de socios sin cambiar el lenguaje central del producto.","investor.scale.r1":"Mercados","investor.scale.r1c":"Arquitectura internacional de producto diseñada para expandirse.","investor.scale.r2":"Segmentos","investor.scale.r2c":"Personal · Private · Business.","investor.scale.r3":"Plataforma","investor.scale.r3c":"Una interfaz para capas de producto conectadas.","investor.partnership.title":"Dónde encajan los socios estratégicos.","investor.partnership.copy":"BLACK ONE está abierto a conversaciones serias con inversores y socios de infraestructura que puedan reforzar el lanzamiento, la distribución y la expansión internacional.","investor.partnership.r1":"Capital","investor.partnership.r1c":"Inversión estratégica alineada con la dirección de producto a largo plazo.","investor.partnership.r2":"Infraestructura","investor.partnership.r2c":"Tarjetas · pagos · cuentas · activos digitales.","investor.partnership.r3":"Distribución","investor.partnership.r3c":"Acceso a mercados y alianzas de producto.","investor.item1":"Arquitectura del producto","investor.item1c":"Un sistema central para Personal, Private y Business.","investor.item2":"Infraestructura de socios","investor.item2c":"Tarjetas, pagos, cuentas y activos digitales conectados mediante socios estratégicos.","investor.item3":"Escala internacional","investor.item3c":"Creado para expandirse entre mercados sin convertir el producto en experiencias locales desconectadas."});
+Object.assign(I18N.zh,{"investor.eye":"投资者与战略合作伙伴","investor.mode":"创始人 / 投资者视图","investor.modeLink":"创始人 / 投资者视图","investor.title":"一个产品。一套为规模化而构建的金融系统。","investor.copy":"BLACK ONE 正在构建一个连接 Personal、Private 与 Business 的金融平台，并通过合作伙伴基础设施支持银行卡、支付和数字资产流程。该视图展示产品背后的系统架构，以及战略资本与基础设施合作能够加速规模化的方向。","investor.cta":"洽谈 BLACK ONE","investor.brief":"产品架构简报","investor.live":"产品方向","investor.tab.product":"产品","investor.tab.infrastructure":"基础设施","investor.tab.scale":"规模化","investor.tab.partnership":"合作","investor.network.core":"核心系统","investor.network.corec":"账户 · 银行卡 · 转账 · 控制","investor.network.personal":"Personal","investor.network.personalc":"日常金融体验","investor.network.privatec":"高端访问与服务","investor.network.business":"Business","investor.network.businessc":"团队、银行卡与审批","investor.network.infrastructure":"基础设施","investor.network.infrastructurec":"合作伙伴金融基础设施","investor.product.title":"三层产品。一套架构。","investor.product.copy":"Personal、BLACK ONE Private 与 Business 共享余额、银行卡、转账、控制和数字资产的核心产品逻辑。","investor.product.r1":"Personal","investor.product.r1c":"日常多币种金融与银行卡访问。","investor.product.r2c":"高端访问、进阶控制与优先服务。","investor.product.r3":"Business","investor.product.r3c":"角色、银行卡、审批与运营财务控制。","investor.infrastructure.title":"构建于互联的金融基础设施之上。","investor.infrastructure.copy":"产品旨在通过战略合作伙伴连接账户、支付、银行卡和数字资产基础设施，而不是将客户体验分割成多个独立产品。","investor.infrastructure.r1":"账户","investor.infrastructure.r1c":"多币种账户层与资金流动。","investor.infrastructure.r2":"银行卡","investor.infrastructure.r2c":"集成于 BLACK ONE 的实体与虚拟银行卡体系。","investor.infrastructure.r3":"支付","investor.infrastructure.r3c":"转账、兑换与结算流程。","investor.infrastructure.r4":"数字资产","investor.infrastructure.r4c":"在同一界面内完成支持资产的转换与控制。","investor.scale.title":"扩展系统，而不是重新构建。","investor.scale.copy":"该架构旨在加入新市场、客户细分和合作伙伴能力时，保持核心产品语言与体验一致。","investor.scale.r1":"市场","investor.scale.r1c":"面向国际扩展设计的产品架构。","investor.scale.r2":"客户层级","investor.scale.r2c":"Personal · Private · Business。","investor.scale.r3":"平台","investor.scale.r3c":"一个界面连接多个产品层。","investor.partnership.title":"战略合作伙伴如何加入。","investor.partnership.copy":"BLACK ONE 欢迎与能够加强产品上线、分发和国际扩展的投资者及基础设施合作伙伴进行严肃沟通。","investor.partnership.r1":"资本","investor.partnership.r1c":"与长期产品方向一致的战略投资。","investor.partnership.r2":"基础设施","investor.partnership.r2c":"银行卡 · 支付 · 账户 · 数字资产。","investor.partnership.r3":"分发","investor.partnership.r3c":"市场准入与产品合作。","investor.item1":"产品架构","investor.item1c":"Personal、Private 与 Business 共用一套核心系统。","investor.item2":"合作伙伴基础设施","investor.item2c":"通过战略合作伙伴连接银行卡、支付、账户与数字资产能力。","investor.item3":"国际规模化","investor.item3c":"为跨市场扩展而设计，同时保持统一的产品体验。"});
+
+
+/* Interactive product translations */
+Object.assign(I18N.en,{
+"collection.eye":"BLACK ONE Card Collection","collection.title":"Three cards. Three roles. One identity.","collection.copy":"Core, Private and Business use different physical language while staying unmistakably BLACK ONE.","collection.core":"Core","collection.private":"Private","collection.business":"Business","collection.personal":"PERSONAL","collection.company":"COMPANY","collection.coreTitle":"BLACK ONE Core","collection.coreCopy":"Matte black, minimal and quiet — the everyday expression of BLACK ONE.","collection.material":"Finish","collection.use":"Designed for","collection.controls":"Control","collection.coreMaterial":"Matte black","collection.coreUse":"Personal use","collection.appControl":"Full in-app control","collection.inspect":"Inspect the card",
+"onboarding.eye":"Live onboarding","onboarding.title":"From zero to BLACK ONE in one flow.","onboarding.copy":"A product-style onboarding sequence that demonstrates account setup, identity, card choice and activation.","onboarding.demoTitle":"Open the experience.","onboarding.s1":"Create your BLACK ONE profile","onboarding.s1c":"Start with the core account and preferred account experience.","onboarding.s2":"Verify identity","onboarding.s2c":"A clear verification step designed around secure access.","onboarding.s3":"Choose your card","onboarding.s3c":"Select Core, Private or Business based on the product relationship.","onboarding.s4":"Activate BLACK ONE","onboarding.s4c":"Complete setup and enter the main financial environment.","onboarding.back":"Back","onboarding.next":"Continue","onboarding.preview1":"Your account starts here.","onboarding.preview1c":"The flow changes live as you move through each setup step.",
+"world.eye":"Global movement","world.title":"A financial product should feel global before you read the fine print.","world.copy":"An animated product visualization of money movement across markets and currencies.","world.feed":"LIVE PRODUCT VISUALIZATION",
+"cinema.eye":"Transaction cinema","cinema.title":"See the movement, not just the result.","cinema.copy":"The transfer runs through authorization, exchange, settlement and completion as one visual sequence.","cinema.replay":"Replay transaction","cinema.s1":"Authorized","cinema.s1c":"Payment approved","cinema.s2":"Converted","cinema.s2c":"Rate locked","cinema.s3":"Settled","cinema.s3c":"Route completed","cinema.s4":"Received","cinema.s4c":"Funds available","cinema.amount":"Source","cinema.converted":"Destination","cinema.status":"Status","cinema.complete":"Completed",
+"securityMoment.eye":"Security moment","securityMoment.title":"Security should be visible only when it matters.","securityMoment.copy":"A focused biometric confirmation moment for sensitive actions inside BLACK ONE.","securityMoment.ready":"Ready to verify","securityMoment.readyc":"Run the security moment to simulate biometric confirmation.","securityMoment.verify":"Verify with biometrics","securityMoment.log":"Security state","securityMoment.device":"Device","securityMoment.trusted":"Trusted","securityMoment.biometric":"Biometrics","securityMoment.enabled":"Enabled","securityMoment.card":"Card","securityMoment.risk":"Risk state","securityMoment.normal":"Normal",
+"wealth.eye":"Wealth cockpit","wealth.title":"Cash, cards, assets and business. One financial picture.","wealth.copy":"A consolidated wealth view that turns multiple product layers into one clear financial cockpit.","wealth.total":"Combined value","wealth.cash":"Cash & accounts","wealth.cards":"Card activity","wealth.assets":"Digital assets","wealth.business":"Business balances",
+"inspect.title":"BLACK ONE, treated as an object.","inspect.copy":"Tap the card to inspect its physical presence, surface and detail like a premium product — not a flat UI element.","inspect.finish":"Surface","inspect.finishv":"Obsidian metal","inspect.form":"Form","inspect.formv":"Physical + virtual","inspect.control":"Control"
+});
+Object.assign(I18N.uk,{
+"collection.eye":"Колекція карток BLACK ONE","collection.title":"Три картки. Три ролі. Одна айдентика.","collection.copy":"Core, Private та Business мають різний фізичний характер, але залишаються впізнаваними BLACK ONE.","collection.core":"Core","collection.private":"Private","collection.business":"Business","collection.personal":"ОСОБИСТА","collection.company":"КОМПАНІЯ","collection.coreTitle":"BLACK ONE Core","collection.coreCopy":"Матовий чорний, мінімалізм і спокій — базове щоденне втілення BLACK ONE.","collection.material":"Покриття","collection.use":"Для","collection.controls":"Керування","collection.coreMaterial":"Матовий чорний","collection.coreUse":"Особистого використання","collection.appControl":"Повне керування в застосунку","collection.inspect":"Роздивитися картку",
+"onboarding.eye":"Живий onboarding","onboarding.title":"Від нуля до BLACK ONE в одному потоці.","onboarding.copy":"Інтерактивний сценарій відкриття акаунта, верифікації, вибору картки та активації.","onboarding.demoTitle":"Відкрийте досвід.","onboarding.s1":"Створіть профіль BLACK ONE","onboarding.s1c":"Почніть з основного акаунта та потрібного формату продукту.","onboarding.s2":"Підтвердьте особу","onboarding.s2c":"Зрозумілий етап верифікації для безпечного доступу.","onboarding.s3":"Оберіть картку","onboarding.s3c":"Core, Private або Business залежно від потрібного рівня продукту.","onboarding.s4":"Активуйте BLACK ONE","onboarding.s4c":"Завершіть налаштування та перейдіть у головне фінансове середовище.","onboarding.back":"Назад","onboarding.next":"Далі","onboarding.preview1":"Ваш акаунт починається тут.","onboarding.preview1c":"Екран змінюється наживо на кожному етапі налаштування.",
+"world.eye":"Глобальний рух","world.title":"Фінансовий продукт має відчуватися глобальним ще до деталей.","world.copy":"Анімована продуктова візуалізація руху коштів між ринками та валютами.","world.feed":"ЖИВА ВІЗУАЛІЗАЦІЯ ПРОДУКТУ",
+"cinema.eye":"Transaction cinema","cinema.title":"Бачте рух, а не лише результат.","cinema.copy":"Переказ проходить авторизацію, конвертацію, розрахунок і зарахування як одна візуальна сцена.","cinema.replay":"Повторити транзакцію","cinema.s1":"Авторизовано","cinema.s1c":"Платіж підтверджено","cinema.s2":"Конвертовано","cinema.s2c":"Курс зафіксовано","cinema.s3":"Розраховано","cinema.s3c":"Маршрут завершено","cinema.s4":"Отримано","cinema.s4c":"Кошти доступні","cinema.amount":"Джерело","cinema.converted":"Отримання","cinema.status":"Статус","cinema.complete":"Завершено",
+"securityMoment.eye":"Момент безпеки","securityMoment.title":"Безпека має з’являтися саме тоді, коли вона потрібна.","securityMoment.copy":"Біометричне підтвердження для чутливих дій усередині BLACK ONE.","securityMoment.ready":"Готово до перевірки","securityMoment.readyc":"Запустіть перевірку, щоб побачити біометричне підтвердження.","securityMoment.verify":"Підтвердити біометрією","securityMoment.log":"Стан безпеки","securityMoment.device":"Пристрій","securityMoment.trusted":"Довірений","securityMoment.biometric":"Біометрія","securityMoment.enabled":"Увімкнено","securityMoment.card":"Картка","securityMoment.risk":"Рівень ризику","securityMoment.normal":"Нормальний",
+"wealth.eye":"Wealth cockpit","wealth.title":"Гроші, картки, активи та бізнес. Одна фінансова картина.","wealth.copy":"Консолідований екран, який збирає різні рівні продукту в один фінансовий cockpit.","wealth.total":"Загальна вартість","wealth.cash":"Гроші та рахунки","wealth.cards":"Активність карток","wealth.assets":"Цифрові активи","wealth.business":"Бізнес-баланси",
+"inspect.title":"BLACK ONE як фізичний об’єкт.","inspect.copy":"Натисніть на картку й роздивіться її поверхню та деталі як преміальний продукт, а не плоский елемент інтерфейсу.","inspect.finish":"Поверхня","inspect.finishv":"Obsidian metal","inspect.form":"Формат","inspect.formv":"Фізична + віртуальна","inspect.control":"Керування"
+});
+Object.assign(I18N.es,{
+"collection.eye":"Colección de tarjetas BLACK ONE","collection.title":"Tres tarjetas. Tres roles. Una identidad.","collection.copy":"Core, Private y Business tienen un lenguaje físico diferente sin dejar de ser BLACK ONE.","collection.core":"Core","collection.private":"Private","collection.business":"Business","collection.personal":"PERSONAL","collection.company":"EMPRESA","collection.coreTitle":"BLACK ONE Core","collection.coreCopy":"Negro mate, minimalista y silencioso: la expresión cotidiana de BLACK ONE.","collection.material":"Acabado","collection.use":"Diseñada para","collection.controls":"Control","collection.coreMaterial":"Negro mate","collection.coreUse":"Uso personal","collection.appControl":"Control total en la app","collection.inspect":"Inspeccionar la tarjeta",
+"onboarding.eye":"Onboarding en vivo","onboarding.title":"De cero a BLACK ONE en un solo flujo.","onboarding.copy":"Una secuencia interactiva para cuenta, identidad, elección de tarjeta y activación.","onboarding.demoTitle":"Abre la experiencia.","onboarding.s1":"Crea tu perfil BLACK ONE","onboarding.s1c":"Empieza con la cuenta principal y la experiencia que necesitas.","onboarding.s2":"Verifica tu identidad","onboarding.s2c":"Un paso claro de verificación para acceso seguro.","onboarding.s3":"Elige tu tarjeta","onboarding.s3c":"Core, Private o Business según la relación de producto.","onboarding.s4":"Activa BLACK ONE","onboarding.s4c":"Completa la configuración y entra al entorno financiero principal.","onboarding.back":"Atrás","onboarding.next":"Continuar","onboarding.preview1":"Tu cuenta empieza aquí.","onboarding.preview1c":"La pantalla cambia en vivo en cada paso de configuración.",
+"world.eye":"Movimiento global","world.title":"Un producto financiero debe sentirse global antes de leer los detalles.","world.copy":"Una visualización animada del movimiento de fondos entre mercados y divisas.","world.feed":"VISUALIZACIÓN DEL PRODUCTO",
+"cinema.eye":"Transaction cinema","cinema.title":"Ve el movimiento, no solo el resultado.","cinema.copy":"La transferencia recorre autorización, cambio, liquidación y recepción como una sola secuencia visual.","cinema.replay":"Repetir transacción","cinema.s1":"Autorizado","cinema.s1c":"Pago aprobado","cinema.s2":"Convertido","cinema.s2c":"Tipo fijado","cinema.s3":"Liquidado","cinema.s3c":"Ruta completada","cinema.s4":"Recibido","cinema.s4c":"Fondos disponibles","cinema.amount":"Origen","cinema.converted":"Destino","cinema.status":"Estado","cinema.complete":"Completado",
+"securityMoment.eye":"Momento de seguridad","securityMoment.title":"La seguridad debe aparecer solo cuando importa.","securityMoment.copy":"Una confirmación biométrica enfocada para acciones sensibles dentro de BLACK ONE.","securityMoment.ready":"Listo para verificar","securityMoment.readyc":"Ejecuta el momento de seguridad para simular la confirmación biométrica.","securityMoment.verify":"Verificar con biometría","securityMoment.log":"Estado de seguridad","securityMoment.device":"Dispositivo","securityMoment.trusted":"Confiable","securityMoment.biometric":"Biometría","securityMoment.enabled":"Activada","securityMoment.card":"Tarjeta","securityMoment.risk":"Estado de riesgo","securityMoment.normal":"Normal",
+"wealth.eye":"Wealth cockpit","wealth.title":"Efectivo, tarjetas, activos y empresa. Una sola imagen financiera.","wealth.copy":"Una vista consolidada que convierte varias capas del producto en un cockpit financiero claro.","wealth.total":"Valor combinado","wealth.cash":"Efectivo y cuentas","wealth.cards":"Actividad de tarjetas","wealth.assets":"Activos digitales","wealth.business":"Saldos de empresa",
+"inspect.title":"BLACK ONE tratado como un objeto.","inspect.copy":"Toca la tarjeta para inspeccionar su presencia física, superficie y detalle como un producto premium.","inspect.finish":"Superficie","inspect.finishv":"Metal obsidiana","inspect.form":"Formato","inspect.formv":"Física + virtual","inspect.control":"Control"
+});
+Object.assign(I18N.zh,{
+"collection.eye":"BLACK ONE 卡片系列","collection.title":"三张卡。三种角色。同一种身份。","collection.copy":"Core、Private 与 Business 拥有不同的实体设计语言，同时保持鲜明的 BLACK ONE 识别度。","collection.core":"Core","collection.private":"Private","collection.business":"Business","collection.personal":"个人","collection.company":"企业","collection.coreTitle":"BLACK ONE Core","collection.coreCopy":"哑光黑、极简而克制——BLACK ONE 的日常表达。","collection.material":"表面","collection.use":"适用于","collection.controls":"控制","collection.coreMaterial":"哑光黑","collection.coreUse":"个人使用","collection.appControl":"应用内完整控制","collection.inspect":"查看卡片细节",
+"onboarding.eye":"实时开户流程","onboarding.title":"从零开始，一条流程进入 BLACK ONE。","onboarding.copy":"展示账户创建、身份验证、卡片选择与激活的互动式产品流程。","onboarding.demoTitle":"开启体验。","onboarding.s1":"创建 BLACK ONE 账户","onboarding.s1c":"从核心账户与所需产品体验开始。","onboarding.s2":"验证身份","onboarding.s2c":"清晰、安全的身份验证步骤。","onboarding.s3":"选择卡片","onboarding.s3c":"根据产品需求选择 Core、Private 或 Business。","onboarding.s4":"激活 BLACK ONE","onboarding.s4c":"完成设置并进入核心金融环境。","onboarding.back":"返回","onboarding.next":"继续","onboarding.preview1":"你的账户从这里开始。","onboarding.preview1c":"每个设置步骤都会实时改变界面。",
+"world.eye":"全球资金流动","world.title":"金融产品应该在看到细节之前就让人感到全球化。","world.copy":"展示资金在不同市场与货币之间流动的动态产品视觉。","world.feed":"实时产品可视化",
+"cinema.eye":"交易动画","cinema.title":"看到资金如何移动，而不仅是最终结果。","cinema.copy":"转账以一个完整视觉流程经过授权、兑换、结算与到账。","cinema.replay":"重新播放交易","cinema.s1":"已授权","cinema.s1c":"支付已批准","cinema.s2":"已兑换","cinema.s2c":"汇率已锁定","cinema.s3":"已结算","cinema.s3c":"路径已完成","cinema.s4":"已到账","cinema.s4c":"资金可用","cinema.amount":"来源","cinema.converted":"目标","cinema.status":"状态","cinema.complete":"已完成",
+"securityMoment.eye":"安全时刻","securityMoment.title":"安全只在真正重要时出现。","securityMoment.copy":"为 BLACK ONE 内敏感操作设计的专注生物识别确认体验。","securityMoment.ready":"准备验证","securityMoment.readyc":"启动安全验证以模拟生物识别确认。","securityMoment.verify":"使用生物识别验证","securityMoment.log":"安全状态","securityMoment.device":"设备","securityMoment.trusted":"可信","securityMoment.biometric":"生物识别","securityMoment.enabled":"已启用","securityMoment.card":"卡片","securityMoment.risk":"风险状态","securityMoment.normal":"正常",
+"wealth.eye":"财富驾驶舱","wealth.title":"现金、卡片、资产与企业。一张完整金融图景。","wealth.copy":"将多个产品层整合成一个清晰的综合财富视图。","wealth.total":"综合价值","wealth.cash":"现金与账户","wealth.cards":"卡片活动","wealth.assets":"数字资产","wealth.business":"企业余额",
+"inspect.title":"把 BLACK ONE 当作一件实体产品。","inspect.copy":"点击卡片，像查看高端产品一样观察其实体质感、表面与细节。","inspect.finish":"表面","inspect.finishv":"黑曜石金属","inspect.form":"形态","inspect.formv":"实体 + 虚拟","inspect.control":"控制"
+});
+
+
 </script>
 
 <!-- =======================================================
@@ -1767,6 +2341,25 @@ document.querySelectorAll("#navLinks a").forEach(link=>link.addEventListener("cl
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape") modal.classList.remove("open");
 });
+
+
+/* Founder / Investor view */
+(()=>{
+  const shell=document.querySelector('.fi-shell');
+  if(!shell) return;
+  const tabs=[...shell.querySelectorAll('[data-fi-tab]')];
+  const panels=[...shell.querySelectorAll('[data-fi-panel]')];
+  const activate=i=>{
+    tabs.forEach((tab,n)=>{
+      const active=n===i;
+      tab.classList.toggle('active',active);
+      tab.setAttribute('aria-selected',active?'true':'false');
+    });
+    panels.forEach((panel,n)=>panel.classList.toggle('active',n===i));
+  };
+  tabs.forEach((tab,i)=>tab.addEventListener('click',()=>activate(i)));
+  activate(0);
+})();
 
 
 /* Cinematic product story */
@@ -1854,5 +2447,293 @@ document.addEventListener("keydown",e=>{
   reduce.addEventListener?.('change',request);
   update();
 })();
+
+
+/* =========================================================
+   INTERACTIVE PRODUCT SYSTEM
+   ========================================================= */
+(()=>{
+  const $=(s,r=document)=>r.querySelector(s);
+  const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+  const lang=()=>document.getElementById('language')?.value||'en';
+
+  /* NAV — reliable on desktop + mobile */
+  const menuBtn=$('#menu');
+  const navLinks=$('#navLinks');
+  const closeMenu=()=>{
+    navLinks?.classList.remove('mobile-open');
+    navLinks?.removeAttribute('style');
+    menuBtn?.setAttribute('aria-expanded','false');
+  };
+  if(menuBtn && navLinks){
+    menuBtn.setAttribute('aria-expanded','false');
+    menuBtn.onclick=(e)=>{
+      e.preventDefault();e.stopPropagation();
+      navLinks.removeAttribute('style');
+      const open=navLinks.classList.toggle('mobile-open');
+      menuBtn.setAttribute('aria-expanded',open?'true':'false');
+    };
+    document.addEventListener('click',e=>{
+      if(window.innerWidth<=1050 && navLinks.classList.contains('mobile-open') && !navLinks.contains(e.target) && e.target!==menuBtn) closeMenu();
+    });
+    window.addEventListener('resize',()=>{if(window.innerWidth>1050) closeMenu()});
+  }
+
+  $$('#navLinks a[href^="#"], .brand[href^="#"], .hero-scroll-cue[href^="#"], .fi-company-link a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const target=$(a.getAttribute('href'));
+      if(!target) return;
+      e.preventDefault();
+      closeMenu();
+      const top=target.getBoundingClientRect().top+window.scrollY-82;
+      window.scrollTo({top,behavior:'smooth'});
+    });
+  });
+
+  const sections=$$('section[id]');
+  if('IntersectionObserver' in window){
+    const navObs=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(!entry.isIntersecting) return;
+        $$('#navLinks a').forEach(a=>a.classList.toggle('nav-current',a.getAttribute('href')==='#'+entry.target.id));
+      });
+    },{rootMargin:'-35% 0px -55% 0px',threshold:0});
+    sections.forEach(s=>navObs.observe(s));
+  }
+
+  /* Toggle controls */
+  $$('.toggle,.mini-toggle,.story-switch').forEach(tg=>{
+    tg.setAttribute('role','switch');tg.setAttribute('aria-checked','true');
+    tg.addEventListener('click',()=>{
+      const off=tg.classList.toggle('off');
+      tg.setAttribute('aria-checked',off?'false':'true');
+    });
+  });
+
+  /* Dashboard entrance + number count */
+  const product=$('.product-ui');
+  if(product && 'IntersectionObserver' in window){
+    const po=new IntersectionObserver(entries=>{
+      if(entries[0]?.isIntersecting){
+        product.classList.add('in-view');
+        const balance=$('.app-balance-number',product);
+        if(balance && !balance.dataset.counted){
+          balance.dataset.counted='1';
+          const end=84620.48,start=0,dur=1150,t0=performance.now();
+          const tick=now=>{
+            const p=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-p,3);
+            balance.textContent='$'+(start+(end-start)*e).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+            if(p<1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        }
+        po.disconnect();
+      }
+    },{threshold:.25});
+    po.observe(product);
+  }
+
+  /* In-app live screens */
+  const demoText={
+    en:{send:'Send money',sendSub:'Create a transfer inside BLACK ONE.',to:'Recipient',amount:'Amount',continue:'Continue securely',exchange:'Exchange',exchangeSub:'Convert between supported balances.',card:'Card control',cardSub:'Switch card tier and manage spending controls.',security:'Security center',securitySub:'Trusted device and biometric control.',receive:'Receive money',receiveSub:'Your account details are ready to share.',add:'Add money',addSub:'Choose a funding route.',back:'Back to overview',confirm:'Confirm exchange',verified:'Verified',processing:'Processing…',completed:'Completed',online:'Online payments',contactless:'Contactless',atm:'ATM access',limit:'Monthly limit',account:'Account details',copy:'Copy details',funding:'Funding route',bank:'Bank transfer',digital:'Digital balance'},
+    uk:{send:'Надіслати кошти',sendSub:'Створіть переказ усередині BLACK ONE.',to:'Отримувач',amount:'Сума',continue:'Продовжити безпечно',exchange:'Обмін',exchangeSub:'Конвертуйте між підтримуваними балансами.',card:'Керування карткою',cardSub:'Змінюйте рівень картки та керуйте витратами.',security:'Центр безпеки',securitySub:'Довірений пристрій і біометричний контроль.',receive:'Отримати кошти',receiveSub:'Реквізити рахунку готові для використання.',add:'Поповнити',addSub:'Оберіть спосіб поповнення.',back:'До огляду',confirm:'Підтвердити обмін',verified:'Підтверджено',processing:'Обробка…',completed:'Завершено',online:'Онлайн-платежі',contactless:'Безконтактна оплата',atm:'Банкомати',limit:'Місячний ліміт',account:'Реквізити рахунку',copy:'Скопіювати реквізити',funding:'Спосіб поповнення',bank:'Банківський переказ',digital:'Цифровий баланс'},
+    es:{send:'Enviar dinero',sendSub:'Crea una transferencia dentro de BLACK ONE.',to:'Destinatario',amount:'Importe',continue:'Continuar de forma segura',exchange:'Cambio',exchangeSub:'Convierte entre saldos compatibles.',card:'Control de tarjeta',cardSub:'Cambia el nivel de tarjeta y gestiona los controles.',security:'Centro de seguridad',securitySub:'Dispositivo de confianza y control biométrico.',receive:'Recibir dinero',receiveSub:'Los datos de tu cuenta están listos para compartir.',add:'Añadir dinero',addSub:'Elige una ruta de financiación.',back:'Volver al resumen',confirm:'Confirmar cambio',verified:'Verificado',processing:'Procesando…',completed:'Completado',online:'Pagos online',contactless:'Contactless',atm:'Cajeros',limit:'Límite mensual',account:'Datos de cuenta',copy:'Copiar datos',funding:'Ruta de financiación',bank:'Transferencia bancaria',digital:'Saldo digital'},
+    zh:{send:'发送资金',sendSub:'在 BLACK ONE 内创建转账。',to:'收款人',amount:'金额',continue:'安全继续',exchange:'兑换',exchangeSub:'在支持的余额之间进行兑换。',card:'卡片控制',cardSub:'切换卡片等级并管理消费控制。',security:'安全中心',securitySub:'可信设备与生物识别控制。',receive:'接收资金',receiveSub:'账户信息可随时共享。',add:'添加资金',addSub:'选择入金路径。',back:'返回总览',confirm:'确认兑换',verified:'已验证',processing:'处理中…',completed:'已完成',online:'在线支付',contactless:'非接触支付',atm:'ATM',limit:'月度限额',account:'账户信息',copy:'复制信息',funding:'入金方式',bank:'银行转账',digital:'数字余额'}
+  };
+  const tx=()=>demoText[lang()]||demoText.en;
+  const appShell=$('.product-ui .app-shell');
+  let appLayer=null, currentView=null;
+
+  const cardMini=(tier='private')=>{
+    const labels={core:'CORE',private:'PRIVATE / METAL',business:'BUSINESS'};
+    return `<div class="mini-black-card" style="${tier==='business'?'background:repeating-linear-gradient(92deg,rgba(255,255,255,.025) 0 1px,transparent 1px 5px),linear-gradient(145deg,#202126,#090a0c 55%,#14161a)':tier==='core'?'background:linear-gradient(145deg,#151519,#050506 65%)':''}"><div class="mini-card-brand">BLACK ONE</div><div class="mini-card-chip"></div><div class="mini-card-number">5412&nbsp; •••• &nbsp;••••&nbsp; 4821</div><div class="mini-card-mark">${labels[tier]}</div></div>`;
+  };
+
+  function ensureLayer(){
+    if(!appShell) return null;
+    if(appLayer) return appLayer;
+    appLayer=document.createElement('div');
+    appLayer.className='app-view-layer';
+    appShell.appendChild(appLayer);
+    return appLayer;
+  }
+
+  function openAppView(view){
+    currentView=view;
+    const l=ensureLayer(); if(!l) return;
+    const c=tx();
+    let title='',sub='',body='';
+    if(view==='send'){
+      title=c.send;sub=c.sendSub;
+      body=`<div class="app-view-grid"><div class="app-view-card"><h4>${c.send}</h4><div class="demo-field"><small>${c.to}</small><strong>Alexander M.</strong></div><div class="demo-field"><small>${c.amount}</small><strong>€ 4,800.00</strong></div><button class="demo-primary" data-demo-secure>${c.continue}</button></div><div class="app-view-card demo-biometric"><div><div class="demo-face"></div><p class="muted">${c.securitySub}</p></div></div></div>`;
+    }else if(view==='exchange'){
+      title=c.exchange;sub=c.exchangeSub;
+      body=`<div class="app-view-grid"><div class="app-view-card"><h4>USDC → EUR</h4><div class="demo-field"><small>FROM</small><strong>5,000 USDC</strong></div><div class="demo-field"><small>TO</small><strong>€4,618 EUR</strong></div><button class="demo-primary" data-demo-exchange>${c.confirm}</button><div class="demo-progress"><i></i></div></div><div class="app-view-card"><div class="details"><div class="row"><span>Rate</span><b>1 USDC ≈ 0.9236 EUR</b></div><div class="row"><span>Fee</span><b>€4.80</b></div><div class="row"><span>Status</span><b class="good" data-demo-status>${c.verified}</b></div></div></div></div>`;
+    }else if(view==='card'){
+      title=c.card;sub=c.cardSub;
+      body=`<div class="app-view-grid"><div class="app-view-card"><div data-demo-card>${cardMini('private')}</div><div class="collection-tabs" style="margin:16px 0 0"><button class="collection-tab" data-demo-tier="core">Core</button><button class="collection-tab active" data-demo-tier="private">Private</button><button class="collection-tab" data-demo-tier="business">Business</button></div></div><div class="app-view-card"><div class="control-row"><span>${c.online}</span><div class="mini-toggle"></div></div><div class="control-row"><span>${c.contactless}</span><div class="mini-toggle"></div></div><div class="control-row"><span>${c.atm}</span><div class="mini-toggle"></div></div><div class="control-row"><span>${c.limit}</span><b id="demoLimit">$100,000</b></div></div></div>`;
+    }else if(view==='security'){
+      title=c.security;sub=c.securitySub;
+      body=`<div class="app-view-grid"><div class="app-view-card demo-biometric"><div><div class="demo-face"></div><button class="demo-primary" data-demo-secure>${c.continue}</button></div></div><div class="app-view-card"><div class="demo-status"><i></i>${c.verified}</div><div class="details"><div class="row"><span>Passkey</span><b class="good">ON</b></div><div class="row"><span>Biometrics</span><b class="good">ON</b></div><div class="row"><span>Risk review</span><b>Normal</b></div></div></div></div>`;
+    }else if(view==='receive'){
+      title=c.receive;sub=c.receiveSub;
+      body=`<div class="app-view-grid"><div class="app-view-card"><h4>${c.account}</h4><div class="demo-field"><small>EUR / IBAN</small><strong>PL12 1090 •••• •••• 4821</strong></div><div class="demo-field"><small>SWIFT</small><strong>BLACKONE</strong></div><button class="demo-primary">${c.copy}</button></div><div class="app-view-card"><div class="demo-status"><i></i>${c.verified}</div></div></div>`;
+    }else{
+      title=c.add;sub=c.addSub;
+      body=`<div class="app-view-grid"><div class="app-view-card"><h4>${c.funding}</h4><div class="demo-field"><small>01</small><strong>${c.bank}</strong></div><div class="demo-field"><small>02</small><strong>${c.digital}</strong></div></div><div class="app-view-card">${cardMini('core')}</div></div>`;
+    }
+    l.innerHTML=`<div class="app-view-head"><div><h3>${title}</h3><small>${sub}</small></div><button class="app-view-back" type="button" aria-label="${c.back}">←</button></div>${body}`;
+    requestAnimationFrame(()=>l.classList.add('open'));
+    $('.app-view-back',l)?.addEventListener('click',closeAppView);
+    $$(' .mini-toggle',l).forEach(tg=>tg.addEventListener('click',()=>tg.classList.toggle('off')));
+    $('[data-demo-secure]',l)?.addEventListener('click',e=>{
+      const face=$('.demo-face',l); if(face) face.style.boxShadow='0 0 0 18px rgba(168,223,194,.05),0 0 38px rgba(168,223,194,.18)';
+      e.currentTarget.textContent=c.verified;
+    });
+    $('[data-demo-exchange]',l)?.addEventListener('click',e=>{
+      const p=$('.demo-progress',l),s=$('[data-demo-status]',l);
+      p?.classList.remove('running');void p?.offsetWidth;p?.classList.add('running');
+      if(s) s.textContent=c.processing;
+      e.currentTarget.disabled=true;
+      setTimeout(()=>{if(s)s.textContent=c.completed;e.currentTarget.disabled=false},1400);
+    });
+    $$('[data-demo-tier]',l).forEach(btn=>btn.addEventListener('click',()=>{
+      $$('[data-demo-tier]',l).forEach(x=>x.classList.toggle('active',x===btn));
+      const tier=btn.dataset.demoTier;
+      const target=$('[data-demo-card]',l); if(target) target.innerHTML=cardMini(tier);
+      const lim=$('#demoLimit',l); if(lim) lim.textContent=tier==='core'?'$30,000':tier==='business'?'$150,000':'$100,000';
+    }));
+  }
+  function closeAppView(){appLayer?.classList.remove('open');currentView=null}
+  window.__boRenderDemo=()=>{if(currentView) openAppView(currentView)};
+  document.getElementById('language')?.addEventListener('change',()=>setTimeout(()=>window.__boRenderDemo?.(),0));
+
+  const bindKey=(key,view)=>{
+    const el=$(`[data-i="${key}"]`,product);
+    const btn=el?.closest('button,.app-nav-item');
+    if(btn) btn.addEventListener('click',e=>{e.preventDefault();openAppView(view)});
+  };
+  bindKey('dash.send','send');bindKey('dash.receive','receive');bindKey('dash.exchange','exchange');bindKey('dash.add','add');
+  bindKey('dash.cards','card');bindKey('dash.security','security');bindKey('dash.payments','send');bindKey('dash.assets','exchange');
+
+  /* Card collection */
+  const tierData={
+    core:{title:'collection.coreTitle',copy:'collection.coreCopy',material:'collection.coreMaterial',use:'collection.coreUse'},
+    private:{title:'BLACK ONE Private',copy:{en:'Deep black metal with a controlled silver edge and a more physical, premium presence.',uk:'Глибокий чорний метал, контрольований срібний край і більш фізичне преміальне відчуття.',es:'Metal negro profundo con borde plateado y una presencia física más premium.',zh:'深黑金属、克制的银色边缘与更强的高端实体质感。'},material:{en:'Obsidian metal',uk:'Obsidian metal',es:'Metal obsidiana',zh:'黑曜石金属'},use:{en:'Private access',uk:'Private доступ',es:'Acceso Private',zh:'Private 高端服务'}},
+    business:{title:'BLACK ONE Business',copy:{en:'Graphite-black, structured and operational — designed to feel corporate without losing the BLACK ONE identity.',uk:'Графітово-чорна, структурна й операційна — корпоративна, але все ще BLACK ONE.',es:'Negro grafito, estructurada y operativa: corporativa sin perder la identidad BLACK ONE.',zh:'石墨黑、结构化、偏运营风格，同时保持 BLACK ONE 身份。'},material:{en:'Brushed graphite',uk:'Шліфований графіт',es:'Grafito cepillado',zh:'拉丝石墨'},use:{en:'Company & teams',uk:'Компанії та команди',es:'Empresa y equipos',zh:'企业与团队'}}
+  };
+  let activeTier='core';
+  const localize=v=>typeof v==='string'?(I18N[lang()]?.[v]||I18N.en[v]||v):(v?.[lang()]||v?.en||'');
+  function setTier(tier){
+    activeTier=tier;
+    $$('.collection-tab[data-card-tier]').forEach(b=>b.classList.toggle('active',b.dataset.cardTier===tier));
+    $$('[data-collection-card]').forEach(c=>c.classList.toggle('active',c.dataset.collectionCard===tier));
+    const d=tierData[tier];
+    const title=$('#collectionTitle'),copy=$('#collectionCopy'),material=$('#collectionMaterial'),use=$('#collectionUse');
+    if(title) title.textContent=localize(d.title);
+    if(copy) copy.textContent=localize(d.copy);
+    if(material) material.textContent=localize(d.material);
+    if(use) use.textContent=localize(d.use);
+  }
+  $$('.collection-tab[data-card-tier]').forEach(b=>b.addEventListener('click',()=>setTier(b.dataset.cardTier)));
+  document.getElementById('language')?.addEventListener('change',()=>setTimeout(()=>setTier(activeTier),0));
+
+  /* Card inspector + pointer tilt */
+  const inspector=$('#cardInspector'),inspectCard=$('#inspectCard'),inspectStage=$('#inspectStage'),inspectTier=$('#inspectTier');
+  const openInspector=(tier='private')=>{
+    if(!inspector) return;
+    const labels={core:'CORE',private:'PRIVATE / METAL',business:'BUSINESS'};
+    if(inspectTier) inspectTier.textContent=labels[tier]||labels.private;
+    if(inspectCard){
+      inspectCard.style.background=tier==='business'
+        ?'repeating-linear-gradient(92deg,rgba(255,255,255,.025) 0 1px,transparent 1px 5px),linear-gradient(145deg,#202126,#090a0c 55%,#14161a)'
+        :tier==='core'
+        ?'linear-gradient(145deg,#151519,#050506 65%)'
+        :'radial-gradient(circle at 75% 18%,rgba(255,255,255,.17),transparent 22%),linear-gradient(145deg,#232327,#08090a 52%,#17171a)';
+    }
+    inspector.classList.add('open');inspector.setAttribute('aria-hidden','false');
+  };
+  const closeInspector=()=>{inspector?.classList.remove('open');inspector?.setAttribute('aria-hidden','true');if(inspectCard)inspectCard.style.transform='none'};
+  $('#cardInspectorClose')?.addEventListener('click',closeInspector);
+  inspector?.addEventListener('click',e=>{if(e.target===inspector)closeInspector()});
+  $('#inspectCollectionCard')?.addEventListener('click',()=>openInspector(activeTier));
+  $$('[data-collection-card]').forEach(c=>c.addEventListener('click',()=>openInspector(c.dataset.collectionCard)));
+  $('#storyCard')?.addEventListener('click',()=>openInspector('private'));
+  inspectStage?.addEventListener('pointermove',e=>{
+    if(!inspectCard) return;
+    const r=inspectStage.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    inspectCard.style.transform=`rotateX(${-y*14}deg) rotateY(${x*18}deg) scale(1.02)`;
+  });
+  inspectStage?.addEventListener('pointerleave',()=>{if(inspectCard)inspectCard.style.transform='none'});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeInspector()});
+
+  /* Cinematic card pulse follows pointer */
+  const storyCard=$('#storyCard');
+  storyCard?.addEventListener('pointermove',e=>{
+    const r=storyCard.getBoundingClientRect();
+    storyCard.style.setProperty('--pulse-x',`${((e.clientX-r.left)/r.width)*100}%`);
+    storyCard.style.setProperty('--pulse-y',`${((e.clientY-r.top)/r.height)*100}%`);
+  });
+
+  /* Onboarding */
+  let obStep=0;
+  const obSteps=$$('[data-ob-step]'),obBars=$$('.onboarding-progress i'),obPreview=$('#obPreview');
+  const obText={
+    en:[['01','Your account starts here.','Create the base BLACK ONE profile.'],['⌁','Verify identity.','A secure verification moment before financial access.'],['▰','Choose your card.','Core, Private or Business.'],['✓','BLACK ONE is ready.','Enter the full account experience.']],
+    uk:[['01','Ваш акаунт починається тут.','Створіть базовий профіль BLACK ONE.'],['⌁','Підтвердьте особу.','Безпечна перевірка перед фінансовим доступом.'],['▰','Оберіть картку.','Core, Private або Business.'],['✓','BLACK ONE готовий.','Перейдіть у повний інтерфейс акаунта.']],
+    es:[['01','Tu cuenta empieza aquí.','Crea el perfil base de BLACK ONE.'],['⌁','Verifica tu identidad.','Verificación segura antes del acceso financiero.'],['▰','Elige tu tarjeta.','Core, Private o Business.'],['✓','BLACK ONE está listo.','Entra a la experiencia completa.']],
+    zh:[['01','你的账户从这里开始。','创建基础 BLACK ONE 账户。'],['⌁','验证身份。','进入金融功能前完成安全验证。'],['▰','选择卡片。','Core、Private 或 Business。'],['✓','BLACK ONE 已准备就绪。','进入完整账户体验。']]
+  };
+  function renderOb(){
+    obSteps.forEach((s,i)=>s.classList.toggle('active',i===obStep));
+    obBars.forEach((b,i)=>b.classList.toggle('done',i<=obStep));
+    const o=(obText[lang()]||obText.en)[obStep];
+    if(obPreview) obPreview.innerHTML=`<div class="icon">${o[0]}</div><h4>${o[1]}</h4><p>${o[2]}</p>${obStep===2?'<div class="ob-card-preview"><b>BLACK ONE PRIVATE</b><span>•••• 9208</span></div>':obStep===3?'<div class="demo-status" style="margin-top:25px"><i></i>ACTIVE</div>':'<div class="ob-card-preview"><b>BLACK ONE</b><span>•••• 4821</span></div>'}`;
+    const back=$('#obBack'),next=$('#obNext');
+    if(back) back.style.opacity=obStep===0?'.45':'1';
+    if(next) next.textContent=obStep===3?((lang()==='uk')?'Завершено':lang()==='es'?'Completado':lang()==='zh'?'完成':'Complete'):(I18N[lang()]?.['onboarding.next']||I18N.en['onboarding.next']);
+  }
+  $('#obNext')?.addEventListener('click',()=>{if(obStep<3)obStep++;else obStep=0;renderOb()});
+  $('#obBack')?.addEventListener('click',()=>{if(obStep>0)obStep--;renderOb()});
+  document.getElementById('language')?.addEventListener('change',()=>setTimeout(renderOb,0));
+  renderOb();
+
+  /* Transaction cinema */
+  const cinema=$('#txCinema');
+  function runCinema(){if(!cinema)return;cinema.classList.remove('running');void cinema.offsetWidth;cinema.classList.add('running')}
+  $('#txReplay')?.addEventListener('click',runCinema);
+  if(cinema && 'IntersectionObserver' in window){
+    const io=new IntersectionObserver(e=>{if(e[0]?.isIntersecting){runCinema();io.disconnect()}},{threshold:.35});io.observe(cinema);
+  }
+
+  /* Security moment */
+  const secBtn=$('#securityRun'),secCheck=$('#securityCheck'),secTitle=$('#securityMomentTitle'),secCopy=$('#securityMomentCopy');
+  secBtn?.addEventListener('click',()=>{
+    secCheck?.classList.remove('verified');secCheck?.classList.add('scanning');
+    if(secTitle) secTitle.textContent=(lang()==='uk'?'Перевіряємо…':lang()==='es'?'Verificando…':lang()==='zh'?'验证中…':'Verifying…');
+    if(secCopy) secCopy.textContent=(lang()==='uk'?'Біометричне підтвердження виконується на довіреному пристрої.':lang()==='es'?'La confirmación biométrica se ejecuta en un dispositivo de confianza.':lang()==='zh'?'正在可信设备上执行生物识别确认。':'Biometric confirmation is running on the trusted device.');
+    setTimeout(()=>{
+      secCheck?.classList.remove('scanning');secCheck?.classList.add('verified');if(secCheck)secCheck.textContent='✓';
+      if(secTitle) secTitle.textContent=(lang()==='uk'?'Підтверджено':lang()==='es'?'Verificado':lang()==='zh'?'已验证':'Verified');
+      if(secCopy) secCopy.textContent=(lang()==='uk'?'Дію підтверджено. BLACK ONE може продовжити операцію.':lang()==='es'?'Acción confirmada. BLACK ONE puede continuar la operación.':lang()==='zh'?'操作已确认，BLACK ONE 可以继续。':'Action confirmed. BLACK ONE can continue the operation.');
+    },1500);
+  });
+
+  /* Wealth cockpit animation */
+  const wealth=$('#wealthShell');
+  if(wealth && 'IntersectionObserver' in window){
+    const io=new IntersectionObserver(e=>{
+      if(!e[0]?.isIntersecting)return;
+      wealth.classList.add('in-view');
+      const n=$('[data-count-money]',wealth);if(n && !n.dataset.done){
+        n.dataset.done='1';const end=Number(n.dataset.countMoney),start=0,dur=1350,t0=performance.now();
+        const tick=now=>{const p=Math.min(1,(now-t0)/dur),q=1-Math.pow(1-p,3);n.textContent='$'+(start+(end-start)*q).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});if(p<1)requestAnimationFrame(tick)};
+        requestAnimationFrame(tick);
+      }
+      io.disconnect();
+    },{threshold:.3});io.observe(wealth);
+  }
+})();
+
 
 </script></body></html>
