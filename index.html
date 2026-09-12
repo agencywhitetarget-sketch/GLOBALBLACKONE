@@ -163,7 +163,32 @@ section[id]{scroll-margin-top:88px}
 .story-number{font-size:10px;color:#6f6f77;letter-spacing:.18em;margin-bottom:18px}.story-copy h2{font-size:clamp(52px,5.7vw,94px);line-height:.92;letter-spacing:-.06em;margin:0;max-width:760px;font-weight:620}.story-copy p{font-size:16px;line-height:1.7;color:#9898a0;max-width:570px;margin:24px 0 0}.story-copy .story-meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:28px;color:#696971;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
 
 .story-stage{height:min(760px,82vh);position:relative;perspective:1600px;display:grid;place-items:center}
-.story-metal-card{position:absolute;width:min(520px,64%);aspect-ratio:1.586/1;border-radius:28px;transform-style:preserve-3d;will-change:transform;z-index:4;background:radial-gradient(circle at 75% 18%,rgba(255,255,255,.16),transparent 22%),linear-gradient(130deg,rgba(255,255,255,.14),transparent 14%),linear-gradient(145deg,#232327,#08090a 50%,#17171a 78%,#080809);border:1px solid rgba(255,255,255,.2);box-shadow:0 60px 130px rgba(0,0,0,.7),0 1px 0 rgba(255,255,255,.08) inset;overflow:hidden}
+.story-metal-card{
+  position:absolute;
+  width:min(520px,64%);
+  aspect-ratio:1.586/1;
+  border-radius:28px;
+  transform-style:preserve-3d;
+  will-change:transform,opacity;
+  z-index:4;
+
+  background:
+    radial-gradient(circle at 75% 18%,rgba(255,255,255,.16),transparent 22%),
+    linear-gradient(130deg,rgba(255,255,255,.14),transparent 14%),
+    linear-gradient(145deg,#232327,#08090a 50%,#17171a 78%,#080809);
+
+  border:1px solid rgba(255,255,255,.2);
+
+  box-shadow:
+    0 60px 130px rgba(0,0,0,.7),
+    0 1px 0 rgba(255,255,255,.08) inset;
+
+  overflow:hidden;
+
+  transition:
+    opacity .45s ease,
+    transform .12s linear;
+}
 .story-metal-card:before{content:"";position:absolute;inset:-80% -20%;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.13) 50%,transparent 58%);transform:translateX(calc(-55% + var(--story-p) * 150%)) rotate(12deg);pointer-events:none}
 .story-metal-card .cardbrand{font-size:15px}.story-metal-card .cardsub{font-size:8px}.story-metal-card .chip{top:104px}.story-metal-card .digits{font-size:14px}
 .story-card-edge{position:absolute;inset:10px;border-radius:22px;border:1px solid rgba(255,255,255,.045);pointer-events:none}
@@ -1776,19 +1801,52 @@ document.addEventListener("keydown",e=>{
     const scene=Math.min(4,Math.floor(raw));
     const local=raw-scene;
     activate(scene);
-    if(card){
-      const baseRot=-8 + p*215;
-      let x=0,y=0,sc=1;
-      if(scene===0){x=0;y=8-local*26;sc=1+.035*ease(local)}
-      else if(scene===1){x=30+65*ease(local);y=34;sc=.78-.05*ease(local)}
-      else if(scene===2){x=145+30*ease(local);y=60;sc=.68}
-      else if(scene===3){x=-135+45*ease(local);y=75;sc=.58}
-      else {x=105-35*ease(local);y=45;sc=.62+.08*ease(local)}
-      const rotX=6-Math.sin(p*Math.PI*3)*7;
-      card.style.transform=`translate3d(${x}px,${y}px,0) rotateX(${rotX}deg) rotateY(${baseRot}deg) rotateZ(${-5+p*10}deg) scale(${sc})`;
-      card.style.opacity=scene===1?String(.9-.45*ease(local)):scene===2||scene===3?'.44':scene===4?'.74':'1';
-    }
+   if(card){
+  /* 01 / 05 — картка живе тільки в першій сцені */
+  if(scene === 0){
+    const e = ease(local);
+
+    /* Обертання картки */
+    const rotateY = -8 + e * 120;
+    const rotateX = 6 - e * 10;
+    const rotateZ = -5 + e * 7;
+
+    /* Невеликий рух і збільшення */
+    const x = e * 55;
+    const y = 8 - e * 24;
+    const scale = 1 + e * 0.035;
+
+    /*
+      Починаємо прибирати картку приблизно
+      на останніх 25% першої сцени.
+    */
+    const fade = 1 - clamp((local - 0.72) / 0.28);
+
+    card.style.opacity = fade.toFixed(3);
+    card.style.visibility = 'visible';
+
+    card.style.transform = `
+      translate3d(${x}px, ${y}px, 0)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      rotateZ(${rotateZ}deg)
+      scale(${scale})
+    `;
   }
+
+  /* 02 / 05 — 05 / 05: великої картки вже немає */
+  else{
+    card.style.opacity = '0';
+    card.style.visibility = 'hidden';
+    card.style.transform = `
+      translate3d(140px, 20px, 0)
+      rotateX(0deg)
+      rotateY(110deg)
+      rotateZ(0deg)
+      scale(.82)
+    `;
+  }
+}
   const request=()=>{if(!raf) raf=requestAnimationFrame(update)};
   addEventListener('scroll',request,{passive:true});
   addEventListener('resize',request,{passive:true});
